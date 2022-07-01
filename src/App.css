@@ -1,3 +1,7 @@
+p {
+    margin: 0;
+    padding: 0;
+}
 a {
     text-decoration: none;
     cursor: pointer;
@@ -7,8 +11,7 @@ a {
 
     grid-template-areas:
     'h h'
-    'n c'
-;
+    'n c';
 
 
     display: grid;
@@ -19,23 +22,12 @@ a {
     margin: 0 auto;
 }
 
-header img   {
-
-}
-
-
-.header{
-    grid-area: h;
-    background-color: #16d732;
-}
-
-.nav{
-    grid-area: n;
-    background-color: #dfee08;
-}
-
-.content {
+.app-wrapper-content {
     grid-area: c;
     background-color: #8cd9ff;
 }
+
+
+
+
 

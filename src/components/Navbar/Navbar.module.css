@@ -1,0 +1,22 @@
+.nav{
+    grid-area: n;
+    background-color: #dfee08;
+    margin-right: 15px;
+}
+
+.item{
+    color: #595959;
+}
+
+
+.active {
+    color: goldenrod;
+}
+
+.name{
+
+}
+
+.postman{
+
+}
