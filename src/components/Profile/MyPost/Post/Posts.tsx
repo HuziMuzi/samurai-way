@@ -9,6 +9,7 @@ export const Posts = (props:PostsPropsMessage) => {
     return (
         <>
             <div className={s.postman}>
+
                 <img  width={'150px'}
                      src="https://www.thehedgescompany.com/hedges/wp-content/uploads/2016/04/Man-at-computer-no-attribution.jpg"
                      alt="avatar"/>

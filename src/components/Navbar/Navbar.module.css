@@ -2,6 +2,7 @@
     grid-area: n;
     background-color: #dfee08;
     margin-right: 15px;
+    padding: 10px;
 }
 
 .item{
@@ -9,8 +10,9 @@
 }
 
 
-.active {
-    color: goldenrod;
+.item a.activeLink {
+    color: #ffffff;
+    /*color: goldenrod;*/
 }
 
 .name{
