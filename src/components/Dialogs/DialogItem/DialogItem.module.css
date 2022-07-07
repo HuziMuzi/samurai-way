@@ -1,0 +1,12 @@
+
+.dialogsItem {
+    padding: 10px;
+}
+
+.dialogsItem .active {
+    color: #ffbe29;
+}
+
+.dialog {
+
+}
