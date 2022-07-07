@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './Profile.module.css'
 import {MyPosts} from "./MyPost/MyPosts";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 
 export const Profile = () => {
@@ -9,18 +10,7 @@ export const Profile = () => {
             <div className={s.content}>
                 <div><img className={s.bg_img}
                           src="https://cdn.pixabay.com/photo/2013/11/15/13/57/road-210913_960_720.jpg" alt=""/></div>
-                <div>
-                    <img width={'150px'}
-                         src="https://www.thehedgescompany.com/hedges/wp-content/uploads/2016/04/Man-at-computer-no-attribution.jpg"
-                         alt=""/>
-                    <div>
-                        <h2 className={s.name}>Andrei D</h2>
-                        <p>Date of Birth 2 january</p>
-                        <p>City: Minsk</p>
-                        <p>Education: BSU'11</p>
-                        <p>Web Site: https://it-kamasutra.com</p>
-                    </div>
-                </div>
+                <ProfileInfo/>
                 <MyPosts/>
             </div>
         </>
