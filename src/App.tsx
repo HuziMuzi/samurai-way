@@ -9,15 +9,22 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import {PostDataType} from "./components/Profile/MyPost/MyPosts";
+import {sideUserType} from "./components/Sidebar/Sidebar";
 
 
 type AppPropsType = {
     state: {
-        posts: Array<PostDataType>
-        dialogs: Array<DialogsDataType>
-        messages: Array<MessageDataType>
+        profilePage: {
+            posts: Array<PostDataType>
+        }
+        dialogsPage: {
+            dialogs: Array<DialogsDataType>
+            messages: Array<MessageDataType>
+        }
+        navBarPage: {
+            sidebar: Array<sideUserType>
+        }
     }
-
 
 
 }
@@ -27,11 +34,10 @@ function App(props: AppPropsType) {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <Navbar state={props.state}/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/Profile'} render={() => <Profile posts={props.state.posts}/>}/>
-                    <Route path={'/Dialogs'}
-                           render={() => <Dialogs dialogs={props.state.dialogs} messages={props.state.messages}/>}/>
+                    <Route path={'/Profile'} render={() => <Profile state={props.state.profilePage}/>}/>
+                    <Route path={'/Dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>
                     <Route path={'/Settings'} component={Settings}/>

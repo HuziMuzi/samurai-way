@@ -1,9 +1,17 @@
 import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+import Sidebar, {sideUserType} from "../Sidebar/Sidebar";
 
+export type navbarPropsType = {
+    state: {
+        navBarPage: {
+            sidebar: Array<sideUserType>
+        }
+    }
+}
 
-export const Navbar = () => {
+export const Navbar = (props: navbarPropsType) => {
     return (
         <>
             <nav className={s.nav}>
@@ -17,6 +25,9 @@ export const Navbar = () => {
                     <NavLink to="/Music" activeClassName={s.activeLink}>Music</NavLink></div>
                 <div className={s.item}>
                     <NavLink to="/Settings" activeClassName={s.activeLink}>Settings</NavLink></div>
+                <div className={`${s.item}`}>
+                    <Sidebar state={props.state.navBarPage.sidebar}/>
+                </div>
             </nav>
         </>
     );

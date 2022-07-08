@@ -9,11 +9,13 @@ export type PostDataType = {
 }
 
 type MyPostsPropsType = {
-    posts: Array<PostDataType>
+    state: {
+        posts: Array<PostDataType>
+    }
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
-    let postsElement = props.posts.map(post => <Posts message={post.message} likes={post.likesCount}/>)
+    let postsElement = props.state.posts.map(post => <Posts message={post.message} likes={post.likesCount}/>)
 
     return (
         <>
