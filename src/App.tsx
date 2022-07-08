@@ -12,9 +12,14 @@ import {PostDataType} from "./components/Profile/MyPost/MyPosts";
 
 
 type AppPropsType = {
-    dialogs: Array<DialogsDataType>
-    messages: Array<MessageDataType>
-    posts: Array<PostDataType>
+    state: {
+        posts: Array<PostDataType>
+        dialogs: Array<DialogsDataType>
+        messages: Array<MessageDataType>
+    }
+
+
+
 }
 
 function App(props: AppPropsType) {
@@ -24,14 +29,12 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/Profile'} render={() => <Profile posts={props.posts}/>}/>
+                    <Route path={'/Profile'} render={() => <Profile posts={props.state.posts}/>}/>
                     <Route path={'/Dialogs'}
-                           render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                           render={() => <Dialogs dialogs={props.state.dialogs} messages={props.state.messages}/>}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>
                     <Route path={'/Settings'} component={Settings}/>
-                    {/*<Profile/>*/}
-                    {/*<Dialogs/>*/}
                 </div>
             </div>
         </BrowserRouter>

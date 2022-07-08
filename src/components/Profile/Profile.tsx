@@ -3,7 +3,6 @@ import s from './Profile.module.css'
 import {MyPosts, PostDataType} from "./MyPost/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
-
 type ProfilePropsType = {
     posts: Array<PostDataType>
 }
