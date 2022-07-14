@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {Recoverable} from "repl";
 
 export type DialogsDataType = {
     id: number
@@ -22,9 +23,15 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)
+    const dialogsElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id}
+                                                                          name={dialog.name}/>)
     const messagesElements = props.state.messages.map(mes => <Message key={mes.id} text={mes.text}/>)
 
+    const textMessage = React.createRef<HTMLTextAreaElement>()
+    const toSendMessage = () => {
+        const text = textMessage.current?.value
+        alert(text)
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
@@ -32,7 +39,12 @@ const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
+                <div>
+                    <textarea ref={textMessage}></textarea>
+                    <button onClick={toSendMessage}>Отправить</button>
+                </div>
             </div>
+
         </div>
     );
 };

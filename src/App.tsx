@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import {PostDataType} from "./components/Profile/MyPost/MyPosts";
 import {sideUserType} from "./components/Sidebar/Sidebar";
+import {addPost} from "./Redux/State";
 
 
 type AppPropsType = {
@@ -24,7 +25,8 @@ type AppPropsType = {
         navBarPage: {
             sidebar: Array<sideUserType>
         }
-    }
+    },
+    addPost: (message :string) => void
 
 
 }
@@ -36,7 +38,9 @@ function App(props: AppPropsType) {
                 <Header/>
                 <Navbar state={props.state}/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/Profile'} render={() => <Profile state={props.state.profilePage}/>}/>
+                    <Route path={'/Profile'} render={() => <Profile
+                        state={props.state.profilePage}
+                        addPost={addPost}/>}/>
                     <Route path={'/Dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>

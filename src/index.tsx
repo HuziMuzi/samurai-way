@@ -5,7 +5,7 @@ import App from './App';
 import {message} from "antd";
 import {DialogsDataType, MessageDataType} from "./components/Dialogs/Dialogs";
 import {PostDataType} from "./components/Profile/MyPost/MyPosts";
-import state from  './Redux/State'
+import state, {addPost} from './Redux/State'
 
 // let dialogs: Array<DialogsDataType> = [
 //     {id: 1, name: 'Andrei'},
@@ -26,8 +26,10 @@ import state from  './Redux/State'
 //     {id: 2, message: "It's my first post", likesCount: 32},
 // ]
 
+
+
 ReactDOM.render(
-    <App state={state} />,
+    <App state={state} addPost={addPost} />,
     document.getElementById('root')
 );
 
