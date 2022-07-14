@@ -13,21 +13,26 @@ import {sideUserType} from "./components/Sidebar/Sidebar";
 import {addPost} from "./Redux/State";
 
 
-type AppPropsType = {
-    state: {
-        profilePage: {
-            posts: Array<PostDataType>
-        }
-        dialogsPage: {
-            dialogs: Array<DialogsDataType>
-            messages: Array<MessageDataType>
-        }
-        navBarPage: {
-            sidebar: Array<sideUserType>
-        }
-    },
-    addPost: (message :string) => void
+export type stateType = {
 
+    profilePage: {
+        messageForNewPost: string
+        posts: Array<PostDataType>
+    }
+    dialogsPage: {
+        dialogs: Array<DialogsDataType>
+        messages: Array<MessageDataType>
+    }
+    navBarPage: {
+        sidebar: Array<sideUserType>
+    }
+}
+
+type AppPropsType = {
+    state: stateType
+    addPost: (message: string) => void
+    changeNewTextCallBack: (newText : string) => void
+    message : string
 
 }
 
@@ -39,6 +44,8 @@ function App(props: AppPropsType) {
                 <Navbar state={props.state}/>
                 <div className='app-wrapper-content'>
                     <Route path={'/Profile'} render={() => <Profile
+                        message={props.state.profilePage.messageForNewPost}
+                        changeNewTextCallBack={props.changeNewTextCallBack}
                         state={props.state.profilePage}
                         addPost={addPost}/>}/>
                     <Route path={'/Dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>

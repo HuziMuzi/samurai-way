@@ -1,7 +1,6 @@
-import React from 'react';
-import s from './MyPosts.module.css'
+import React, {ChangeEvent} from 'react';
 import {Posts} from "./Post/Posts";
-import {addPost} from "../../../Redux/State";
+import {text} from "stream/consumers";
 import {message} from "antd";
 
 export type PostDataType = {
@@ -14,26 +13,31 @@ type MyPostsPropsType = {
     state: {
         posts: Array<PostDataType>
     },
-    addPost: (message: string) => void
+    addPost: (message: string) => void,
+    message : string
+    changeNewTextCallBack : (newText: string) => void
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
     let postsElement = props.state.posts.map(post => <Posts message={post.message} likes={post.likesCount}/>)
 
-    const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        const text = newPostElement.current?.value
-        if (text) {
-            props.addPost(text)
-        }
+        props.addPost(props.message)
     }
+
+    const onChangeTextArea = (event:ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewTextCallBack(event.currentTarget.value)
+        console.log(props.changeNewTextCallBack(event.currentTarget.value))
+
+    }
+
 
     return (
         <>
             <div>
                 <h3>My posts</h3>
-                <textarea ref={newPostElement}></textarea>
+                <textarea value={props.message} onChange={onChangeTextArea}></textarea>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>

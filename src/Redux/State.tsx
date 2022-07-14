@@ -1,9 +1,11 @@
-import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
-import {useState} from "react";
+import {stateType} from "../App";
+import {rerenderEntireTree} from "../render";
 
-let state = {
+export let state: stateType = {
+
     profilePage: {
+        messageForNewPost: '',
         posts: [
             {id: 1, message: 'Hi,how are you?', likesCount: 5},
             {id: 2, message: "It's my first post", likesCount: 32},],
@@ -33,16 +35,18 @@ let state = {
     }
 }
 
-
-
 export const addPost = (postMessage: string) => {
     const newPost: PostDataType = {
         id: 5,
         message: postMessage,
         likesCount: 0
     }
-
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 
-export default state
+
+export const changeNewText = (newText:string) => {
+    state.profilePage.messageForNewPost = newText
+    rerenderEntireTree(state)
+}
