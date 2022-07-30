@@ -74,12 +74,25 @@ export type stateType = {
 
 export type StoreType = {
     _state: stateType
-    _rerenderEntireTree: (state: stateType) => void
+    _callSubscriber: (state: stateType) => void
     addPost: (postMessage: string) => void
     subscrube: (callback: () => void) => void
     changeNewText: (newText: string) => void
     getState: () => stateType
+    dispatch: (action: ActionsTypes) => void
 }
+
+type AddPostActionType = {
+    type:'ADD-POST'
+    postMessage: string
+}
+
+type ChangeNewTextActionType = {
+    type:'CHANGE_NEW_TEXT'
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
 
 export let store: StoreType = {
     _state: {
@@ -113,7 +126,8 @@ export let store: StoreType = {
             ]
         }
     },
-    _rerenderEntireTree(state: stateType) {
+
+    _callSubscriber(state: stateType) {
         console.log('State is changed')
     },
     addPost(postMessage: string) {
@@ -124,16 +138,31 @@ export let store: StoreType = {
         }
         this._state.profilePage.posts.push(newPost)
         this.changeNewText('')
-        this._rerenderEntireTree(this._state)
+        this._callSubscriber(this._state)
     },
     subscrube(callback) {
-        this._rerenderEntireTree = callback
+        this._callSubscriber = callback
     },
     changeNewText(newText: string) {
         this._state.profilePage.messageForNewPost = newText
-        this._rerenderEntireTree(this._state)
+        this._callSubscriber(this._state)
     },
     getState() {
         return this._state
+    },
+    dispatch(action){
+        if (action.type === 'ADD-POST') {
+            const newPost: PostDataType = {
+                id: 5,
+                message: action.postMessage,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this.changeNewText('')
+            this._callSubscriber(this._state)
+        } else if (action.type === 'CHANGE_NEW_TEXT') {
+            this._state.profilePage.messageForNewPost = action.newText
+            this._callSubscriber(this._state)
+        }
     }
 }

@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {Posts} from "./Post/Posts";
+import {ActionsTypes} from "../../../Redux/State";
 
 export type PostDataType = {
     id: number
@@ -11,20 +12,22 @@ type MyPostsPropsType = {
     state: {
         posts: Array<PostDataType>
     },
-    addPost: (message: string) => void,
+    // addPost: (message: string) => void,
     message: string
-    changeNewTextCallBack: (newText: string) => void
+    // changeNewTextCallBack: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
     let postsElement = props.state.posts.map(post => <Posts message={post.message} likes={post.likesCount}/>)
 
     const addPostHandler = () => {
-        props.addPost(props.message)
+        props.dispatch({type: 'ADD-POST', postMessage: props.message})
     }
 
     const onChangeTextArea = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewTextCallBack(event.currentTarget.value)
+        props.dispatch({type: 'CHANGE_NEW_TEXT', newText: event.currentTarget.value})
+        // props.changeNewTextCallBack(event.currentTarget.value)
     }
 
     return (

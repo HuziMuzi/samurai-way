@@ -28,9 +28,12 @@ function App(props: AppPropsType) {
                 <div className='app-wrapper-content'>
                     <Route path={'/Profile'} render={() => <Profile
                         message={state.profilePage.messageForNewPost}
-                        changeNewTextCallBack={props.store.changeNewText.bind(props.store)}
+                        dispatch={props.store.dispatch.bind(props.store)}
+                        // changeNewTextCallBack={props.store.changeNewText.bind(props.store)}
+                        // addPost={props.store.addPost.bind(props.store)}
                         state={state.profilePage}
-                        addPost={props.store.addPost.bind(props.store)}/>}/>
+                        />}
+                    />
                     <Route path={'/Dialogs'} render={() => <Dialogs state={state.dialogsPage}/>}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>
