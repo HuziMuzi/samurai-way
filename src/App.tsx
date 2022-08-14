@@ -34,7 +34,10 @@ function App(props: AppPropsType) {
                         state={state.profilePage}
                         />}
                     />
-                    <Route path={'/Dialogs'} render={() => <Dialogs state={state.dialogsPage}/>}/>
+                    <Route path={'/Dialogs'} render={() => <Dialogs
+                        state={state.dialogsPage}
+                        dispatch={props.store.dispatch.bind(props.store)}
+                    />}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>
                     <Route path={'/Settings'} component={Settings}/>

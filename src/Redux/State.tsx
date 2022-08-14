@@ -58,6 +58,12 @@ import {sideUserType} from "../components/Sidebar/Sidebar";
 //     rerenderEntireTree(state)
 // }
 
+const ADD_POST = 'ADD-POST'
+const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
+
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
+const SEND_MESSAGE = 'SEND_MESSAGE'
+
 export type stateType = {
     profilePage: {
         messageForNewPost: string
@@ -66,12 +72,12 @@ export type stateType = {
     dialogsPage: {
         dialogs: Array<DialogsDataType>
         messages: Array<MessageDataType>
+        newMessageText: string
     }
     navBarPage: {
         sidebar: Array<sideUserType>
     }
 }
-
 export type StoreType = {
     _state: stateType
     _callSubscriber: (state: stateType) => void
@@ -86,27 +92,37 @@ export type StoreType = {
 //     type:'ADD-POST'
 //     postMessage: string
 // }
-
 // type AddPostActionType = ReturnType<typeof AddPostAC>
 // type ChangeNewTextActionType = ReturnType<typeof ChangeNewTextAC>
 
-
-export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangeNewTextAC>
+export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangeNewTextAC> |
+    ReturnType<typeof UpdateNewMessageTextAC> | ReturnType<typeof SendMessageAC>
 
 export const AddPostAC = (message: string) => {
     return {
-        type: 'ADD-POST',
+        type: ADD_POST,
         postMessage: message
     } as const
 }
 
 export const ChangeNewTextAC = (newText: string) => {
     return {
-        type: 'CHANGE_NEW_TEXT',
+        type: CHANGE_NEW_TEXT,
+        newText: newText
+    } as const
+}
+export const UpdateNewMessageTextAC = (newText: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
         newText: newText
     } as const
 }
 
+export const SendMessageAC = () => {
+    return {
+        type: SEND_MESSAGE
+    } as const
+}
 
 export let store: StoreType = {
     _state: {
@@ -126,8 +142,11 @@ export let store: StoreType = {
             messages: [
                 {id: 1, text: 'Hi!'},
                 {id: 2, text: 'How are you?'},
-                {id: 3, text: 'Have a good day'},]
+                {id: 3, text: 'Have a good day'},],
+            newMessageText: ''
         },
+
+
         navBarPage: {
             sidebar: [
                 {id: 1, name: 'Andrei', avatar: 'https://4tololo.ru/sites/default/files/images/20161912161924.jpg'},
@@ -155,7 +174,7 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostDataType = {
                 id: 5,
                 message: action.postMessage,
@@ -165,9 +184,18 @@ export let store: StoreType = {
             // this.changeNewText('')
             this._state.profilePage.messageForNewPost = '' //?
             this._callSubscriber(this._state)
-        } else if (action.type === 'CHANGE_NEW_TEXT') {
+        } else if (action.type === CHANGE_NEW_TEXT) {
             this._state.profilePage.messageForNewPost = action.newText
             this._callSubscriber(this._state)
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.dialogsPage.newMessageText = action.newText
+            this._callSubscriber(this._state)
+        } else if (action.type === SEND_MESSAGE) {
+            let textMessage = this._state.dialogsPage.newMessageText
+            this._state.dialogsPage.newMessageText = ''
+            this._state.dialogsPage.messages.push({id: 6, text: textMessage})
+            this._callSubscriber(this._state)
+
         }
     }
 }
