@@ -1,6 +1,9 @@
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
 import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 import {sideUserType} from "../components/Sidebar/Sidebar";
+import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
+import {DialogsActionsTypes, dialogsReducer} from "./dialogs-reducer";
+import {navbarReducer} from "./navbar-reducer";
 
 // let rerenderEntireTree = (state: stateType) => {
 //     console.log('State is changed')
@@ -58,12 +61,6 @@ import {sideUserType} from "../components/Sidebar/Sidebar";
 //     rerenderEntireTree(state)
 // }
 
-const ADD_POST = 'ADD-POST'
-const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
-
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
-const SEND_MESSAGE = 'SEND_MESSAGE'
-
 export type stateType = {
     profilePage: {
         messageForNewPost: string
@@ -78,6 +75,10 @@ export type stateType = {
         sidebar: Array<sideUserType>
     }
 }
+
+
+export type ActionsType = {} // ??????????????7
+
 export type StoreType = {
     _state: stateType
     _callSubscriber: (state: stateType) => void
@@ -85,7 +86,7 @@ export type StoreType = {
     subscrube: (callback: () => void) => void
     // changeNewText: (newText: string) => void
     getState: () => stateType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: any) => void //??????????????777
 }
 
 // type AddPostActionType = {
@@ -95,34 +96,10 @@ export type StoreType = {
 // type AddPostActionType = ReturnType<typeof AddPostAC>
 // type ChangeNewTextActionType = ReturnType<typeof ChangeNewTextAC>
 
-export type ActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangeNewTextAC> |
-    ReturnType<typeof UpdateNewMessageTextAC> | ReturnType<typeof SendMessageAC>
 
-export const AddPostAC = (message: string) => {
-    return {
-        type: ADD_POST,
-        postMessage: message
-    } as const
-}
 
-export const ChangeNewTextAC = (newText: string) => {
-    return {
-        type: CHANGE_NEW_TEXT,
-        newText: newText
-    } as const
-}
-export const UpdateNewMessageTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
 
-export const SendMessageAC = () => {
-    return {
-        type: SEND_MESSAGE
-    } as const
-}
+
 
 export let store: StoreType = {
     _state: {
@@ -145,15 +122,12 @@ export let store: StoreType = {
                 {id: 3, text: 'Have a good day'},],
             newMessageText: ''
         },
-
-
         navBarPage: {
             sidebar: [
                 {id: 1, name: 'Andrei', avatar: 'https://4tololo.ru/sites/default/files/images/20161912161924.jpg'},
                 {id: 2, name: 'Dima', avatar: 'https://proprikol.ru/wp-content/uploads/2020/12/kartinki-smeh-19.jpg'},
                 {
-                    id: 3,
-                    name: 'Vika',
+                    id: 3, name: 'Vika',
                     avatar: 'https://fazarosta.com/wp-content/uploads/2018/09/pikaperu-i-ne-snilos-10-sposobov-privlech-vnimanie-devushki-ot-kotoroj-vy-bez-uma-2-1.jpg'
                 },
             ]
@@ -174,28 +148,10 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost: PostDataType = {
-                id: 5,
-                message: action.postMessage,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            // this.changeNewText('')
-            this._state.profilePage.messageForNewPost = '' //?
-            this._callSubscriber(this._state)
-        } else if (action.type === CHANGE_NEW_TEXT) {
-            this._state.profilePage.messageForNewPost = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.dialogsPage.newMessageText = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === SEND_MESSAGE) {
-            let textMessage = this._state.dialogsPage.newMessageText
-            this._state.dialogsPage.newMessageText = ''
-            this._state.dialogsPage.messages.push({id: 6, text: textMessage})
-            this._callSubscriber(this._state)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.navBarPage = navbarReducer(this._state.navBarPage, action)
 
-        }
+        this._callSubscriber(this._state)
     }
 }

@@ -8,14 +8,12 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import {StoreType} from "./Redux/State";
-
-
+import {StoreType} from "./Redux/Store";
 
 
 type AppPropsType = {
-    store : StoreType
-
+    store: any
+        // StoreType
 }
 
 function App(props: AppPropsType) {
@@ -32,7 +30,7 @@ function App(props: AppPropsType) {
                         // changeNewTextCallBack={props.store.changeNewText.bind(props.store)}
                         // addPost={props.store.addPost.bind(props.store)}
                         state={state.profilePage}
-                        />}
+                    />}
                     />
                     <Route path={'/Dialogs'} render={() => <Dialogs
                         state={state.dialogsPage}

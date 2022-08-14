@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import {Posts} from "./Post/Posts";
-import {ActionsTypes, AddPostAC, ChangeNewTextAC} from "../../../Redux/State";
+import {ProfileActionsTypes, AddPostAC, ChangeNewTextAC} from "../../../Redux/profile-reducer";
 
 export type PostDataType = {
     id: number
@@ -16,7 +16,7 @@ type MyPostsPropsType = {
     message: string
     // changeNewTextCallBack: (newText: string) => void
     // dispatch: (action: ActionsTypes) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ProfileActionsTypes) => void
 }
 
 // let AddPostActionCreate = ( message:string) => {

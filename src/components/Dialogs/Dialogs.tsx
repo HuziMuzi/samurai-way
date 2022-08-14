@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionsTypes, SendMessageAC, UpdateNewMessageTextAC} from "../../Redux/State";
+import {DialogsActionsTypes, SendMessageAC, UpdateNewMessageTextAC} from "../../Redux/dialogs-reducer";
 
 export type DialogsDataType = {
     id: number
@@ -20,7 +20,7 @@ type DialogsPropsType = {
         messages: Array<MessageDataType>
         newMessageText : string
     }
-    dispatch : (action :ActionsTypes) => void
+    dispatch : (action :DialogsActionsTypes) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {

@@ -5,7 +5,7 @@ import './index.css';
 import ReactDOM from "react-dom";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./Redux/State";
+import {store} from "./Redux/redux-store";
 
 
 export const rerenderEntireTree = () => {
@@ -19,4 +19,4 @@ export const rerenderEntireTree = () => {
 }
 
 rerenderEntireTree()
-store.subscrube(rerenderEntireTree)
+store.subscribe(rerenderEntireTree)

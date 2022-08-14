@@ -2,22 +2,18 @@ import React from 'react';
 import s from './Profile.module.css'
 import {MyPosts, PostDataType} from "./MyPost/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes} from "../../Redux/State";
+import {ProfileActionsTypes} from "../../Redux/profile-reducer";
 
 type ProfilePropsType = {
     state: {
         posts: Array<PostDataType>
     },
-    // addPost: (message: string) => void
     message: string
-    // changeNewTextCallBack: (newText: string) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ProfileActionsTypes) => void
 
 }
 
-
 export const Profile = (props: ProfilePropsType) => {
-
     return (
         <>
             <div className={s.content}>
