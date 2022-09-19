@@ -9,6 +9,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import {StoreType} from "./Redux/store";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppPropsType = {
@@ -28,9 +29,8 @@ function App(props: AppPropsType) {
                        store={props.store}
                     />}
                     />
-                    <Route path={'/Dialogs'} render={() => <Dialogs
-                        state={state.dialogsPage}
-                        dispatch={props.store.dispatch.bind(props.store)}
+                    <Route path={'/Dialogs'} render={() => <DialogsContainer
+                        store={props.store}
                     />}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>

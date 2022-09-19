@@ -2,7 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsActionsTypes, SendMessageAC, UpdateNewMessageTextAC} from "../../Redux/dialogs-reducer";
 
 export type DialogsDataType = {
     id: number
@@ -18,27 +17,27 @@ type DialogsPropsType = {
     state: {
         dialogs: Array<DialogsDataType>
         messages: Array<MessageDataType>
-        newMessageText : string
+        newMessageText: string
     }
-    dispatch : (action :DialogsActionsTypes) => void
+    toSendMessage: () => void
+    onNewMessageChange: (value: string) => void
 }
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)
+    const dialogsElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id}
+                                                                          name={dialog.name}/>)
     const messagesElements = props.state.messages.map(mes => <Message key={mes.id} text={mes.text}/>)
-    const newMessageText  = props.state.newMessageText
+    const newMessageText = props.state.newMessageText
 
     // const textMessage = React.createRef<HTMLTextAreaElement>() /// ref={textMessage}
-    const toSendMessage = () => {
-        props.dispatch(SendMessageAC())
-        // const text = textMessage.current?.value
-        // alert(text)
+    const toSentMessageHandler = () => {
+        props.toSendMessage()
     }
 
-    const onNewMessageChange = (e : ChangeEvent<HTMLTextAreaElement>) => {
+    const newMessageChangeTextArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let textBody = e.currentTarget.value
-        props.dispatch(UpdateNewMessageTextAC(textBody))
+        props.onNewMessageChange(textBody)
     }
 
     return (
@@ -50,10 +49,11 @@ const Dialogs = (props: DialogsPropsType) => {
                 {messagesElements}
                 <div>
                     <div>
-                        <textarea value={newMessageText} placeholder={'Enter your text'} onChange={onNewMessageChange} ></textarea>
+                        <textarea value={newMessageText} placeholder={'Enter your text'}
+                                  onChange={newMessageChangeTextArea}></textarea>
                     </div>
                     <div>
-                        <button onClick={toSendMessage}>Отправить</button>
+                        <button onClick={toSentMessageHandler}>Отправить</button>
                     </div>
                 </div>
             </div>
