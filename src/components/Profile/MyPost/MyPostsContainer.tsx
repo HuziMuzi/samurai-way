@@ -1,6 +1,7 @@
 import React from 'react';
 import {ProfileActionsTypes, AddPostAC, ChangeNewTextAC} from "../../../Redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
+import {stateType, StoreType} from "../../../Redux/store";
 
 export type PostDataType = {
     id: number
@@ -9,24 +10,21 @@ export type PostDataType = {
 }
 
 type MyPostsPropsType = {
-    state: {
-        posts: Array<PostDataType>
-    },
-    message: string
-    dispatch: (action: ProfileActionsTypes) => void
+    store:StoreType
 }
 
 export const MyPostsContainer = (props: MyPostsPropsType) => {
+    let state = props.store.getState()
     const addPostHandler = () => {
-        props.dispatch(AddPostAC(props.message))
+        props.store.dispatch(AddPostAC(state.profilePage.messageForNewPost))
     }
     const onChangeTextArea = (value: string) => {
-        props.dispatch(ChangeNewTextAC(value))
+        props.store.dispatch(ChangeNewTextAC(value))
     }
 
     return (
-        <MyPosts posts={props.state.posts}
-                 message={props.message}
+        <MyPosts posts={state.profilePage.posts}
+                 message={state.profilePage.messageForNewPost}
                  onChangeTextArea={onChangeTextArea}
                  addPost={addPostHandler}
         />

@@ -25,11 +25,7 @@ function App(props: AppPropsType) {
                 <Navbar state={state}/>
                 <div className='app-wrapper-content'>
                     <Route path={'/Profile'} render={() => <Profile
-                        message={state.profilePage.messageForNewPost}
-                        dispatch={props.store.dispatch.bind(props.store)}
-                        // changeNewTextCallBack={props.store.changeNewText.bind(props.store)}
-                        // addPost={props.store.addPost.bind(props.store)}
-                        state={state.profilePage}
+                       store={props.store}
                     />}
                     />
                     <Route path={'/Dialogs'} render={() => <Dialogs
