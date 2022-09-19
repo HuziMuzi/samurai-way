@@ -1,7 +1,14 @@
 import React from "react";
+import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 
 export const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
 export const SEND_MESSAGE = 'SEND_MESSAGE'
+
+type initialStateType = {
+    dialogs: Array<DialogsDataType>
+    messages: Array<MessageDataType>
+    newMessageText: string
+}
 
 let initialState = {
     dialogs: [
@@ -17,7 +24,7 @@ let initialState = {
     newMessageText: ''
 }
 
-export const dialogsReducer = (state: any = initialState, action: DialogsActionsTypes) => {
+export const dialogsReducer = (state: initialStateType = initialState, action: DialogsActionsTypes): initialStateType => {
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT : {
             state.newMessageText = action.newText

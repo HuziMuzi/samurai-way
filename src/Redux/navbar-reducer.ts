@@ -1,5 +1,10 @@
 import React from "react";
+import {sideUserType} from "../components/Sidebar/Sidebar";
 
+
+type initialStateType = {
+    sidebar : Array<sideUserType>
+}
 
 let initialState = {
     sidebar: [
@@ -12,7 +17,7 @@ let initialState = {
     ]
 }
 
-export const navbarReducer = (state:any = initialState, action:any) => {
+export const navbarReducer = (state:initialStateType = initialState, action:any) : initialStateType => {
 
     return state
 }

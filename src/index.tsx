@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.css';
-// import {addPost, changeNewText, state, subscrube} from "./Redux/State";
 
 import ReactDOM from "react-dom";
 import App from "./App";
