@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import Sidebar, {sideUserType} from "../Sidebar/Sidebar";
+import {StoreType} from "../../Redux/store";
+import {AppRootState} from "../../Redux/redux-store";
+import {initialStateTypeNavBar} from "../../Redux/navbar-reducer";
+import {useSelector} from "react-redux";
 
 export type navbarPropsType = {
-    state: {
-        navBarPage: {
-            sidebar: Array<sideUserType>
-        }
-    }
+    // store: StoreType
 }
 
 export const Navbar = (props: navbarPropsType) => {
+    // const state = props.store.getState
+    const navBarPageState = useSelector<AppRootState, initialStateTypeNavBar>(state => state.navbarReducer)
     return (
         <>
             <nav className={s.nav}>
@@ -26,7 +28,7 @@ export const Navbar = (props: navbarPropsType) => {
                 <div className={s.item}>
                     <NavLink to="/Settings" activeClassName={s.activeLink}>Settings</NavLink></div>
                 <div className={`${s.item}`}>
-                    <Sidebar state={props.state.navBarPage.sidebar}/>
+                    <Sidebar state={navBarPageState.sidebar}/>
                 </div>
             </nav>
         </>

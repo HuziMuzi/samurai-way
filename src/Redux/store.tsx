@@ -77,8 +77,8 @@ export type stateType = {
 }
 
 
-export type ActionsType = {} // ??????????????7
-
+// export type ActionsType = {} // ??????????????7
+//
 export type StoreType = {
     _state: stateType
     _callSubscriber: (state: stateType) => void
@@ -86,7 +86,7 @@ export type StoreType = {
     subscrube: (callback: () => void) => void
     // changeNewText: (newText: string) => void
     getState: () => stateType
-    dispatch: (action: any) => void //??????????????777
+    dispatch: (action: any) => void
 }
 
 // type AddPostActionType = {
@@ -101,57 +101,57 @@ export type StoreType = {
 
 
 
-export let store: StoreType = {
-    _state: {
-        profilePage: {
-            messageForNewPost: '',
-            posts: [
-                {id: 1, message: 'Hi,how are you?', likesCount: 5},
-                {id: 2, message: "It's my first post", likesCount: 32},],
-        },
-        dialogsPage: {
-            dialogs: [
-                {id: 1, name: 'Andrei'},
-                {id: 2, name: 'Dima'},
-                {id: 3, name: 'Ilya'},
-                {id: 4, name: 'Kirill'},
-                {id: 5, name: 'Alex'}],
-            messages: [
-                {id: 1, text: 'Hi!'},
-                {id: 2, text: 'How are you?'},
-                {id: 3, text: 'Have a good day'},],
-            newMessageText: ''
-        },
-        navBarPage: {
-            sidebar: [
-                {id: 1, name: 'Andrei', avatar: 'https://4tololo.ru/sites/default/files/images/20161912161924.jpg'},
-                {id: 2, name: 'Dima', avatar: 'https://proprikol.ru/wp-content/uploads/2020/12/kartinki-smeh-19.jpg'},
-                {
-                    id: 3, name: 'Vika',
-                    avatar: 'https://fazarosta.com/wp-content/uploads/2018/09/pikaperu-i-ne-snilos-10-sposobov-privlech-vnimanie-devushki-ot-kotoroj-vy-bez-uma-2-1.jpg'
-                },
-            ]
-        }
-    },
-
-    _callSubscriber(state: stateType) {
-        console.log('State is changed')
-    },
-    subscrube(callback) {
-        this._callSubscriber = callback
-    },
+// export let store: StoreType = {
+//     _state: {
+//         profilePage: {
+//             messageForNewPost: '',
+//             posts: [
+//                 {id: 1, message: 'Hi,how are you?', likesCount: 5},
+//                 {id: 2, message: "It's my first post", likesCount: 32},],
+//         },
+//         dialogsPage: {
+//             dialogs: [
+//                 {id: 1, name: 'Andrei'},
+//                 {id: 2, name: 'Dima'},
+//                 {id: 3, name: 'Ilya'},
+//                 {id: 4, name: 'Kirill'},
+//                 {id: 5, name: 'Alex'}],
+//             messages: [
+//                 {id: 1, text: 'Hi!'},
+//                 {id: 2, text: 'How are you?'},
+//                 {id: 3, text: 'Have a good day'},],
+//             newMessageText: ''
+//         },
+//         navBarPage: {
+//             sidebar: [
+//                 {id: 1, name: 'Andrei', avatar: 'https://4tololo.ru/sites/default/files/images/20161912161924.jpg'},
+//                 {id: 2, name: 'Dima', avatar: 'https://proprikol.ru/wp-content/uploads/2020/12/kartinki-smeh-19.jpg'},
+//                 {
+//                     id: 3, name: 'Vika',
+//                     avatar: 'https://fazarosta.com/wp-content/uploads/2018/09/pikaperu-i-ne-snilos-10-sposobov-privlech-vnimanie-devushki-ot-kotoroj-vy-bez-uma-2-1.jpg'
+//                 },
+//             ]
+//         }
+//     },
+//
+//     _callSubscriber(state: stateType) {
+//         console.log('State is changed')
+//     },
+//     subscrube(callback) {
+//         this._callSubscriber = callback
+//     },
     // changeNewText(newText: string) {
     //     this._state.profilePage.messageForNewPost = newText
     //     this._callSubscriber(this._state)
     // },
-    getState() {
-        return this._state
-    },
-    dispatch(action) {
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        this._state.navBarPage = navbarReducer(this._state.navBarPage, action)
-
-        this._callSubscriber(this._state)
-    }
-}
+//     getState() {
+//         return this._state
+//     },
+//     dispatch(action) {
+//         this._state.profilePage = profileReducer(this._state.profilePage, action)
+//         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+//         this._state.navBarPage = navbarReducer(this._state.navBarPage, action)
+//
+//         this._callSubscriber(this._state)
+//     }
+// }

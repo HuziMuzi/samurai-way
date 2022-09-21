@@ -2,7 +2,7 @@ import React from "react";
 import {sideUserType} from "../components/Sidebar/Sidebar";
 
 
-type initialStateType = {
+export type initialStateTypeNavBar = {
     sidebar : Array<sideUserType>
 }
 
@@ -17,7 +17,10 @@ let initialState = {
     ]
 }
 
-export const navbarReducer = (state:initialStateType = initialState, action:any) : initialStateType => {
+export const navbarReducer = (state:initialStateTypeNavBar = initialState, action:any) : initialStateTypeNavBar => {
+switch (action.type) {
+    default:
+        return state
 
-    return state
+}
 }

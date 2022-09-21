@@ -23,7 +23,7 @@ type MyPostsPropsType = {
 
 
 export const MyPosts = (props: MyPostsPropsType) => {
-    let postsElement = props.posts.map(post => <Posts message={post.message} likes={post.likesCount}/>)
+    let postsElement = props.posts.map((post, index) => <Posts key={index} message={post.message} likes={post.likesCount}/>)
 
     const addAddPost = () => {
         props.addPost()

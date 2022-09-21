@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, legacy_createStore} from "redux";
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {navbarReducer} from "./navbar-reducer";
@@ -9,10 +9,12 @@ import {navbarReducer} from "./navbar-reducer";
 //     navbarReducer: navbarReducer,
 // })
 
-let reducers = combineReducers({
-    profilePage: profileReducer,
-    dialogsPage: dialogsReducer,
-    navBarPage: navbarReducer,
+let rootReducer = combineReducers({
+    profileReducer,
+    dialogsReducer,
+    navbarReducer,
 })
 
-export let store = createStore(reducers)
+
+export type AppRootState = ReturnType<typeof rootReducer>
+export let store = legacy_createStore(rootReducer)

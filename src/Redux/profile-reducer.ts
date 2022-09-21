@@ -4,20 +4,20 @@ import {PostDataType} from "../components/Profile/MyPost/MyPosts";
 export const ADD_POST = 'ADD-POST'
 export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 
-type initialStateType = {
+export type initialStateTypeProfile = {
     messageForNewPost: string
     posts: Array<PostDataType>
 }
 
 
-let inicialState = {
+let initialState = {
     messageForNewPost: '',
     posts: [
         {id: 1, message: 'Hi,how are you?', likesCount: 5},
         {id: 2, message: "It's my first post", likesCount: 32},]
 }
 
-export const profileReducer = (state:initialStateType = inicialState, action: ProfileActionsTypes) : initialStateType => {
+export const profileReducer = (state:initialStateTypeProfile = initialState, action: ProfileActionsTypes) : initialStateTypeProfile => {
 
     switch (action.type) {
         case CHANGE_NEW_TEXT : {
