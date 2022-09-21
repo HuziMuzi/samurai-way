@@ -14,7 +14,7 @@ export type MessageDataType = {
 }
 
 type DialogsPropsType = {
-    state: {
+    dialogsState: {
         dialogs: Array<DialogsDataType>
         messages: Array<MessageDataType>
         newMessageText: string
@@ -25,10 +25,10 @@ type DialogsPropsType = {
 
 const Dialogs = (props: DialogsPropsType) => {
 
-    const dialogsElements = props.state.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id}
+    const dialogsElements = props.dialogsState.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id}
                                                                           name={dialog.name}/>)
-    const messagesElements = props.state.messages.map(mes => <Message key={mes.id} text={mes.text}/>)
-    const newMessageText = props.state.newMessageText
+    const messagesElements = props.dialogsState.messages.map(mes => <Message key={mes.id} text={mes.text}/>)
+    const newMessageText = props.dialogsState.newMessageText
 
     // const textMessage = React.createRef<HTMLTextAreaElement>() /// ref={textMessage}
     const toSentMessageHandler = () => {

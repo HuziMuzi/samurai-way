@@ -3,11 +3,6 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {navbarReducer} from "./navbar-reducer";
 
-// let reducers = combineReducers({
-//     profileReducer: profileReducer,
-//     dialogsReducer: dialogsReducer,
-//     navbarReducer: navbarReducer,
-// })
 
 let rootReducer = combineReducers({
     profileReducer,

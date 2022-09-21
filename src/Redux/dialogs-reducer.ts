@@ -1,4 +1,4 @@
-import React from "react";
+
 import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 
 export const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_MESSAGE_TEXT"

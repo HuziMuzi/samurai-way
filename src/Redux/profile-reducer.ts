@@ -28,11 +28,10 @@ export const profileReducer = (state:initialStateTypeProfile = initialState, act
             const newPost: PostDataType = {
                 id: 5,
                 message: state.messageForNewPost,
-                // message: state.messageForNewPost,
                 likesCount: 1
             }
             state.posts.push(newPost)
-            state.messageForNewPost = '' //?
+            state.messageForNewPost = ''
 
             return state
         }
@@ -46,10 +45,9 @@ export const profileReducer = (state:initialStateTypeProfile = initialState, act
 
 export type ProfileActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangeNewTextAC>
 
-export const AddPostAC = (message: string) => {
+export const AddPostAC = () => {
     return {
         type: ADD_POST,
-        postMessage: message
     } as const
 }
 

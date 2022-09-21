@@ -8,14 +8,8 @@ export type PostDataType = {
 }
 
 type MyPostsPropsType = {
-    // state: {
-    //     posts: Array<PostDataType>
-    // },
     posts : Array<PostDataType>
-    // addPost: (message: string) => void,
     message: string
-    // changeNewTextCallBack: (newText: string) => void
-    // dispatch: (action: ActionsTypes) => void
     onChangeTextArea: (value : string) => void
     addPost: () => void
 }

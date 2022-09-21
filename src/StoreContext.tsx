@@ -1,7 +1,7 @@
 import React from "react";
 import {AppRootState} from "./Redux/redux-store";
-//
-//
+
+
 const StoreContext = React.createContext({} as AppRootState)
 
 export type  ProviderType = {
@@ -9,7 +9,7 @@ export type  ProviderType = {
     children : any
 }
 
-export const Provider = (props:ProviderType) => {
+export const Prov = (props:ProviderType) => {
     return (
         <StoreContext.Provider value={props.store}>
             {props.children}
@@ -17,7 +17,5 @@ export const Provider = (props:ProviderType) => {
 
     )
 }
-
-
 
 export default StoreContext
