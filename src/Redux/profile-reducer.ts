@@ -17,12 +17,12 @@ let initialState = {
         {id: 2, message: "It's my first post", likesCount: 32},]
 }
 
-export const profileReducer = (state:initialStateTypeProfile = initialState, action: ProfileActionsTypes) : initialStateTypeProfile => {
+export const profileReducer = (state: initialStateTypeProfile = initialState, action: ProfileActionsTypes): initialStateTypeProfile => {
 
     switch (action.type) {
         case CHANGE_NEW_TEXT : {
-            state.messageForNewPost = action.newText
-            return state
+            // state.messageForNewPost = action.newText
+            return {...state, messageForNewPost: action.newText}
         }
         case ADD_POST : {
             const newPost: PostDataType = {
@@ -30,10 +30,7 @@ export const profileReducer = (state:initialStateTypeProfile = initialState, act
                 message: state.messageForNewPost,
                 likesCount: 1
             }
-            state.posts.push(newPost)
-            state.messageForNewPost = ''
-
-            return state
+            return {...state, posts: [newPost, ...state.posts], messageForNewPost: ''}
         }
 
         default : {

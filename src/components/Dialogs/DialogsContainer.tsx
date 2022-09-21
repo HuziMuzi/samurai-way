@@ -1,9 +1,15 @@
 import React from 'react';
-import {initialStateTypeDialogs, SendMessageAC, UpdateNewMessageTextAC} from "../../Redux/dialogs-reducer";
+import {
+    DialogsActionsTypes,
+    initialStateTypeDialogs,
+    SendMessageAC,
+    UpdateNewMessageTextAC
+} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 
 import {connect, useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "../../Redux/redux-store";
+import {Dispatch} from "redux";
 
 
 type DialogsContainerPropsType = {
@@ -37,7 +43,7 @@ const mapStateToProps = (state:AppRootState) => {
         dialogsState: state.dialogsReducer
     }
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         toSendMessage : () => {
             dispatch(SendMessageAC())
