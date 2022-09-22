@@ -8,6 +8,7 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Users} from "./components/Users/Users";
 
 
 type AppPropsType = {
@@ -26,6 +27,7 @@ function App(props: AppPropsType) {
                     <Route path={'/Profile'} render={() => <Profile/>}
                     />
                     <Route path={'/Dialogs'} render={() => <DialogsContainer/>}/>
+                    <Route path={'/Users'} render={() => <Users/>}/>
                     <Route path={'/Music'} component={Music}/>
                     <Route path={'/News'} component={News}/>
                     <Route path={'/Settings'} component={Settings}/>
