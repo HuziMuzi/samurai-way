@@ -8,10 +8,10 @@ export type initialStateTypeUsers = {
     users: Array<userType>
 }
 
-
-type userType = {
+export type userType = {
     id: number
-    folowed: boolean
+    photoUrl : string
+    followed: boolean
     fullName: string
     status: string
     location: {
@@ -21,22 +21,7 @@ type userType = {
 }
 
 let initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     folowed: true,
-        //     fullName: 'Andrei Davidovich',
-        //     status: "I'm a bosss",
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 2,
-        //     folowed: false,
-        //     fullName: 'Darya Davidovich',
-        //     status: "I'm a smoll bosss",
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // }
-    ]
+    users: []
 }
 
 export const usersReducer = (state: initialStateTypeUsers = initialState, action: UsersActionsTypes): initialStateTypeUsers => {
@@ -48,13 +33,13 @@ export const usersReducer = (state: initialStateTypeUsers = initialState, action
         case "FOLLOW": {
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.userID ? {...user, folowed: true} : user)
+                users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
             }
         }
         case "UNFOLLOW": {
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.userID ? {...user, folowed : false} : user)
+                users: state.users.map(user => user.id === action.userID ? {...user, followed : false} : user)
             }
         }
         default : {
