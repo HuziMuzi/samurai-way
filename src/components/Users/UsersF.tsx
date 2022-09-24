@@ -12,57 +12,50 @@ type usersPropsType = {
 
 }
 
-
-export class Users extends React.Component<usersPropsType> {
-
-     getUsers = () => {
-        if (this.props.users.length === 0) {
+export const UsersF = (props: usersPropsType) => {
+    const getUsers = () => {
+        if (props.users.length === 0) {
             axios
                 .get('https://social-network.samuraijs.com/api/1.0/users')
                 .then((response) => {
-                    this.props.setUsers(response.data.items)
+                    props.setUsers(response.data.items)
                 })
         }
     }
-
-
-     render() {
-         return (
-             <div>
-                 <button onClick={this.getUsers}>get users</button>
-                 {this.props.users.map(u => <div key={u.id}>
+    return (
+        <div>
+            <button onClick={getUsers}>get users</button>
+            {props.users.map(user => <div key={user.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small !== null
-                            ? u.photos.small
+                        <img src={user.photos.small !== null
+                            ? user.photos.small
                             : userPhoto}
                              className={s.userPhoto}/>
                     </div>
                     <div>{
-                        u.followed
+                        user.followed
                             ? <button onClick={() => {
-                                this.props.unfollow(u.id)
+                                props.unfollow(user.id)
                             }}>unfollow me</button>
                             : <button onClick={() => {
-                                this.props.follow(u.id)
+                                props.follow(user.id)
                             }}>follow me</button>
                     }
                     </div>
                 </span>
-                     <span>
+                <span>
                     <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
+                        <div>{user.name}</div>
+                        <div>{user.status}</div>
                     </span>
                     <span>
-                        <div>{u.status}</div>
+                        <div>{user.status}</div>
                         <div></div>
                     </span>
                 </span>
-                 </div>)}
-             </div>
-         )
-     }
-}
-
+            </div>)}
+        </div>
+    );
+};
 
