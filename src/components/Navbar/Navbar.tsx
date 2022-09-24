@@ -19,6 +19,8 @@ export const Navbar = (props: navbarPropsType) => {
                 <div className={`${s.item} ${s.active}`}>
                     <NavLink to='/Profile' activeClassName={s.activeLink}>Profile</NavLink></div>
                 <div className={s.item}>
+                    <NavLink to="/Users" activeClassName={s.activeLink}>Users</NavLink></div>
+                <div className={s.item}>
                     <NavLink to="/Dialogs" activeClassName={s.activeLink}>Dialogs</NavLink></div>
                 <div className={s.item}>
                     <NavLink to="/News" activeClassName={s.activeLink}>News</NavLink></div>
