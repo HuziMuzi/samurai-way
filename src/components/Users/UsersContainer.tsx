@@ -6,7 +6,7 @@ import {AppRootState} from "../../Redux/redux-store";
 import {Users} from "./Users";
 import {
     followAC,
-    initialStateTypeUsers,
+    initialStateTypeUsers, setCurrentPageAC, setTotalCountAC,
     setUsersAC, unfollowAC,
     UsersActionsTypes,
     userType
@@ -16,7 +16,10 @@ import {
 
 const mapStateToProps = (state:AppRootState) : initialStateTypeUsers=> {
     return {
-        users: state.usersReducer.users
+        users: state.usersReducer.users,
+        pageSize : state.usersReducer.pageSize,
+        totalUsersCount : state.usersReducer.totalUsersCount,
+        currentPage : state.usersReducer.currentPage
     }
 }
 
@@ -31,6 +34,12 @@ const mapDispatchToProps = (dispatch:Dispatch<UsersActionsTypes>) => {
         unfollow : (userID: number) => {
             dispatch(unfollowAC(userID))
         },
+        setCurrentPage : (currentPage : number) => {
+            dispatch(setCurrentPageAC(currentPage))
+        },
+        setTotalCount : (totalCount : number) => {
+            dispatch((setTotalCountAC(totalCount)))
+        }
     }
 }
 
