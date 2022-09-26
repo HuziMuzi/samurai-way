@@ -1,5 +1,4 @@
-import React from "react";
-import {PostDataType} from "../components/Profile/MyPost/MyPosts";
+
 
 export const ADD_POST = 'ADD-POST'
 export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
@@ -9,6 +8,7 @@ export type initialStateTypeUsers = {
     pageSize : number
     totalUsersCount : number
     currentPage : number
+    isFetching : boolean
 }
 
 export type userType = {
@@ -27,7 +27,8 @@ let initialState = {
     users: [],
     pageSize : 3,
     totalUsersCount : 0,
-    currentPage : 2
+    currentPage : 2,
+    isFetching : false
 }
 
 export const usersReducer = (state: initialStateTypeUsers = initialState, action: UsersActionsTypes): initialStateTypeUsers => {
