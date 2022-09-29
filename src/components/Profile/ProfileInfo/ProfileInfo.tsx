@@ -19,8 +19,8 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
                  src={props.profile.photos.large}
                  alt=""/>
             <div className={s.descriptionBlock}>
-                <h2 className={s.name}>{props.profile.name}</h2>
-                <p>status:  {props.profile.status}</p>
+                <h2 className={s.name}>{props.profile.fullName}</h2>
+                <p>status:  {props.profile.lookingForAJob}</p>
                 <p>followed: {props.profile.followed}</p>
                 <p>About me</p>
                 <p>City: Minsk</p>

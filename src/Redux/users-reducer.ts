@@ -12,15 +12,36 @@ export type initialStateTypeUsers = {
 }
 
 export type userType = {
-    name: string
-    id: number
-    uniqueUrlName: null
+    // name: string
+    // id: number
+    // uniqueUrlName: null
+    // photos: {
+    //     small: string
+    //     large: string
+    // }
+    // status: string
+    followed: boolean
+
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: null,
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null
+        github: string
+        mainLink: null
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
     photos: {
         small: string
         large: string
     }
-    status: string
-    followed: boolean
+
 }
 
 let initialState = {
@@ -40,13 +61,13 @@ export const usersReducer = (state: initialStateTypeUsers = initialState, action
         case "FOLLOW": {
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
+                users: state.users.map(user => user.userId === action.userID ? {...user, followed: true} : user)
             }
         }
         case "UNFOLLOW": {
             return {
                 ...state,
-                users: state.users.map(user => user.id === action.userID ? {...user, followed : false} : user)
+                users: state.users.map(user => user.userId === action.userID ? {...user, followed : false} : user)
             }
         }
         case "SET-CURRENT-PAGE": {

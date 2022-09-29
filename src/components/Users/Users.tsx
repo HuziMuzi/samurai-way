@@ -41,10 +41,10 @@ export const Users = (props: usersPropsType) => {
                     className={props.currentPage === n ? s.selectedPage : ''}>{n} </span>)}
 
             </div>
-            {props.users.map(u => <div key={u.id}>
+            {props.users.map(u => <div key={u.userId}>
                 <span >
                     <div>
-                        <NavLink to={`/profile/user${u.id}`}>
+                        <NavLink to={`/profile/${u.userId}`}>
                         <img src={u.photos.small !== null
                             ? u.photos.small
                             : userPhoto}
@@ -54,21 +54,21 @@ export const Users = (props: usersPropsType) => {
                     <div>{
                         u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.id)
+                                props.unfollow(u.userId)
                             }}>unfollow me</button>
                             : <button onClick={() => {
-                                props.follow(u.id)
+                                props.follow(u.userId)
                             }}>follow me</button>
                     }
                     </div>
                 </span>
                 <span>
                     <span>
-                        <div>{u.name}</div>
-                        <div>{u.status}</div>
+                        <div>{u.fullName}</div>
+                        <div>{u.lookingForAJob}</div>
                     </span>
                     <span>
-                        <div>{u.status}</div>
+                        <div>{u.aboutMe}</div>
                         <div></div>
                     </span>
                 </span>

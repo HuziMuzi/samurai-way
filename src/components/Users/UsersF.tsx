@@ -24,37 +24,37 @@ export const UsersF = (props: usersPropsType) => {
     }
     return (
         <div>
-            <button onClick={getUsers}>get users</button>
-            {props.users.map(user => <div key={user.id}>
-                <span>
-                    <div>
-                        <img src={user.photos.small !== null
-                            ? user.photos.small
-                            : userPhoto}
-                             className={s.userPhoto}/>
-                    </div>
-                    <div>{
-                        user.followed
-                            ? <button onClick={() => {
-                                props.unfollow(user.id)
-                            }}>unfollow me</button>
-                            : <button onClick={() => {
-                                props.follow(user.id)
-                            }}>follow me</button>
-                    }
-                    </div>
-                </span>
-                <span>
-                    <span>
-                        <div>{user.name}</div>
-                        <div>{user.status}</div>
-                    </span>
-                    <span>
-                        <div>{user.status}</div>
-                        <div></div>
-                    </span>
-                </span>
-            </div>)}
+            {/*<button onClick={getUsers}>get users</button>*/}
+            {/*{props.users.map(user => <div key={user.id}>*/}
+            {/*    <span>*/}
+            {/*        <div>*/}
+            {/*            <img src={user.photos.small !== null*/}
+            {/*                ? user.photos.small*/}
+            {/*                : userPhoto}*/}
+            {/*                 className={s.userPhoto}/>*/}
+            {/*        </div>*/}
+            {/*        <div>{*/}
+            {/*            user.followed*/}
+            {/*                ? <button onClick={() => {*/}
+            {/*                    props.unfollow(user.id)*/}
+            {/*                }}>unfollow me</button>*/}
+            {/*                : <button onClick={() => {*/}
+            {/*                    props.follow(user.id)*/}
+            {/*                }}>follow me</button>*/}
+            {/*        }*/}
+            {/*        </div>*/}
+            {/*    </span>*/}
+            {/*    <span>*/}
+            {/*        <span>*/}
+            {/*            <div>{user.name}</div>*/}
+            {/*            <div>{user.status}</div>*/}
+            {/*        </span>*/}
+            {/*        <span>*/}
+            {/*            <div>{user.status}</div>*/}
+            {/*            <div></div>*/}
+            {/*        </span>*/}
+            {/*    </span>*/}
+            {/*</div>)}*/}
         </div>
     );
 };
