@@ -1,5 +1,6 @@
 import React from "react";
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
+import {userType} from "./users-reducer";
 
 export const ADD_POST = 'ADD-POST'
 export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
@@ -7,6 +8,7 @@ export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 export type initialStateTypeProfile = {
     messageForNewPost: string
     posts: Array<PostDataType>
+    profile : userType | null
 }
 
 
@@ -14,7 +16,8 @@ let initialState = {
     messageForNewPost: '',
     posts: [
         {id: 1, message: 'Hi,how are you?', likesCount: 5},
-        {id: 2, message: "It's my first post", likesCount: 32},]
+        {id: 2, message: "It's my first post", likesCount: 32},],
+    profile: null
 }
 
 export const profileReducer = (state: initialStateTypeProfile = initialState, action: ProfileActionsTypes): initialStateTypeProfile => {
@@ -33,6 +36,11 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
             return {...state, posts: [newPost, ...state.posts], messageForNewPost: ''}
         }
 
+        case "SET-USER-PROFILE": {
+            return {
+                ...state, profile: action.profile
+            }
+        }
         default : {
             return state
         }
@@ -40,7 +48,7 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
 }
 
 
-export type ProfileActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangeNewTextAC>
+export type ProfileActionsTypes = ReturnType<typeof AddPostAC> | ReturnType<typeof ChangeNewTextAC> | ReturnType<typeof setUserProfile>
 
 export const AddPostAC = () => {
     return {
@@ -52,5 +60,11 @@ export const ChangeNewTextAC = (newText: string) => {
     return {
         type: CHANGE_NEW_TEXT,
         newText: newText
+    } as const
+}
+
+export const setUserProfile = (profile: userType) => {
+    return {
+        type: "SET-USER-PROFILE", profile
     } as const
 }

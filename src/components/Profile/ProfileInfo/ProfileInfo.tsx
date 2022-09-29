@@ -1,20 +1,33 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
+import {userType} from "../../../Redux/users-reducer";
+import {Preloader} from "../../commen/ Preloader/Preloader";
 
-export const ProfileInfo = () => {
+
+type profileInfoPropsType = {
+    profile: userType | null
+}
+export const ProfileInfo = (props: profileInfoPropsType) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
+
+
     return (
-            <div >
-                <img width={'150px'}
-                     src="https://www.thehedgescompany.com/hedges/wp-content/uploads/2016/04/Man-at-computer-no-attribution.jpg"
-                     alt=""/>
-                <div className={s.descriptionBlock}>
-                    <h2 className={s.name}>Andrei D</h2>
-                    <p>Date of Birth 2 january</p>
-                    <p>City: Minsk</p>
-                    <p>Education: BSU'11</p>
-                    <p>Web Site: https://it-kamasutra.com</p>
-                </div>
+        <div>
+            <img width={'150px'}
+                 src={props.profile.photos.large}
+                 alt=""/>
+            <div className={s.descriptionBlock}>
+                <h2 className={s.name}>{props.profile.name}</h2>
+                <p>status:  {props.profile.status}</p>
+                <p>followed: {props.profile.followed}</p>
+                <p>About me</p>
+                <p>City: Minsk</p>
+                <p>Education: BSU'11</p>
+                <p>Web Site: https://it-kamasutra.com</p>
             </div>
+        </div>
     );
 };
 
