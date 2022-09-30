@@ -16,6 +16,7 @@ export type initialStateTypeAuth = {
     // fieldsErrors: [],
     // resultCode: number
     isFetching: boolean
+    isAuth: boolean
 }
 
 let initialState = {
@@ -27,15 +28,18 @@ let initialState = {
     // messages: [],
     // fieldsErrors: [],
     // resultCode: 0,
-    isFetching: false
+    isFetching: false,
+    isAuth: true
 }
 
-export const authReducer = (state: initialStateTypeAuth = initialState, action: DialogsActionsTypes): initialStateTypeAuth => {
+export const authReducer = (state: initialStateTypeAuth = initialState, action: AuthLoginActionsTypes): initialStateTypeAuth => {
     switch (action.type) {
         case 'SET-USER-DATA' : {
             return {
+
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth : true
             }
         }
         default : {
@@ -45,15 +49,15 @@ export const authReducer = (state: initialStateTypeAuth = initialState, action: 
 
 }
 
-export type DialogsActionsTypes = setUserDataACType | SendMessageAC
+export type AuthLoginActionsTypes = setUserDataACType | SendMessageAC
 type setUserDataACType = ReturnType<typeof setUserData>
 type SendMessageAC = ReturnType<typeof secondAC>
 
-export const setUserData = (userId: number, email: string, login: string) => {
+export const setUserData = (id: number, email: string, login: string) => {
     return {
         type: 'SET-USER-DATA',
         data: {
-            userId,
+            id,
             email,
             login
         }

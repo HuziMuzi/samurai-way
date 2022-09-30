@@ -17,3 +17,6 @@ let rootReducer = combineReducers({
 
 export type AppRootState = ReturnType<typeof rootReducer>
 export let store = legacy_createStore(rootReducer)
+
+// @ts-ignore
+window.store = store

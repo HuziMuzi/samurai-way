@@ -6,10 +6,14 @@ import {Header} from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
 import {AppRootState} from "../../Redux/redux-store";
-import {setUserData} from "../../Redux/auth-reducer";
+import {setUserData, userAuth} from "../../Redux/auth-reducer";
 
 
-type headerContainerType = {}
+type headerContainerType = {
+    setUserData : (userId: number, email: string, login: string) => void
+    isAuth : boolean
+    login : string  | null
+}
 
  class HeaderContainer extends React.Component<headerContainerType> {
 
@@ -19,8 +23,13 @@ type headerContainerType = {}
                 withCredentials: true
             })
             .then((response) => {
-                console.log(response)
-                // this.props.toggleIsFetching(false)
+                if(response.data.resultCode === 0) {
+                    let {id, login, email}= response.data.data
+                    // console.log(id,login,email)
+                    if(id !== null && login !== null && email !== null) {
+                        this.props.setUserData(id, email, login)
+                    }
+                }
 
             })
     }
@@ -29,14 +38,18 @@ type headerContainerType = {}
 
 
         return (
-            <Header />
+            <Header
+                isAuth={this.props.isAuth}
+                login={this.props.login}
+            />
         )
     }
 }
 
 const mapStateToProps = (state: AppRootState) => {
     return {
-
+        isAuth : state.authReducer.isAuth,
+        login: state.authReducer.login
     }
 }
 
