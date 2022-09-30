@@ -1,10 +1,32 @@
 import React from "react";
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
-import {userType} from "./users-reducer";
+
 
 export const ADD_POST = 'ADD-POST'
 export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 
+
+export type userType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: null,
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null
+        github: string
+        mainLink: null
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
 export type initialStateTypeProfile = {
     messageForNewPost: string
     posts: Array<PostDataType>

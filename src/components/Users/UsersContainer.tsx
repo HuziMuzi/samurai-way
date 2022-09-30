@@ -6,14 +6,14 @@ import {
     initialStateTypeUsers, setCurrentPage, setTotalCount,
     setUsers, toggleIsFetching, unfollow,
 
-    userType
+    usersType
 } from "../../Redux/users-reducer";
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../commen/ Preloader/Preloader";
 
 type usersPropsType = {
-    users: Array<userType>
+    users: Array<usersType>
     totalUsersCount: number
     pageSize: number
     currentPage: number
@@ -21,7 +21,7 @@ type usersPropsType = {
 
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    setUsers: (users: Array<userType>) => void
+    setUsers: (users: Array<usersType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
     toggleIsFetching: (valueFetching: boolean) => void

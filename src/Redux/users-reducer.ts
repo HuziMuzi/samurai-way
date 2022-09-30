@@ -4,43 +4,25 @@ export const ADD_POST = 'ADD-POST'
 export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 
 export type initialStateTypeUsers = {
-    users: Array<userType>
+    users: Array<usersType>
     pageSize : number
     totalUsersCount : number
     currentPage : number
     isFetching : boolean
 }
 
-export type userType = {
-    // name: string
-    // id: number
-    // uniqueUrlName: null
-    // photos: {
-    //     small: string
-    //     large: string
-    // }
-    // status: string
-    followed: boolean
-
-    aboutMe: string
-    contacts: {
-        facebook: string
-        website: null,
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: null
-        github: string
-        mainLink: null
-    },
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
+export type usersType = {
+    name: string
+    id: number
+    uniqueUrlName: null
     photos: {
         small: string
         large: string
     }
+    status: string
+    followed: boolean
+
+
 
 }
 
@@ -61,13 +43,13 @@ export const usersReducer = (state: initialStateTypeUsers = initialState, action
         case "FOLLOW": {
             return {
                 ...state,
-                users: state.users.map(user => user.userId === action.userID ? {...user, followed: true} : user)
+                users: state.users.map(user => user.id === action.userID ? {...user, followed: true} : user)
             }
         }
         case "UNFOLLOW": {
             return {
                 ...state,
-                users: state.users.map(user => user.userId === action.userID ? {...user, followed : false} : user)
+                users: state.users.map(user => user.id === action.userID ? {...user, followed : false} : user)
             }
         }
         case "SET-CURRENT-PAGE": {
@@ -99,7 +81,7 @@ export type UsersActionsTypes = ReturnType<typeof follow> | ReturnType<typeof un
     | ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalCount>
 | ReturnType<typeof toggleIsFetching>
 
-export const setUsers = (users: Array<userType>) => {
+export const setUsers = (users: Array<usersType>) => {
     return {
         type: 'SET-USERS',
         users

@@ -8,3 +8,8 @@ header img   {
     background-color: #16d732;
 }
 
+
+.loginBlock{
+    float:  right;
+    margin: 10px;
+}

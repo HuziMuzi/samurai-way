@@ -1,12 +1,13 @@
 import s from "./Users.module.css";
 import userPhoto from "../../img/user-mule.png";
 import React from "react";
-import {userType} from "../../Redux/users-reducer";
+import {usersType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import {log} from "util";
 
 
 type usersPropsType = {
-    users: Array<userType>
+    users: Array<usersType>
     totalUsersCount: number
     pageSize: number
     currentPage: number
@@ -30,8 +31,9 @@ export const Users = (props: usersPropsType) => {
     let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
     let curPL = curP + 5;
     let slicedPages = pages.slice(curPF, curPL);
-
+    console.log()
     return (
+
         <div>
             <div>
                 {slicedPages.map(n => <span
@@ -41,10 +43,11 @@ export const Users = (props: usersPropsType) => {
                     className={props.currentPage === n ? s.selectedPage : ''}>{n} </span>)}
 
             </div>
-            {props.users.map(u => <div key={u.userId}>
+            {props.users.map(u => <div key={u.id}>
+
                 <span >
                     <div>
-                        <NavLink to={`/profile/${u.userId}`}>
+                        <NavLink to={`/profile/${u.id}`}>
                         <img src={u.photos.small !== null
                             ? u.photos.small
                             : userPhoto}
@@ -54,21 +57,22 @@ export const Users = (props: usersPropsType) => {
                     <div>{
                         u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.userId)
+                                console.log(u.id)
+                                props.unfollow(u.id)
                             }}>unfollow me</button>
                             : <button onClick={() => {
-                                props.follow(u.userId)
+                                props.follow(u.id)
                             }}>follow me</button>
                     }
                     </div>
                 </span>
                 <span>
                     <span>
-                        <div>{u.fullName}</div>
-                        <div>{u.lookingForAJob}</div>
+                        <div>{u.status}</div>
+                        <div>{u.followed}</div>
                     </span>
                     <span>
-                        <div>{u.aboutMe}</div>
+                        <div>{u.uniqueUrlName}</div>
                         <div></div>
                     </span>
                 </span>
