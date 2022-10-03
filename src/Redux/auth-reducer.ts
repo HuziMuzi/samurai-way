@@ -1,5 +1,4 @@
 
-
 export type userAuth = {
     id: number | null,
     login: string | null
@@ -10,23 +9,14 @@ export type initialStateTypeAuth = {
     id: number | null,
     login: string | null
     email: string | null
-    // data: userAuth,
-    // messages: [],
-    // fieldsErrors: [],
-    // resultCode: number
     isFetching: boolean
     isAuth: boolean
 }
 
 let initialState = {
-    // data: {
     id: null,
     login: null,
     email: null,
-    // },
-    // messages: [],
-    // fieldsErrors: [],
-    // resultCode: 0,
     isFetching: false,
     isAuth: true
 }

@@ -14,30 +14,55 @@ const instance = axios.create({
     }
 })
 
-
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return instance
-        .get(`users?page=${currentPage}&count=${pageSize}`,)
-        .then(response => response.data)
+export const userAPI = {
+    getUsers (currentPage: number, pageSize: number)  {
+        return instance
+            .get(`users?page=${currentPage}&count=${pageSize}`,)
+            .then(response => response.data)
+    },
+    getProfile  (userId: string)  {
+        return instance
+            .get(`profile/${userId}`)
+            .then(response => response.data)
+    },
+    postFollowUser  (id: number)  {
+        return instance
+            .post(`follow/${id}`,
+                {})
+            .then(response => {
+                return response.data
+            })
+    },
+    deleteUnfollowUser (id: number) {
+        return instance
+            .delete(`follow/${id}`)
+            .then(response => response.data)
+    }
 }
 
-export const getProfile = (userId: string) => {
-    return instance
-        .get(`profile/${userId}`)
-        .then(response => response.data)
-}
-
-export const postFollowUser = (id: number) => {
-    return instance
-        .post(`follow/${id}`,
-            {})
-        .then(response => {
-            return response.data
-        })
-}
-
-export const deleteUnfollowUser = (id: number) => {
-    return instance
-        .delete(`follow/${id}`)
-        .then(response => response.data)
-}
+// export const getUsers = (currentPage: number, pageSize: number) => {
+//     return instance
+//         .get(`users?page=${currentPage}&count=${pageSize}`,)
+//         .then(response => response.data)
+// }
+//
+// export const getProfile = (userId: string) => {
+//     return instance
+//         .get(`profile/${userId}`)
+//         .then(response => response.data)
+// }
+//
+// export const postFollowUser = (id: number) => {
+//     return instance
+//         .post(`follow/${id}`,
+//             {})
+//         .then(response => {
+//             return response.data
+//         })
+// }
+//
+// export const deleteUnfollowUser = (id: number) => {
+//     return instance
+//         .delete(`follow/${id}`)
+//         .then(response => response.data)
+// }
