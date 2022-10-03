@@ -11,8 +11,6 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
     if (!props.profile) {
         return <Preloader/>
     }
-
-
     return (
         <div>
             <img width={'150px'}

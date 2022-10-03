@@ -1,4 +1,3 @@
-import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 
 
 export type userAuth = {

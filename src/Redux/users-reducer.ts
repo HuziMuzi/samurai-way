@@ -1,7 +1,5 @@
 
 
-export const ADD_POST = 'ADD-POST'
-export const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 
 export type initialStateTypeUsers = {
     users: Array<usersType>
@@ -22,12 +20,10 @@ export type usersType = {
     status: string
     followed: boolean
 
-
-
 }
 
 let initialState = {
-    users: [],
+    users: [] as Array<usersType>,
     pageSize : 3,
     totalUsersCount : 0,
     currentPage : 2,
