@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from "axios";
 
 // type getUsersType = {
@@ -15,28 +14,31 @@ const instance = axios.create({
 })
 
 export const userAPI = {
-    getUsers (currentPage: number, pageSize: number)  {
+    getUsers(currentPage: number, pageSize: number) {
         return instance
             .get(`users?page=${currentPage}&count=${pageSize}`,)
             .then(response => response.data)
     },
-    getProfile  (userId: string)  {
+    getProfile(userId: string) {
         return instance
             .get(`profile/${userId}`)
             .then(response => response.data)
     },
-    postFollowUser  (id: number)  {
+    postFollowUser (id: number) {
         return instance
             .post(`follow/${id}`,
                 {})
             .then(response => {
+                console.log(response)
                 return response.data
             })
     },
-    deleteUnfollowUser (id: number) {
-        return instance
-            .delete(`follow/${id}`)
-            .then(response => response.data)
+    deleteUnfollowUser(id: number) {
+        return instance.delete(`follow/${id}`)
+            .then(response => {
+                console.log(response)
+                return response.data
+            })
     }
 }
 
@@ -66,3 +68,11 @@ export const userAPI = {
 //         .delete(`follow/${id}`)
 //         .then(response => response.data)
 // }
+
+
+// function someFunc  () {
+//     return new Promise(resolve => {
+//         resolve(5)
+//     })
+// }
+// console.log(someFunc().then())

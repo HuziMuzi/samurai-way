@@ -43,14 +43,11 @@ const mapStateToProps = (state: AppRootState) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         toSendMessage: () => {
-            dispatch(SendMessageAC())
-        },
+            dispatch(SendMessageAC())},
         onNewMessageChange: (value: string) => {
-            dispatch(UpdateNewMessageTextAC(value))
-        }
+            dispatch(UpdateNewMessageTextAC(value))}
     }
 }
 
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-
 export default DialogsContainer;

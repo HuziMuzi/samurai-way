@@ -8,3 +8,13 @@
     font-weight: bold;
     font-size: 19px;
 }
+
+
+.numberPage {
+    cursor: pointer;
+}
+
+.numberPage:hover{
+    /*background-color: #d9d9d9;*/
+}
+
