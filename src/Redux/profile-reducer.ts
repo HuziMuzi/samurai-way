@@ -1,5 +1,7 @@
 import React from "react";
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
+import {userAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 
 export const ADD_POST = 'ADD-POST'
@@ -89,4 +91,12 @@ export const setUserProfile = (profile: userType) => {
     return {
         type: "SET-USER-PROFILE", profile
     } as const
+}
+
+export const getProfileThunk = (userId: string) => {
+    return (dispatch : Dispatch) => {
+        userAPI.getProfile(userId).then((data) => {
+            dispatch(setUserProfile(data))
+        })
+    }
 }

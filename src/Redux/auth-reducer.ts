@@ -1,3 +1,5 @@
+import {Dispatch} from "redux";
+import {authAPI} from "../api/api";
 
 export type userAuth = {
     id: number | null,
@@ -57,4 +59,18 @@ export const secondAC = () => {
     return {
         type: 'sec'
     } as const
+}
+
+export const authThunk = () => {
+    return (dispatch : Dispatch) => {
+        authAPI.authMe().then((response) => {
+            if(response.data.resultCode === 0) {
+                let {id, login, email}= response.data.data
+                if(id !== null && login !== null && email !== null) {
+                    dispatch(setUserData(id, email, login))
+                }
+            }
+
+        })
+    }
 }

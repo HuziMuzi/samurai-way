@@ -24,7 +24,7 @@ export const userAPI = {
             .get(`profile/${userId}`)
             .then(response => response.data)
     },
-    postFollowUser (id: number) {
+    postFollowUser(id: number) {
         return instance
             .post(`follow/${id}`,
                 {})
@@ -41,6 +41,13 @@ export const userAPI = {
             })
     }
 }
+
+export const authAPI = {
+    authMe() {
+        return instance.get(`auth/me`)
+    }
+}
+
 
 // export const getUsers = (currentPage: number, pageSize: number) => {
 //     return instance
