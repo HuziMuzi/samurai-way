@@ -20,7 +20,7 @@ let initialState = {
     login: null,
     email: null,
     isFetching: false,
-    isAuth: true
+    isAuth: false
 }
 
 export const authReducer = (state: initialStateTypeAuth = initialState, action: AuthLoginActionsTypes): initialStateTypeAuth => {
@@ -64,6 +64,7 @@ export const secondAC = () => {
 export const authThunk = () => {
     return (dispatch : Dispatch) => {
         authAPI.authMe().then((response) => {
+            // console.log(response)
             if(response.data.resultCode === 0) {
                 let {id, login, email}= response.data.data
                 if(id !== null && login !== null && email !== null) {

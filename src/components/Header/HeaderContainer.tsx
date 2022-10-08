@@ -1,13 +1,8 @@
 import React from "react"
-import s from './Header.module.css'
-import {Navbar} from "../Navbar/Navbar";
-import {NavLink} from "react-router-dom";
 import {Header} from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
 import {AppRootState} from "../../Redux/redux-store";
 import {authThunk, setUserData, userAuth} from "../../Redux/auth-reducer";
-import {authAPI} from "../../api/api";
 
 
 type headerContainerType = {

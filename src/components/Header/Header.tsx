@@ -17,7 +17,6 @@ export const Header = (props: headerType) => {
                      src="https://i.pinimg.com/originals/0b/73/51/0b7351f7b132512ea28fae9d5fff1bde.png" alt=""/>
 
                 <div className={s.loginBlock}>
-
                     {props.isAuth
                         ?
                         <div>{props.login && props.login}</div>
