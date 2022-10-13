@@ -22,7 +22,7 @@ export type DialogsPropsType = {
     }
     toSendMessage: () => void
     onNewMessageChange: (value: string) => void
-    isAuth: boolean
+    // isAuth: boolean
 }
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -43,7 +43,7 @@ const Dialogs = (props: DialogsPropsType) => {
     }
 
     // redirect to loginPage if you don't sing in to your profile
-    if(!props.isAuth) return <Redirect to={'/login'}/>
+    // if(!props.isAuth) return <Redirect to={'/login'}/>
 
     return (
         
