@@ -1,10 +1,11 @@
 import React from 'react';
 
-export const Login = () => {
+const WithAuthRedirect = () => {
     return (
         <div>
-            <h1>hello. Do you autireized</h1>
+            
         </div>
     );
 };
 
+export default WithAuthRedirect;

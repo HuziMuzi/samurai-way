@@ -3,10 +3,12 @@ import {
     SendMessageAC,
     UpdateNewMessageTextAC
 } from "../../Redux/dialogs-reducer";
-import Dialogs from "./Dialogs";
+import Dialogs, {DialogsPropsType} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppRootState} from "../../Redux/redux-store";
 import {Dispatch} from "redux";
+import {Redirect} from "react-router-dom";
+
 
 
 type DialogsContainerPropsType = {
@@ -35,6 +37,13 @@ type DialogsContainerPropsType = {
 //     );
 // };
 
+
+
+const AuthRedirectComponent = (props:DialogsPropsType) => {
+    if (!props.isAuth) return <Redirect to={'/login'}/>
+    return <Dialogs  {...props}/>
+}
+
 const mapStateToProps = (state: AppRootState) => {
     return {
         dialogsState: state.dialogsReducer,
@@ -50,5 +59,5 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
 export default DialogsContainer;

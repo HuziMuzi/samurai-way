@@ -14,7 +14,7 @@ export type MessageDataType = {
     text: string
 }
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     dialogsState: {
         dialogs: Array<DialogsDataType>
         messages: Array<MessageDataType>
