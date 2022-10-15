@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css'
 import {Preloader} from "../../commen/ Preloader/Preloader";
 import {userType} from "../../../Redux/profile-reducer";
+import ProfileStatus from "./ProfileStatus";
 
 
 type profileInfoPropsType = {
@@ -16,6 +17,7 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
             <img width={'150px'}
                  src={props.profile.photos.large}
                  alt=""/>
+            <ProfileStatus status={'YooYoo'}/>
             <div className={s.descriptionBlock}>
                 <h2 className={s.name}>{props.profile.fullName}</h2>
                 <p>status Job:  {props.profile.lookingForAJob}</p>

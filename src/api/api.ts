@@ -1,9 +1,5 @@
 import axios from "axios";
 
-// type getUsersType = {
-//     currentPage: number
-//     pageSize: number
-// }
 
 const instance = axios.create({
     withCredentials: true,

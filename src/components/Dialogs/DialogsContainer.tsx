@@ -1,17 +1,15 @@
-import React from 'react';
+// import React from 'react';
 import {
     SendMessageAC,
     UpdateNewMessageTextAC
 } from "../../Redux/dialogs-reducer";
-import Dialogs, {DialogsPropsType} from "./Dialogs";
+import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppRootState} from "../../Redux/redux-store";
-import {Dispatch} from "redux";
-import {Redirect} from "react-router-dom";
+import {compose, Dispatch} from "redux";
+
 import WithAuthRedirect from "../../hoc/withAuthRedirect";
-
-
-
+import React from "react";
 
 
 // const DialogsContainer = (props: DialogsContainerPropsType) => {
@@ -35,9 +33,6 @@ import WithAuthRedirect from "../../hoc/withAuthRedirect";
 //         />
 //     );
 // };
-
-
-
 // const AuthRedirectComponent = (props:DialogsPropsType) => {
 //     if (!props.isAuth) return <Redirect to={'/login'}/>
 //     return <Dialogs  {...props}/>
@@ -46,18 +41,27 @@ import WithAuthRedirect from "../../hoc/withAuthRedirect";
 const mapStateToProps = (state: AppRootState) => {
     return {
         dialogsState: state.dialogsReducer,
-        // isAuth: state.authReducer.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         toSendMessage: () => {
-            dispatch(SendMessageAC())},
+            dispatch(SendMessageAC())
+        },
         onNewMessageChange: (value: string) => {
-            dispatch(UpdateNewMessageTextAC(value))}
+            dispatch(UpdateNewMessageTextAC(value))
+        }
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-const authRedirectContainer = WithAuthRedirect(DialogsContainer)
-export default authRedirectContainer;
+// compose(
+//     connect(mapStateToProps, mapDispatchToProps)(Dialogs),
+//     WithAuthRedirect
+// )(Dialogs)
+
+// const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+// const authRedirectContainer = WithAuthRedirect(DialogsContainer)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, mapDispatchToProps),
+    WithAuthRedirect
+)(Dialogs)
