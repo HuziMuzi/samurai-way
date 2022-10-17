@@ -7,6 +7,7 @@ import ProfileStatus from "./ProfileStatus";
 
 type profileInfoPropsType = {
     profile: userType | null
+    status : string
 }
 export const ProfileInfo = (props: profileInfoPropsType) => {
     if (!props.profile) {
@@ -17,7 +18,7 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
             <img width={'150px'}
                  src={props.profile.photos.large}
                  alt=""/>
-            <ProfileStatus status={'YooYoo'}/>
+            <ProfileStatus status={props.status}/>
             <div className={s.descriptionBlock}>
                 <h2 className={s.name}>{props.profile.fullName}</h2>
                 <p>status Job:  {props.profile.lookingForAJob}</p>
