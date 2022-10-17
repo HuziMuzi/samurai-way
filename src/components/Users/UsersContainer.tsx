@@ -20,9 +20,9 @@ type usersPropsType = {
 
     setCurrentPage: (currentPage: number) => void
     // toggleFollowingInProgress: (isFetching: boolean, userId: number) => void
-    getUsers: (pageSize: number, currentPage: number) => any
-    follow: (userId: number) => any
-    unfollow: (userId: number) => any
+    getUsers: (pageSize: number, currentPage: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
 }
 
 

@@ -7,7 +7,7 @@ import {userType} from "../../Redux/profile-reducer";
 type ProfilePropsType = {
     profile: userType | null
     status: string
-
+    updateStatus : (status: string) => any
 }
 
 export const Profile = (props: ProfilePropsType) => {
@@ -16,7 +16,11 @@ export const Profile = (props: ProfilePropsType) => {
     return <div className={s.content}>
                     {/*<img className={s.bg_img}*/}
                     {/*     src="https://cdn.pixabay.com/photo/2013/11/15/13/57/road-210913_960_720.jpg" alt=""/>*/}
-                <ProfileInfo profile={props.profile} status={props.status}/>
+                <ProfileInfo
+                    profile={props.profile}
+                    status={props.status}
+                    updateStatus={props.updateStatus}
+                />
                 <MyPostsContainer/>
             </div>
 }

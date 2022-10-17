@@ -119,9 +119,9 @@ export const getProfileThunk = (userId: string) => {
 
 
 export const getUserStatusThunk = (userId: string) => (dispatch: Dispatch) => {
-    profileAPI.getStatus(userId).then((data) => {
-        console.log(data)
-        // dispatch(setStatus(data))
+    profileAPI.getStatus(userId).then((response) => {
+        // console.log(response.data)
+        dispatch(setStatus(response.data))
     })
 }
 

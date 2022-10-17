@@ -24,9 +24,9 @@ export type usersType = {
 
 let initialState = {
     users: [] as Array<usersType>,
-    pageSize: 3,
+    pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 2,
+    currentPage: 4000,
     isFetching: false,
     followingInProgress: []
 }
