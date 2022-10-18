@@ -34,7 +34,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) userId = '2'
+        if (!userId) userId = '25397'
         this.props.getProfileThunk(userId)
         this.props.getUserStatusThunk(userId)
     }
@@ -60,15 +60,9 @@ const mapStateToProps = (state: AppRootState): mapStateToProps => {
     }
 }
 
-// compose(
-//     connect(mapStateToProps, {setUserProfile, getProfileThunk,getUserStatusThunk}),
-//     withRouter,
-//     WithAuthRedirect
-// )(ProfileContainer)
-// let withUrlDataContainerComponent = withRouter(ProfileContainer)
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {setUserProfile, getProfileThunk,
         getUserStatusThunk,updateUserStatusThunk}),
     withRouter,
-    WithAuthRedirect
+    // WithAuthRedirect
 )(ProfileContainer)

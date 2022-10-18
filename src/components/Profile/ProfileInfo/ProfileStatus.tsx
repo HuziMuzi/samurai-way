@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 
 type ProfileStatusType = {
     status: string
@@ -23,11 +23,16 @@ function ProfileStatus(props: ProfileStatusType) {
         setStatus(e.currentTarget.value)
     }
 
+    useEffect(()=>{
+        // debugger
+        setStatus(props.status)
+    },[props.status])
+
     return (
         <div>
             {!editMode &&
                 <div>
-                    <span onDoubleClick={activeEditMode}>Статус: {props.status}</span>
+                    <span onDoubleClick={activeEditMode}>Статус: {props.status || '--------'}</span>
                 </div>
             }
             {editMode &&

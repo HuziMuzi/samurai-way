@@ -120,7 +120,6 @@ export const getProfileThunk = (userId: string) => {
 
 export const getUserStatusThunk = (userId: string) => (dispatch: Dispatch) => {
     profileAPI.getStatus(userId).then((response) => {
-        // console.log(response.data)
         dispatch(setStatus(response.data))
     })
 }
