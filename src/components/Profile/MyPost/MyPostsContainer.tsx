@@ -1,23 +1,20 @@
 import React from 'react';
-import {AddPostAC, ChangeNewTextAC} from "../../../Redux/profile-reducer";
+import {AddPostAC} from "../../../Redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {AppRootState} from "../../../Redux/redux-store";
+import {Dispatch} from "redux";
 
 const mapStateToProps = (state: AppRootState) => {
     return {
         posts: state.profileReducer.posts,
-        message: state.profileReducer.messageForNewPost
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onChangeTextArea: (value: string) => {
-            dispatch(ChangeNewTextAC(value))
-        },
-        addPost: () => {
-            dispatch(AddPostAC())
+        addPost: (value: string) => {
+            dispatch(AddPostAC(value))
         }
     }
 }

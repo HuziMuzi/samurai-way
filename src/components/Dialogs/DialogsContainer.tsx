@@ -1,8 +1,5 @@
-// import React from 'react';
-import {
-    SendMessageAC,
-    UpdateNewMessageTextAC
-} from "../../Redux/dialogs-reducer";
+
+import {SendMessageAC} from "../../Redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {AppRootState} from "../../Redux/redux-store";
@@ -45,22 +42,11 @@ const mapStateToProps = (state: AppRootState) => {
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        toSendMessage: () => {
-            dispatch(SendMessageAC())
-        },
-        onNewMessageChange: (value: string) => {
-            dispatch(UpdateNewMessageTextAC(value))
+        toSendMessage: (value: string) => {
+            dispatch(SendMessageAC(value))
         }
     }
 }
-
-// compose(
-//     connect(mapStateToProps, mapDispatchToProps)(Dialogs),
-//     WithAuthRedirect
-// )(Dialogs)
-
-// const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-// const authRedirectContainer = WithAuthRedirect(DialogsContainer)
 export default compose<React.ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     WithAuthRedirect

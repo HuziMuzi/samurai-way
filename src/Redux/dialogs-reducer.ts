@@ -7,7 +7,6 @@ export const SEND_MESSAGE = 'SEND_MESSAGE'
 export type initialStateTypeDialogs = {
     dialogs: Array<DialogsDataType>
     messages: Array<MessageDataType>
-    newMessageText: string
 }
 
 let initialState = {
@@ -21,22 +20,14 @@ let initialState = {
         {id: 1, text: 'Hi!'},
         {id: 2, text: 'How are you?'},
         {id: 3, text: 'Have a good day'},],
-    newMessageText: ''
 }
 
 export const dialogsReducer = (state: initialStateTypeDialogs = initialState, action: DialogsActionsTypes): initialStateTypeDialogs => {
     switch (action.type) {
-        case UPDATE_NEW_POST_TEXT : {
-            return {
-                ...state,
-                newMessageText : action.newText
-            }
-        }
         case SEND_MESSAGE : {
             return {
                 ...state,
-                messages: [{id:6, text: state.newMessageText},...state.messages],
-                newMessageText: ''
+                messages: [{id:6, text: action.value},...state.messages],
             }
         }
         default : {
@@ -46,19 +37,14 @@ export const dialogsReducer = (state: initialStateTypeDialogs = initialState, ac
 
 }
 
-export type DialogsActionsTypes = UpdateNewMessageTextACType | SendMessageAC
-type UpdateNewMessageTextACType = ReturnType<typeof UpdateNewMessageTextAC>
+export type DialogsActionsTypes =  SendMessageAC
 type SendMessageAC = ReturnType<typeof SendMessageAC>
 
-export const UpdateNewMessageTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
 
-export const SendMessageAC = () => {
+
+export const SendMessageAC = (value: string) => {
     return {
-        type: SEND_MESSAGE
+        type: SEND_MESSAGE,
+        value
     } as const
 }
