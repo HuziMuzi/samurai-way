@@ -64,5 +64,5 @@ export default compose<React.ComponentType>(
     connect(mapStateToProps, {setUserProfile, getProfileThunk,
         getUserStatusThunk,updateUserStatusThunk}),
     withRouter,
-    // WithAuthRedirect
+    WithAuthRedirect
 )(ProfileContainer)

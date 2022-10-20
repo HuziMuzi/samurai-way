@@ -29,8 +29,7 @@ export const authReducer = (state: initialStateTypeAuth = initialState, action: 
             return {
 
                 ...state,
-                ...action.data,
-                isAuth : true
+                ...action.payload,
             }
         }
         default : {
@@ -44,13 +43,14 @@ export type AuthLoginActionsTypes = setUserDataACType | SendMessageAC
 type setUserDataACType = ReturnType<typeof setUserData>
 type SendMessageAC = ReturnType<typeof secondAC>
 
-export const setUserData = (id: number, email: string, login: string) => {
+export const setUserData = (id: number| null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: 'SET-USER-DATA',
-        data: {
+        payload: {
             id,
             email,
-            login
+            login,
+            isAuth
         }
     } as const
 }
@@ -61,17 +61,33 @@ export const secondAC = () => {
     } as const
 }
 
-export const authThunk = () => {
-    return (dispatch : Dispatch) => {
+export const authThunk = () => (dispatch : Dispatch) => {
         authAPI.authMe().then((response) => {
-            // console.log(response)
             if(response.data.resultCode === 0) {
                 let {id, login, email}= response.data.data
                 if(id !== null && login !== null && email !== null) {
-                    dispatch(setUserData(id, email, login))
+                    dispatch(setUserData(id, email, login, true))
                 }
             }
+        })
+}
 
+export const LoginThunk = (email:string,password: string, rememberMe:boolean) => {
+    return (dispatch : any) => {
+        authAPI.login(email,password,rememberMe).then((response) => {
+            if(response.data.resultCode === 0) {
+               dispatch(authThunk())
+            }
+        })
+    }
+}
+
+export const LogoutThunk = () => {
+    return (dispatch : any) => {
+        authAPI.logOut().then((response) => {
+            if(response.data.resultCode === 0) {
+                dispatch(setUserData(null, null, null, false))
+            }
         })
     }
 }
