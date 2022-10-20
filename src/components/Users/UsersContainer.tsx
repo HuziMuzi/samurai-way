@@ -6,7 +6,7 @@ import {
     setCurrentPage, unfollow, usersType
 } from "../../Redux/users-reducer";
 import {Users} from "./Users";
-import {Preloader} from "../commen/ Preloader/Preloader";
+import {Preloader} from "../common/ Preloader/Preloader";
 import {compose} from "redux";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
