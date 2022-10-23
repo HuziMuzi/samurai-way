@@ -9,3 +9,11 @@
 {
     color: red
 }
+
+.formErrorSubmit{
+    padding: 5px;
+    display: inline-block;
+    background-color: #fdc1c1;
+    color: #e00202;
+    border: 1px solid #ff0000;
+}
