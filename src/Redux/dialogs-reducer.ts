@@ -1,7 +1,6 @@
 
 import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 
-export const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_MESSAGE_TEXT"
 export const SEND_MESSAGE = 'SEND_MESSAGE'
 
 export type initialStateTypeDialogs = {
@@ -39,8 +38,6 @@ export const dialogsReducer = (state: initialStateTypeDialogs = initialState, ac
 
 export type DialogsActionsTypes =  SendMessageAC
 type SendMessageAC = ReturnType<typeof SendMessageAC>
-
-
 
 export const SendMessageAC = (value: string) => {
     return {

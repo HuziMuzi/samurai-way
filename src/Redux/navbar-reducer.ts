@@ -6,6 +6,10 @@ export type initialStateTypeNavBar = {
     sidebar : Array<sideUserType>
 }
 
+export type navbarActionsType = {
+    type:  string
+}
+
 let initialState = {
     sidebar: [
         {id: 1, name: 'Andrei', avatar: 'https://4tololo.ru/sites/default/files/images/20161912161924.jpg'},
@@ -17,7 +21,7 @@ let initialState = {
     ]
 }
 
-export const navbarReducer = (state:initialStateTypeNavBar = initialState, action:any) : initialStateTypeNavBar => {
+export const navbarReducer = (state:initialStateTypeNavBar = initialState, action:navbarActionsType) : initialStateTypeNavBar => {
 switch (action.type) {
     default:
         return state
