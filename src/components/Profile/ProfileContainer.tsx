@@ -22,19 +22,20 @@ type ownPropsType = mapStateToProps & mapDispatchToProps
 export type mapStateToProps = {
     profile: userType | null
     status : string
+    userId: number | null
 }
 export type mapDispatchToProps = {
     setUserProfile: (profile: userType) => void
-    getProfileThunk: (userId: string) => any
-    getUserStatusThunk : (userId: string) => any
-    updateUserStatusThunk : (status: string) => any
+    getProfileThunk: (userId: string) => void
+    getUserStatusThunk : (userId: string) => void
+    updateUserStatusThunk : (status: string) => void
 }
 
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) userId = '25397'
+        if (!userId) userId = `${this.props.userId}`
         this.props.getProfileThunk(userId)
         this.props.getUserStatusThunk(userId)
     }
@@ -56,7 +57,8 @@ class ProfileContainer extends React.Component<PropsType> {
 const mapStateToProps = (state: AppRootState): mapStateToProps => {
     return {
         profile: state.profileReducer.profile,
-        status: state.profileReducer.status
+        status: state.profileReducer.status,
+        userId :  state.authReducer.id
     }
 }
 
