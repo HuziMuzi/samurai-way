@@ -1,6 +1,7 @@
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
 import {profileAPI, userAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {AppThunkType} from "./redux-store";
 
 
 export const ADD_POST = 'ADD-POST'
@@ -93,8 +94,8 @@ export const setStatus = (status: string) => {
     } as const
 }
 
-export const getProfileThunk = (userId: string) => {
-    return (dispatch: Dispatch) => {
+export const getProfileThunk = (userId: string) : AppThunkType => {
+    return (dispatch) => {
         userAPI.getProfile(userId).then((data) => {
             dispatch(setUserProfile(data))
         })
@@ -102,13 +103,13 @@ export const getProfileThunk = (userId: string) => {
 }
 
 
-export const getUserStatusThunk = (userId: string) => (dispatch: Dispatch) => {
+export const getUserStatusThunk = (userId: string) :AppThunkType => (dispatch) => {
     profileAPI.getStatus(userId).then((response) => {
         dispatch(setStatus(response.data))
     })
 }
 
-export const updateUserStatusThunk = (status: string) => (dispatch: Dispatch) => {
+export const updateUserStatusThunk = (status: string) : AppThunkType => (dispatch) => {
     profileAPI.updateStatus(status).then((response) => {
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
