@@ -1,6 +1,5 @@
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
 import {profileAPI, userAPI} from "../api/api";
-import {Dispatch} from "redux";
 import {AppThunkType} from "./redux-store";
 
 

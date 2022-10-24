@@ -8,24 +8,10 @@ import {authThunk, LogoutThunk} from "../../Redux/auth-reducer";
 type headerContainerType = {
     isAuth : boolean
     login : string  | null
-    authThunk : () => any
     LogoutThunk : () => void
 }
 
  class HeaderContainer extends React.Component<headerContainerType> {
-
-    componentDidMount() {
-        this.props.authThunk()
-        // authAPI.authMe().then((response) => {
-        //         if(response.data.resultCode === 0) {
-        //             let {id, login, email}= response.data.data
-        //             if(id !== null && login !== null && email !== null) {
-        //                 this.props.setUserData(id, email, login)
-        //             }
-        //         }
-        //
-        //     })
-    }
 
     render() {
         return (
@@ -46,4 +32,4 @@ const mapStateToProps = (state: AppRootState) => {
 }
 
 
-export default connect(mapStateToProps,{authThunk,LogoutThunk})(HeaderContainer)
+export default connect(mapStateToProps,{LogoutThunk})(HeaderContainer)
