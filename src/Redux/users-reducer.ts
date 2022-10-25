@@ -88,7 +88,7 @@ export type UsersActionsTypes = ReturnType<typeof followSuccess> | ReturnType<ty
     | ReturnType<typeof toggleIsFetching> | ReturnType<typeof toggleFollowingInProgress>
 
 
-export type getUsers = ReturnType<typeof getUsers>
+export type getUsers = ReturnType<typeof requestUsers>
 
 export const setUsers = (users: Array<usersType>) => {
     return {
@@ -140,7 +140,7 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number) =
     } as const
 }
 
-export const getUsers = (currentPage: number, pageSize: number) : AppThunkType => {
+export const requestUsers = (currentPage: number, pageSize: number) : AppThunkType => {
 
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
