@@ -1,5 +1,11 @@
 import React from 'react';
 import {AppRootState} from "./redux-store";
+import {createSelector} from "reselect";
+
+
+// export const getUsersSuper = createSelector(() => {
+//     state.usersP
+// })
 
 export const getUsers = (state: AppRootState) => {
     return state.usersReducer.users
