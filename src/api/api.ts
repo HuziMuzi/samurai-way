@@ -1,4 +1,5 @@
 import axios from "axios";
+import login from "../components/Login/Login";
 
 
 const instance = axios.create({
@@ -21,14 +22,13 @@ export const userAPI = {
             .post(`follow/${id}`,
                 {})
             .then(response => {
-                console.log(response)
+                console.log(response.data)
                 return response.data
             })
     },
     deleteUnfollowUser(id: number) {
         return instance.delete(`follow/${id}`)
             .then(response => {
-                console.log(response)
                 return response.data
             })
     },
@@ -67,37 +67,10 @@ export const authAPI = {
 }
 
 
-// export const getUsers = (currentPage: number, pageSize: number) => {
-//     return instance
-//         .get(`users?page=${currentPage}&count=${pageSize}`,)
-//         .then(response => response.data)
-// }
-//
-// export const getProfile = (userId: string) => {
-//     return instance
-//         .get(`profile/${userId}`)
-//         .then(response => response.data)
-// }
-//
-// export const postFollowUser = (id: number) => {
-//     return instance
-//         .post(`follow/${id}`,
-//             {})
-//         .then(response => {
-//             return response.data
-//         })
-// }
-//
-// export const deleteUnfollowUser = (id: number) => {
-//     return instance
-//         .delete(`follow/${id}`)
-//         .then(response => response.data)
-// }
 
-
-// function someFunc  () {
-//     return new Promise(resolve => {
-//         resolve(5)
-//     })
-// }
-// console.log(someFunc().then())
+export type followUnfollowResponseType = {
+    data: {}
+    fieldsErrors: []
+    messages: []
+    resultCode: number
+}
