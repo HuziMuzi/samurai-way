@@ -1,7 +1,6 @@
 
 import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
 
-export const SEND_MESSAGE = 'SEND_MESSAGE'
 
 export type initialStateTypeDialogs = {
     dialogs: Array<DialogsDataType>
@@ -23,7 +22,7 @@ let initialState = {
 
 export const dialogsReducer = (state: initialStateTypeDialogs = initialState, action: DialogsActionsTypes): initialStateTypeDialogs => {
     switch (action.type) {
-        case SEND_MESSAGE : {
+        case 'DIALOG/SEND_MESSAGE' : {
             return {
                 ...state,
                 messages: [{id:6, text: action.value},...state.messages],
@@ -41,7 +40,7 @@ type SendMessageAC = ReturnType<typeof SendMessageAC>
 
 export const SendMessageAC = (value: string) => {
     return {
-        type: SEND_MESSAGE,
+        type: 'DIALOG/SEND_MESSAGE',
         value
     } as const
 }
