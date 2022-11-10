@@ -14,9 +14,9 @@ type formDataType = {
     rememberMe: boolean
 }
 
-export const LoginForm = (props: InjectedFormProps<formDataType>) => {
+export const LoginForm = ({handleSubmit,error, ...rest}: InjectedFormProps<formDataType>) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     placeholder={'email'}
@@ -43,8 +43,8 @@ export const LoginForm = (props: InjectedFormProps<formDataType>) => {
                 /> remember me
             </div>
 
-            {props.error && <div className={style.formErrorSubmit}>
-                {props.error}
+            {error && <div className={style.formErrorSubmit}>
+                {error}
             </div>
             }
             <div>

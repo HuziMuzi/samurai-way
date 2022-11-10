@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
@@ -12,7 +11,6 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
-import {authThunk} from "./Redux/auth-reducer";
 import {initializeAppThunk} from "./Redux/app-reducer";
 import {AppRootState} from "./Redux/redux-store";
 import {Preloader} from "./components/common/ Preloader/Preloader";
@@ -31,7 +29,7 @@ class App extends React.Component<AppPropsType> {
 
     render() {
 
-        console.log(this.props.initialized)
+        // console.log(this.props.initialized)
         if (!this.props.initialized) return <Preloader/>
         return (
             <BrowserRouter>

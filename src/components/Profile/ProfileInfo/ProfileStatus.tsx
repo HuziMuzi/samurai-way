@@ -6,7 +6,6 @@ type ProfileStatusType = {
 }
 
 function ProfileStatus(props: ProfileStatusType) {
-    debugger
     const [editMode, setEditMod] = useState(false)
     const [status, setStatus] = useState(props.status)
 
@@ -24,7 +23,6 @@ function ProfileStatus(props: ProfileStatusType) {
     }
 
     useEffect(() => {
-        debugger
         setStatus(props.status)
     }, [props.status])
 
