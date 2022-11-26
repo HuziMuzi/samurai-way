@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
 import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
 import {DialogsActionsTypes, dialogsReducer} from "./dialogs-reducer";
 import {navbarActionsType, navbarReducer} from "./navbar-reducer";
@@ -21,7 +21,11 @@ let rootReducer = combineReducers({
 
 
 export type AppRootState = ReturnType<typeof rootReducer>
-export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleWare))
+
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = legacy_createStore(rootReducer,composeEnhancers(applyMiddleware(thunkMiddleWare)));
+// export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleWare))
 
 export type ActionsType =
     AuthLoginActionsTypes
