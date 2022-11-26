@@ -13,7 +13,7 @@ import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {initializeAppThunk} from "./Redux/app-reducer";
 import {AppRootState} from "./Redux/redux-store";
-import {Preloader} from "./components/common/ Preloader/Preloader";
+import {Preloader} from "./components/common/Preloader/Preloader";
 
 
 type AppPropsType = {

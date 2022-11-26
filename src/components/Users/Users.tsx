@@ -1,14 +1,12 @@
-import s from "./Users.module.css";
-import userPhoto from "../../img/user-mule.png";
 import React from "react";
 import { usersType} from "../../Redux/users-reducer";
-import {NavLink} from "react-router-dom";
 import {User} from "./User";
+import Pagination from "../common/Paginator/Paginator";
 
 
 type usersPropsType = {
     users: Array<usersType>
-    totalUsersCount: number
+    totalItemsCount: number
     pageSize: number
     currentPage: number
     followingInProgress : number[]
@@ -20,27 +18,28 @@ type usersPropsType = {
 
 export const Users = ({followingInProgress,follow,unfollow, ...props}: usersPropsType) => {
 
-    const pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i)
-    }
-
-    let curP = props.currentPage;
-    let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
-    let curPL = curP + 5;
-    let slicedPages = pages.slice(curPF, curPL);
+    // const pageCount = Math.ceil(props.totalItemsCount / props.pageSize)
+    // let pages = []
+    // for (let i = 1; i <= pageCount; i++) {
+    //     pages.push(i)
+    // }
+    //
+    // let curP = props.currentPage;
+    // let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
+    // let curPL = curP + 5;
+    // let slicedPages = pages.slice(curPF, curPL);
 
 
     return (
         <div>
-            <div className={s.numberPage}>
-                {slicedPages.map(n => <span
-                    onClick={() => {
-                        props.onClickPage(n)}}
-                    className={props.currentPage === n ? s.selectedPage : ''}>{n} </span>)}
+            <Pagination totalCount={props.totalItemsCount} pageCount={12} onClick={props.onClickPage} currentPage={props.currentPage}/>
+            {/*<div className={s.numberPage}>*/}
+            {/*    {slicedPages.map(n => <span*/}
+            {/*        onClick={() => {*/}
+            {/*            props.onClickPage(n)}}*/}
+            {/*        className={props.currentPage === n ? s.selectedPage : ''}>{n} </span>)}*/}
 
-            </div>
+            {/*</div>*/}
             {props.users.map(u => <User
                 key={u.id}
                 user={u}
