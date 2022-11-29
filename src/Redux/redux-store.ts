@@ -1,12 +1,13 @@
-import {applyMiddleware, combineReducers, compose, legacy_createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
 import {DialogsActionsTypes, dialogsReducer} from "./dialogs-reducer";
 import {navbarActionsType, navbarReducer} from "./navbar-reducer";
 import {UsersActionsTypes, usersReducer} from "./users-reducer";
 import {AuthLoginActionsTypes, authReducer} from "./auth-reducer";
-import thunkMiddleWare, {ThunkAction} from 'redux-thunk'
+import  {ThunkAction} from 'redux-thunk'
 import {reducer as formReducer} from "redux-form";
 import {appActionsTypes, appReducer} from "./app-reducer";
+import thunk from 'redux-thunk'
 
 
 let rootReducer = combineReducers({
@@ -22,10 +23,7 @@ let rootReducer = combineReducers({
 
 export type AppRootState = ReturnType<typeof rootReducer>
 
-// @ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-export const store = legacy_createStore(rootReducer,composeEnhancers(applyMiddleware(thunkMiddleWare)));
-// export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleWare))
+export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 
 export type ActionsType =
     AuthLoginActionsTypes
@@ -36,6 +34,9 @@ export type ActionsType =
     | appActionsTypes
 
 export type AppThunkType<ReturnType = void> = ThunkAction<ReturnType, AppRootState, unknown, ActionsType>
+
+export type TRootState = ReturnType<typeof store.getState>;
+export type TAppDispatch = typeof store.dispatch;
 
 
 // @ts-ignore

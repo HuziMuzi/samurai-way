@@ -28,7 +28,6 @@ export const authReducer = (state: initialStateTypeAuth = initialState, action: 
     switch (action.type) {
         case 'AUTH/SET-USER-DATA' : {
             return {
-
                 ...state,
                 ...action.payload,
             }
@@ -73,15 +72,20 @@ export const LoginThunk = (email: string, password: string, rememberMe: boolean)
                 dispatch(authThunk())
             } else {
                 let message = response.data.messages.length > 0 ? response.data.messages[0] : "some error"
-                console.log(response.data)
                 let action = stopSubmit('Login', {_error: message})
                 dispatch(action)
             }
 }
 
-export const LogoutThunk = () => async (dispatch: any) => {
-      let response =  await authAPI.logOut()
-            if (response.data.resultCode === 0) {
-                dispatch(setUserData(null, null, null, false))
-            }
+export const LogoutThunk : any = () => async (dispatch: Dispatch) => {
+    try {
+        let response =  await authAPI.logOut()
+        if (response.data.resultCode === 0) {
+            dispatch(setUserData(null, null, null, false))
+        }
+    }
+    catch (e)  {
+
+    }
+
 }
