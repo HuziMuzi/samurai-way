@@ -1,52 +1,59 @@
-import React from "react";
-import { usersType} from "../../Redux/users-reducer";
+import React, {useEffect} from "react";
+import {follow, requestUsers, setCurrentPage, unfollow} from "../../Redux/users-reducer";
 import {User} from "./User";
 import Pagination from "../common/Paginator/Paginator";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {Preloader} from "../common/Preloader/Preloader";
 
 
-type usersPropsType = {
-    users: Array<usersType>
-    totalItemsCount: number
-    pageSize: number
-    currentPage: number
-    followingInProgress : number[]
-
-    onClickPage: (n: number) => void
-    follow: (userID: number) => any
-    unfollow: (userID: number) => any
-}
-
-export const Users = ({followingInProgress,follow,unfollow, ...props}: usersPropsType) => {
-
-    // const pageCount = Math.ceil(props.totalItemsCount / props.pageSize)
-    // let pages = []
-    // for (let i = 1; i <= pageCount; i++) {
-    //     pages.push(i)
-    // }
-    //
-    // let curP = props.currentPage;
-    // let curPF = ((curP - 5) < 0) ? 0 : curP - 5;
-    // let curPL = curP + 5;
-    // let slicedPages = pages.slice(curPF, curPL);
 
 
+export const Users = () => {
+    const isFetching =  useAppSelector(state => state.usersReducer.isFetching)
+    const users =  useAppSelector(state => state.usersReducer.users)
+    const totalUsersCount =  useAppSelector(state => state.usersReducer.totalUsersCount)
+    const pageSize =  useAppSelector(state => state.usersReducer.pageSize)
+    const currentPage =  useAppSelector(state => state.usersReducer.currentPage)
+    const followingInProgress =  useAppSelector(state => state.usersReducer.followingInProgress)
+   const dispatch = useAppDispatch()
+
+    const onClickPage = (pageNumber : number)=> {
+        dispatch(setCurrentPage(pageNumber))
+        dispatch(requestUsers(pageNumber, pageSize))
+    }
+
+    const followHandler = (userID:number) => {
+        dispatch(follow(userID))
+    }
+
+    const unfollowHandler = (userID:number) => {
+        dispatch(unfollow(userID))
+    }
+
+
+
+    useEffect(() => {
+        dispatch(requestUsers(1, pageSize))
+
+    }, [])
+    console.log(isFetching)
     return (
         <div>
-            <Pagination totalCount={props.totalItemsCount} pageCount={12} onClick={props.onClickPage} currentPage={props.currentPage}/>
-            {/*<div className={s.numberPage}>*/}
-            {/*    {slicedPages.map(n => <span*/}
-            {/*        onClick={() => {*/}
-            {/*            props.onClickPage(n)}}*/}
-            {/*        className={props.currentPage === n ? s.selectedPage : ''}>{n} </span>)}*/}
-
-            {/*</div>*/}
-            {props.users.map(u => <User
-                key={u.id}
-                user={u}
-                followingInProgress={followingInProgress}
-                follow={follow}
-                unfollow={unfollow}/>
-            )}
+            {isFetching ? <Preloader/>
+                :
+                <div>
+                <Pagination totalCount={totalUsersCount} pageCount={pageSize} onClick={onClickPage} currentPage={currentPage}/>
+                    <div>
+                        {users.map(u => <User
+                            key={u.id}
+                            user={u}
+                            followingInProgress={followingInProgress}
+                            follow={followHandler}
+                            unfollow={unfollowHandler}/>
+                        )}
+                    </div>
+                </div>
+            }
         </div>
     )
 }

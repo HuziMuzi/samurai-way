@@ -5,7 +5,6 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import UsersContainer from "./components/Users/UsersContainer";
 import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {initializeAppThunk} from "./Redux/app-reducer";
@@ -13,6 +12,7 @@ import {AppRootState} from "./Redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {withSuspense} from "./hoc/withSuspense";
 import {Header} from "./components/Header/Header";
+import {Users} from "./components/Users/Users";
 
 
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -39,7 +39,6 @@ class App extends React.Component<AppPropsType> {
         return (
             <BrowserRouter>
                 <div className='app-wrapper'>
-                    {/*<HeaderContainer/>*/}
                     <Header/>
                     <Navbar/>
                     <div className='app-wrapper-content'>
@@ -53,7 +52,7 @@ class App extends React.Component<AppPropsType> {
                         <Route path={'/Dialogs'} render={() => withSuspense(<DialogsContainer/>)}
 
                         />
-                        <Route path={'/Users'} render={() => <UsersContainer/>}/>
+                        <Route path={'/Users'} render={() => <Users/>}/>
                         <Route path={'/Music'} component={Music}/>
                         <Route path={'/News'} component={News}/>
                         <Route path={'/Settings'} component={Settings}/>

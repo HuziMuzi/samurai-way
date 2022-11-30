@@ -14,36 +14,23 @@ type usersPropsType = {
 }
 
 export const User = ({user,unfollow,follow, followingInProgress}: usersPropsType) => {
-
-
-
-
     return (
-
             <div>
-
                 <span>
                     <div>
                         <NavLink to={`/profile/${user.id}`}>
                         <img src={user.photos.small !== null
                             ? user.photos.small
                             : userPhoto}
-                             className={s.userPhoto}/>
+                             className={s.userPhoto} alt={'user'}/>
                         </NavLink>
                     </div>
                     <div>
                         {
                         user.followed
-                            ? <button disabled={followingInProgress.some(id => id ===user.id)}  onClick={() => {
-                             unfollow(user.id)
-
-                            }}>unfollow me</button>
-
+                            ? <button disabled={followingInProgress.some(id => id ===user.id)}  onClick={() => {unfollow(user.id)}}>unfollow me</button>
                             : <button disabled={followingInProgress.some(id => id ===user.id)}
-                                      onClick={() => {
-                                          follow(user.id)
-
-                                      }}>follow me</button>
+                                      onClick={() => {follow(user.id)}}>follow me</button>
                     }
                     </div>
                 </span>

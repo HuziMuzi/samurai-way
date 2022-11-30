@@ -1,0 +1,17 @@
+.preloader {
+    flexGrow: 1;
+    height: 100%;
+    width: 100%;
+    maxWidth: 100%;
+    display: flex;
+    justifyContent: center;
+    alignItems: center;
+    pointerEvents: none;
+    borderRadius: inherit;
+    zIndex: 1;
+}
+
+svg {
+    width: 80px;
+    height: 80px;
+}

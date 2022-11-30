@@ -26,7 +26,7 @@ export type usersType = {
 
 let initialState = {
     users: [] as Array<usersType>,
-    pageSize: 5,
+    pageSize: 6,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
@@ -153,22 +153,28 @@ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod:
     dispatch(toggleFollowingInProgress(false, userId))
 }
 
-export const requestUsers = (currentPage: number, pageSize: number): AppThunkType => async (dispatch) => {
+export const requestUsers: any = (currentPage: number, pageSize: number): AppThunkType => async (dispatch) => {
     dispatch(toggleIsFetching(true))
-    let response = await userAPI.getUsers(currentPage, pageSize)
-    dispatch(toggleIsFetching(false))
-    dispatch(setUsers(response.items))
-    dispatch(setTotalCount(response.totalCount))
+    try {
+        let response = await userAPI.getUsers(currentPage, pageSize)
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(response.items))
+        dispatch(setTotalCount(response.totalCount))
+    }
+    catch (e){
+
+    }
+
 }
 
 
-export const follow = (userId: number): AppThunkType => async (dispatch) => {
+export const follow: any = (userId: number): AppThunkType => async (dispatch) => {
     let apiMethod = userAPI.postFollowUser.bind(userAPI)
     followUnfollowFlow(dispatch, userId, apiMethod, followSuccess)
 
 }
 
-export const unfollow = (userId: number): AppThunkType => async (dispatch) => {
+export const unfollow : any = (userId: number): AppThunkType => async (dispatch) => {
     let apiMethod = userAPI.deleteUnfollowUser.bind(userAPI)
     followUnfollowFlow(dispatch, userId, apiMethod, unfollowSuccess)
 
