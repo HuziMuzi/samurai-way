@@ -10,15 +10,14 @@ import {connect} from "react-redux";
 import {initializeAppThunk} from "./Redux/app-reducer";
 import {AppRootState} from "./Redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
-import {withSuspense} from "./hoc/withSuspense";
 import {Header} from "./components/Header/Header";
 import {Users} from "./components/Users/Users";
 
 
-// import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 // import ProfileContainer from "./components/Profile/ProfileContainer";
 
-const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
+// const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"))
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"))
 
 
@@ -32,6 +31,7 @@ class App extends React.Component<AppPropsType> {
         this.props.initializeAppThunk()
     }
 
+// {/*<Route path={'/Dialogs'} render={() => withSuspense(<DialogsContainer/>)}*/}
 
     render() {
 
@@ -49,7 +49,7 @@ class App extends React.Component<AppPropsType> {
                             </React.Suspense>
                         }}
                         />
-                        <Route path={'/Dialogs'} render={() => withSuspense(<DialogsContainer/>)}
+                        <Route path={'/Dialogs'} render={() => <DialogsContainer/>}
 
                         />
                         <Route path={'/Users'} render={() => <Users/>}/>

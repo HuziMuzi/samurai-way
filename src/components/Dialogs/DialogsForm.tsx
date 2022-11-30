@@ -1,53 +1,38 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Textarea} from "../common/FormsControls/FormsControls";
-import {maxLengthCreator, required} from "../../utils/validators/validator";
+import {useForm} from "react-hook-form";
 
 type dialogsFormPropsType = {
-    newMessageText: string
-    newMessageChangeTextArea: () => void
-    toSentMessageHandler: () => void
+onSubmit : (data : TFormData) => void
 }
 
-export type formDataType = {
+export type TFormData = {
     message: string
 }
 
-const maxLength50 = maxLengthCreator(50)
 
-const DialogsFields = (props: InjectedFormProps<formDataType>) => {
+export const DialogsForm = (props: dialogsFormPropsType) => {
+    const {register, handleSubmit, resetField, formState : {errors}} = useForm<TFormData>()
+
+    const onClickSubmit = (formData:TFormData) => {
+        props.onSubmit(formData)
+        resetField('message')
+    }
+
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit(onClickSubmit)}>
             <div>
-                <Field
-                    placeholder={'Enter your text'}
-                    name={'message'}
-                    validate={[required,maxLength50]}
-                    component={Textarea}/>
+                <textarea {...register("message", {
+                    required : true,
+                    maxLength: {value: 50, message: 'max length 50 symbols'}},
+                )}
+                />
             </div>
+            {errors.message && <div style={{color : 'red'}}>{errors.message.message}</div>}
             <div>
                 <button>Отправить</button>
             </div>
         </form>
     );
-};
-
-
-const DialogsReduxForm = reduxForm<formDataType>({
-    form: 'message'
-})(DialogsFields)
-
-
-type DialogsFormPropsType = {
-    onSubmit : (formData:formDataType) => void
-}
-
-export const DialogsForm = (props: DialogsFormPropsType) => {
-    const onClickSubmit = (formData:formDataType) => {
-        props.onSubmit(formData)
-        console.log(formData)
-    }
-    return <DialogsReduxForm onSubmit={onClickSubmit}/>
 };
 
 export default DialogsForm;

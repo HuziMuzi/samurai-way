@@ -1,38 +1,35 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import DialogsForm, {formDataType} from "./DialogsForm";
+import DialogsForm, { TFormData} from "./DialogsForm";
+import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {SendMessageAC} from "../../Redux/dialogs-reducer";
 
 export type DialogsDataType = {
-    id: number
+    id: string
     name: string
 }
 
 export type MessageDataType = {
-    id: number
+    id: string
     text: string
 }
 
 export type DialogsPropsType = {
-    dialogsState: {
-        dialogs: Array<DialogsDataType>
-        messages: Array<MessageDataType>
-    }
-    toSendMessage: (value: string) => void
 }
 
-const Dialogs = (props: DialogsPropsType) => {
+const Dialogs = () => {
 
-    const dialogsElements = props.dialogsState.dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id}
-                                                                          name={dialog.name}/>)
-    const messagesElements = props.dialogsState.messages.map(mes => <Message key={mes.id} text={mes.text}/>)
+    const dialogs = useAppSelector(state => state.dialogsReducer.dialogs)
+    const messages = useAppSelector(state => state.dialogsReducer.messages)
+    const dispatch = useAppDispatch()
 
+    const dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)
+    const messagesElements = messages.map(mes => <Message key={mes.id} text={mes.text}/>)
 
-
-
-    const addNewMessage = (values:formDataType) => {
-        props.toSendMessage(values.message)
+    const addNewMessage = (values: TFormData) => {
+        dispatch(SendMessageAC(values.message))
     }
     return (
         
@@ -44,15 +41,6 @@ const Dialogs = (props: DialogsPropsType) => {
                 {messagesElements}
                 <div>
                     <DialogsForm onSubmit={addNewMessage}/>
-                    {/*<form>*/}
-                    {/*    <div>*/}
-                    {/*    <textarea value={newMessageText} placeholder={'Enter your text'}*/}
-                    {/*              onChange={newMessageChangeTextArea}></textarea>*/}
-                    {/*    </div>*/}
-                    {/*    <div>*/}
-                    {/*        <button onClick={toSentMessageHandler}>Отправить</button>*/}
-                    {/*    </div>*/}
-                    {/*</form>*/}
                 </div>
             </div>
 

@@ -30,13 +30,10 @@ export const Users = () => {
         dispatch(unfollow(userID))
     }
 
-
-
     useEffect(() => {
         dispatch(requestUsers(1, pageSize))
 
     }, [])
-    console.log(isFetching)
     return (
         <div>
             {isFetching ? <Preloader/>

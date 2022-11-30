@@ -1,5 +1,6 @@
 
 import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
+import {v1} from "uuid";
 
 
 export type initialStateTypeDialogs = {
@@ -9,15 +10,15 @@ export type initialStateTypeDialogs = {
 
 let initialState = {
     dialogs: [
-        {id: 1, name: 'Andrei'},
-        {id: 2, name: 'Dima'},
-        {id: 3, name: 'Ilya'},
-        {id: 4, name: 'Kirill'},
-        {id: 5, name: 'Alex'}],
+        {id: v1(), name: 'Andrei'},
+        {id: v1(), name: 'Dima'},
+        {id: v1(), name: 'Ilya'},
+        {id: v1(), name: 'Kirill'},
+        {id: v1(), name: 'Alex'}],
     messages: [
-        {id: 1, text: 'Hi!'},
-        {id: 2, text: 'How are you?'},
-        {id: 3, text: 'Have a good day'},],
+        {id: v1(), text: 'Hi!'},
+        {id: v1(), text: 'How are you?'},
+        {id: v1(), text: 'Have a good day'},],
 }
 
 export const dialogsReducer = (state: initialStateTypeDialogs = initialState, action: DialogsActionsTypes): initialStateTypeDialogs => {
@@ -25,7 +26,7 @@ export const dialogsReducer = (state: initialStateTypeDialogs = initialState, ac
         case 'DIALOG/SEND_MESSAGE' : {
             return {
                 ...state,
-                messages: [{id:6, text: action.value},...state.messages],
+                messages: [{id:v1(), text: action.value},...state.messages],
             }
         }
         default : {
