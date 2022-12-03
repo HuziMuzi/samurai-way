@@ -1,6 +1,7 @@
 import {PostDataType} from "../components/Profile/MyPost/MyPosts";
 import {profileAPI, userAPI} from "../api/api";
 import {AppThunkType} from "./redux-store";
+import {setIsFetchingApp} from "./app-reducer";
 
 
 export const ADD_POST = 'ADD-POST'
@@ -23,13 +24,13 @@ export type userType = {
     fullName: string
     userId: number
     photos: {
-        small: string
-        large: string
+        small: string | null
+        large: string | null
     }
 }
 export type initialStateTypeProfile = {
     posts: Array<PostDataType>
-    profile: userType | null
+    profile: userType
     status: string
 }
 
@@ -38,7 +39,19 @@ let initialState = {
     posts: [
         {id: 1, message: 'Hi,how are you?', likesCount: 5},
         {id: 2, message: "It's my first post", likesCount: 32},],
-    profile: null,
+    profile:
+        {
+        aboutMe: '',
+        contacts: {},
+        lookingForAJob: true,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: null,
+            large: null,
+        }
+    } as userType,
     status: ''
 }
 
@@ -48,7 +61,7 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
         case ADD_POST : {
             const newPost: PostDataType = {
                 id: 5,
-                message:action.value,
+                message: action.value,
                 likesCount: 1
             }
             return {...state, posts: [newPost, ...state.posts]}
@@ -66,9 +79,14 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
             }
         }
         case "PROF/DELETE-POST":
-            return  {
+            return {
                 ...state,
                 posts: state.posts.filter(post => post.id !== action.id)
+            }
+        case "PROF/SET-PHOTOS":
+            console.log(action.photos)
+            return {
+                ...state, profile : {...state.profile, photos : action.photos}
             }
         default : {
             return state
@@ -81,6 +99,7 @@ export type ProfileActionsTypes = ReturnType<typeof AddPostAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
+    | ReturnType<typeof setPhotoSuccesses>
 
 export const AddPostAC = (value: string) => {
     return {
@@ -107,21 +126,38 @@ export const setStatus = (status: string) => {
     } as const
 }
 
-export const getProfileThunk = (userId: string) : AppThunkType => async (dispatch) => {
-      let response = await userAPI.getProfile(userId)
-            dispatch(setUserProfile(response))
-    }
-
-
-
-export const getUserStatusThunk = (userId: string) :AppThunkType => async (dispatch) => {
-  let response = await  profileAPI.getStatus(userId)
-        dispatch(setStatus(response.data))
+export const setPhotoSuccesses = (photos : {large: string, small : string}) => {
+    return {
+        type: "PROF/SET-PHOTOS", photos
+    } as const
 }
 
-export const updateUserStatusThunk = (status: string) : AppThunkType => async (dispatch) => {
- let response =  await profileAPI.updateStatus(status)
-        if (response.data.resultCode === 0) {
-            dispatch(setStatus(status))
-        }
+export const getProfileThunk = (userId: string): AppThunkType => async (dispatch) => {
+    let response = await userAPI.getProfile(userId)
+    dispatch(setUserProfile(response))
+}
+
+
+export const getUserStatusThunk = (userId: string): AppThunkType => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response.data))
+}
+
+export const updateUserStatusThunk = (status: string): AppThunkType => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status))
+    }
+}
+
+
+export const savePhotoThunk : any = (file: any): AppThunkType => async (dispatch) => {
+    dispatch(setIsFetchingApp(true))
+    let response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        console.log(response.data)
+        dispatch(setPhotoSuccesses(response.data.data.photos))
+        dispatch(setIsFetchingApp(false))
+
+    }
 }

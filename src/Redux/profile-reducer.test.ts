@@ -1,4 +1,4 @@
-import {AddPostAC, deletePost, profileReducer} from "./profile-reducer";
+import {AddPostAC, deletePost, profileReducer, userType} from "./profile-reducer";
 
 
 test('new post sjould be added', () => {
@@ -9,7 +9,7 @@ test('new post sjould be added', () => {
             {id: 2, message: "It's my first post", likesCount: 32},
 
         ],
-        profile: null,
+        profile: {} as userType,
         status: ''
     }
 
@@ -30,7 +30,7 @@ test('aftel deleted length should be decrement ', () => {
             {id: 2, message: "It's my first post", likesCount: 32},
 
         ],
-        profile: null,
+        profile: {} as userType,
         status: ''
     }
 

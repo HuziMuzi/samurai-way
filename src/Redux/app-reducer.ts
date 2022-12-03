@@ -5,21 +5,29 @@ import {authThunk} from "./auth-reducer";
 
 export type initialStateTypeAuth = {
     initialized : boolean
+    isFetching: boolean
+
 }
 
 let initialState = {
-    initialized : false
+    initialized : false,
+    isFetching: false
 }
 
 export const appReducer = (state: initialStateTypeAuth = initialState, action: appActionsTypes): initialStateTypeAuth => {
     switch (action.type) {
         case 'SET-INITIALIZED' : {
             return {
-
                 ...state,
                 initialized: true
             }
         }
+
+        case "APP/SET-FETCHING":
+            return {
+                ...state, isFetching : action.value
+            }
+
         default : {
             return state
         }
@@ -29,6 +37,7 @@ export const appReducer = (state: initialStateTypeAuth = initialState, action: a
 
 export type appActionsTypes = setInitialized
 type setInitialized = ReturnType<typeof initializedSuccess>
+ | ReturnType<typeof setIsFetchingApp>
 
 export const initializedSuccess = () => {
     return {
@@ -36,6 +45,12 @@ export const initializedSuccess = () => {
     } as const
 }
 
+export const setIsFetchingApp = (value: boolean) => {
+    return {
+        type: 'APP/SET-FETCHING',
+        value
+    } as const
+}
 
 export const initializeAppThunk = () : AppThunkType =>  (dispatch) => {
    let a =  dispatch(authThunk())
