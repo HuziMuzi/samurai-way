@@ -5,7 +5,7 @@ export const Preloader = () => {
     return (
         <>
             <div className={style.preloader}>
-                <svg version="1.0" width="64px" height="64px" viewBox="0 0 128 128">
+                <svg version="1.0" width="64px" height="64px" viewBox="0 0 128 128" className={style.svgIcon}>
                     <g>
                         <circle cx="16" cy="64" r="16" fill="#222744" fillOpacity="1" />
                         <circle

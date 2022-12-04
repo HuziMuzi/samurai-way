@@ -42,7 +42,7 @@ class App extends React.Component<AppPropsType> {
                     <Header/>
                     <Navbar/>
                     <div className='app-wrapper-content'>
-                        <Route path={'/login'} render={() => <Login/>}/>
+                        <Route path={'/' || '/login'} render={() => <Login/>}/>
                         <Route path={'/Profile/:userId?'} render={() => {
                             return <React.Suspense fallback={<div>Loading...</div>}>
                                 <ProfileContainer/>

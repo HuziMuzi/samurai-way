@@ -2,28 +2,29 @@ import {PostDataType} from "../components/Profile/MyPost/MyPosts";
 import {profileAPI, userAPI} from "../api/api";
 import {AppThunkType} from "./redux-store";
 import {setIsFetchingApp} from "./app-reducer";
+import {TActiveProfile} from "../components/Settings/Settings";
 
 
 export const ADD_POST = 'ADD-POST'
 
 
 export type userType = {
-    aboutMe: string
+    aboutMe?: string
     contacts: {
         facebook: string
-        website: null,
+        website: string,
         vk: string
         twitter: string
         instagram: string
-        youtube: null
+        youtube: string
         github: string
-        mainLink: null
+        mainLink: string
     },
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    userId: number
-    photos: {
+    userId?: number
+    photos?: {
         small: string | null
         large: string | null
     }
@@ -158,6 +159,15 @@ export const savePhotoThunk : any = (file: any): AppThunkType => async (dispatch
         console.log(response.data)
         dispatch(setPhotoSuccesses(response.data.data.photos))
         dispatch(setIsFetchingApp(false))
+    }
+}
 
+export const saveProfile : any = (values: TActiveProfile): AppThunkType => async (dispatch) => {
+    dispatch(setIsFetchingApp(true))
+    let response = await profileAPI.saveProfile(values)
+    if (response.data.resultCode === 0) {
+        console.log(response.data)
+        dispatch(setPhotoSuccesses(response.data.data.photos))
+        dispatch(setIsFetchingApp(false))
     }
 }
