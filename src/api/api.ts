@@ -1,4 +1,5 @@
 import axios from "axios";
+import {TActiveProfile} from "../components/Settings/Settings";
 
 
 const instance = axios.create({
@@ -61,6 +62,9 @@ export const profileAPI = {
                     'Content-Type': 'multipart/form-data'
                 }
             })
+    },
+    saveProfile(values: TActiveProfile) {
+        return instance.put('/profile', values)
     }
 
 
