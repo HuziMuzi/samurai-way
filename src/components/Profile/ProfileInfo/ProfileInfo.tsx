@@ -8,13 +8,15 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 
 type profileInfoPropsType = {
     profile: userType | null
-    status : string
-    updateStatus : (status: string) => any
+    status: string
+    updateStatus: (status: string) => any
 }
 export const ProfileInfo = (props: profileInfoPropsType) => {
     const dispatch = useAppDispatch()
     const isFetchingApp = useAppSelector(state => state.appReducer.isFetching)
-    const userData = useAppSelector( state => state.profileReducer.profile)
+    const userPhoto = useAppSelector(state => state.profileReducer.profile.photos?.large)
+
+
     //сделать проверку и отображать кнопку добавления аватара
     if (!props.profile) {
         return <Preloader/>
@@ -22,31 +24,54 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
 
     const addPhotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files && e.target.files[0]
-        console.log(files)
         dispatch(savePhotoThunk(files))
     }
-
+    // const keysUserData : [keyof string] = Object.keys(userData.contacts) as keyof [keyof string]
     // useEffect(() => {
     //     ??
     // })
+    // console.log(userData.contacts)
     return (
         <div>
             {isFetchingApp && <Preloader/>}
             <img width={'150px'}
-                 src={   userData.photos.large || 'https://i.imgur.com/lqN6w1t.png' }
+                 src={userPhoto || 'https://i.imgur.com/lqN6w1t.png'}
                  alt=""/>
             <input type='file' onChange={addPhotoHandler}/>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
-            <div className={s.descriptionBlock}>
-                <h2 className={s.name}>{userData.fullName}</h2>
-                <p>status Job:  {userData.lookingForAJob}</p>
-                <p></p>
-                <p>About me</p>
-                <p>City: Minsk</p>
-                <p>Education: BSU'11</p>
-                <p>Web Site: https://it-kamasutra.com</p>
-            </div>
+            <ProfileData/>
         </div>
     );
 };
 
+
+export type TContacts = {
+    contactTitle: string
+    contactValue: string | null
+
+
+}
+
+const ProfileData = () => {
+    const userData = useAppSelector(state => state.profileReducer.profile)
+
+
+    return (
+        <div className={s.descriptionBlock}>
+            <div className={s.name}><b>Full name:</b> {userData.fullName}</div>
+            <p><b>Looking for a Job: </b> {userData.lookingForAJob ? 'Yes' : 'No'}</p>
+            {userData.lookingForAJob && <p>My professionals skills: {userData.lookingForAJobDescription}</p>}
+            <p>About me</p>
+            <p><b>Contact: </b></p>
+            {Object.keys(userData.contacts).map((key: string) => {
+                return <Contact contactTitle={key}
+                                contactValue={userData.contacts[key as keyof typeof userData.contacts]}/>
+            })}
+        </div>
+    )
+}
+
+const Contact = (props: TContacts) => {
+    return (<div><b> {props.contactTitle} </b>{props.contactValue}</div>
+    )
+}

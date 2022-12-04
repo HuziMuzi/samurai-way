@@ -1,0 +1,12 @@
+
+.userInfoBlock{
+    display: flex;
+}
+
+.userInfoBlock img {
+    margin-right: 30px;
+}
+
+.socialBlock{
+    display: flex;
+}
