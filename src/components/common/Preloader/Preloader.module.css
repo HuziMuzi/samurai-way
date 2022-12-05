@@ -1,17 +1,8 @@
-.preloader {
-    flexGrow: 1;
-    height: 100%;
-    width: 100%;
-    maxWidth: 100%;
-    display: flex;
-    justifyContent: center;
-    alignItems: center;
-    pointerEvents: none;
-    borderRadius: inherit;
-    zIndex: 1;
-}
 
-svgIcon {
-    width: 80px;
-    height: 80px;
+
+.golbalPreloader{
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 80px);
+    z-index: 100;
 }

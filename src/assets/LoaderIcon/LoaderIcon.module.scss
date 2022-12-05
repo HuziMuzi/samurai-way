@@ -1,0 +1,28 @@
+
+
+
+.preloader {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    border-radius: inherit;
+
+    svg {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.positionAbsolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
