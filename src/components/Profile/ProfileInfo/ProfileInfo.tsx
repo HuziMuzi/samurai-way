@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.scss'
 import {Preloader} from "../../common/Preloader/Preloader";
 import {savePhotoThunk, userType} from "../../../Redux/profile-reducer";
 import ProfileStatus from "./ProfileStatus";
@@ -31,12 +31,16 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
     //     ??
     // })
     // console.log(userData.contacts)
+    console.log(userPhoto)
     return (
-        <div>
+        <div className={s.profileInfoBlock}>
             {isFetchingApp && <Preloader/>}
-            <img width={'150px'}
-                 src={userPhoto || 'https://i.imgur.com/lqN6w1t.png'}
-                 alt=""/>
+            <div className={s.profileBlockImg}>
+                <img width={'150px'}
+                     src={userPhoto || 'https://i.imgur.com/lqN6w1t.png'}
+                     alt="" className={s.profileImg}/>
+            </div>
+
             <input type='file' onChange={addPhotoHandler}/>
             <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <ProfileData/>
