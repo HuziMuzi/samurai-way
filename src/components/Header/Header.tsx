@@ -1,8 +1,10 @@
 import React from "react"
-import s from './Header.module.css'
+import s from './Header.module.scss'
 import {NavLink} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {LogoutThunk} from "../../Redux/auth-reducer";
+import LogOutIcon from "../common/icons/LogOut";
+import Arrow from "../common/icons/Arrow";
 
 
 
@@ -10,7 +12,9 @@ export const Header = () => {
 
     const isAuth = useAppSelector(state => state.authReducer.isAuth)
     const login = useAppSelector(state => state.authReducer.login)
+    const userPhoto = useAppSelector(state => state.profileReducer.profile.photos?.small)
     const dispatch = useAppDispatch()
+
 
 
     const logOutHandler = () => {
@@ -27,8 +31,15 @@ export const Header = () => {
                 <div className={s.loginBlock}>
                     {isAuth
                         ?
-                        <div>{login && login}
-                            <button onClick={logOutHandler}> Log Out</button>
+                        <div className={s.userBlock} >
+                            <img className={s.imgUser} src={userPhoto ? userPhoto : 'https://i.imgur.com/lqN6w1t.png'} alt='user' />
+                            <Arrow/>
+                                <div className={s.dropDownMenu}>
+                                <div className={s.dropDownMenuText}>Login: {login}</div>
+                                <button className={s.btn} onClick={logOutHandler}><span>log out</span>  <LogOutIcon/></button>
+                            </div>
+
+
                         </div>
                         :
                         <NavLink to={'/login'}>Login</NavLink>
