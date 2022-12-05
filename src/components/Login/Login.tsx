@@ -4,9 +4,9 @@ import {Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validator";
 import {connect} from "react-redux";
 import {LoginThunk} from "../../Redux/auth-reducer";
-import {Redirect} from "react-router-dom";
 import {AppRootState} from "../../Redux/redux-store";
 import style from './../common/FormsControls/FormsControls.module.css'
+import {Navigate} from "react-router-dom";
 
 type formDataType = {
     email: string,
@@ -66,13 +66,13 @@ type LoginPropsType = {
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: formDataType) => {
-        console.log(formData)
         const {email, password, rememberMe} = formData
         props.LoginThunk(email, password, rememberMe)
+
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile'}/>
+        return <Navigate to={'/profile'}/>
     }
     return (
         <div>

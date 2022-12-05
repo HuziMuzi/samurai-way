@@ -12,6 +12,7 @@ import DialogsIcon from "../common/icons/iconsNavbar/DialogsIcon";
 import NewsIcon from "../common/icons/iconsNavbar/NewsIcon";
 import MusicIcon from "../common/icons/iconsNavbar/MusicIcon";
 import SettingsIcon from "../common/icons/iconsNavbar/SettingsIcon";
+import {PATH} from "../Pages/Pages";
 
 
 export const Navbar = () => {
@@ -20,31 +21,31 @@ export const Navbar = () => {
         <>
             <nav className={s.nav}>
                 <div className={`${s.item} ${s.active}`}>
-                    <NavLink to='/Profile' activeClassName={s.activeLink}>
+                    <NavLink to={PATH.profile} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <MyProfileIcon/>
                         <span> Profile </span></NavLink></div>
                 <div className={s.item}>
-                    <NavLink to="/Users" activeClassName={s.activeLink}>
+                    <NavLink to={PATH.users} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <UsersIcon/>
                         <span>Users </span></NavLink></div>
                 <div className={s.item}>
-                    <NavLink to="/Dialogs" activeClassName={s.activeLink}>
+                    <NavLink to={PATH.dialogs} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <DialogsIcon/>
                         <span>Dialogs </span></NavLink></div>
                 <div className={s.item}>
-                    <NavLink to="/News" activeClassName={s.activeLink}>
+                    <NavLink to={PATH.news} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <NewsIcon/>
                         <span>News </span></NavLink></div>
                 <div className={s.item}>
-                    <NavLink to="/Music" activeClassName={s.activeLink}>
+                    <NavLink to={PATH.music} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <MusicIcon/>
                         <span>Music </span></NavLink></div>
                 <div className={s.item}>
-                    <NavLink to="/Settings" activeClassName={s.activeLink}>
+                    <NavLink to={PATH.settings} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <SettingsIcon/>
                         <span>Settings </span></NavLink></div>
                 {/*<div className={`${s.item}`}>*/}
-                    <Sidebar state={navBarPageState.sidebar}/>
+                <Sidebar state={navBarPageState.sidebar}/>
                 {/*</div>*/}
             </nav>
         </>

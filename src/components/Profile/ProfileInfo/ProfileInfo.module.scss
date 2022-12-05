@@ -7,7 +7,7 @@
 
 
 .profileBlockImg{
-
+    border-radius: 50%;
     width: 150px;
 
 .profileImg{
@@ -16,7 +16,8 @@
     width: 100%;
     min-width: 150px;
     object-fit: contain;
-    border-radius: 5%;
+    border-radius: 50%;
+
 }
 }
 

@@ -9,15 +9,13 @@ import {
     updateUserStatusThunk,
     userType
 } from "../../Redux/profile-reducer";
-import { RouteComponentProps, withRouter} from "react-router-dom";
-import WithAuthRedirect from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 
 type PathParamsType = {
     userId: string
 }
-export type PropsType = RouteComponentProps<PathParamsType> & ownPropsType
+export type PropsType =  ownPropsType
 type ownPropsType = mapStateToProps & mapDispatchToProps
 export type mapStateToProps = {
     profile: userType | null
@@ -34,17 +32,17 @@ export type mapDispatchToProps = {
 
 class ProfileContainer extends React.Component<PropsType> {
 
-    componentDidMount() {
-        let userId = this.props.match.params.userId
-        if (!userId){
-            userId = `${this.props.autorizedUserId}`
-            if(!userId) {
-                this.props.history.push('./login')
-            }
-    }
-        this.props.getProfileThunk(userId)
-        this.props.getUserStatusThunk(userId)
-    }
+    // componentDidMount() {
+        // let userId = this.props.match.params.userId
+        // if (!userId){
+        //     userId = `${this.props.autorizedUserId}`
+        //     if(!userId) {
+        //         this.props.history.push('./login')
+        //     }
+    // }
+        // this.props.getProfileThunk(userId)
+        // this.props.getUserStatusThunk(userId)
+    // }
 
     render() {
         return (
@@ -72,6 +70,5 @@ const mapStateToProps = (state: AppRootState): mapStateToProps => {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {setUserProfile, getProfileThunk,
         getUserStatusThunk,updateUserStatusThunk}),
-    withRouter,
-    WithAuthRedirect
+    // WithAuthRedirect
 )(ProfileContainer)

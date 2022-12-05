@@ -39,6 +39,7 @@ export const ProfileInfo = (props: profileInfoPropsType) => {
                 <img width={'150px'}
                      src={userPhoto || 'https://i.imgur.com/lqN6w1t.png'}
                      alt="" className={s.profileImg}/>
+                <button>Редактировать профиль</button>
             </div>
 
             <input type='file' onChange={addPhotoHandler}/>
