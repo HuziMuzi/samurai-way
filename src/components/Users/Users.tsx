@@ -3,7 +3,7 @@ import {follow, requestUsers, setCurrentPage, unfollow} from "../../Redux/users-
 import {User} from "./User";
 import Pagination from "../common/Paginator/Paginator";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {Preloader} from "../common/Preloader/Preloader";
+import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
 
 
 
@@ -36,7 +36,7 @@ export const Users = () => {
     }, [])
     return (
         <div>
-            {isFetching ? <Preloader/>
+            {isFetching ? <LoaderIcon positions='positionAbsolute'/>
                 :
                 <div>
                 <Pagination totalCount={totalUsersCount} pageCount={pageSize} onClick={onClickPage} currentPage={currentPage}/>
