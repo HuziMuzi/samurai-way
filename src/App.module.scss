@@ -1,0 +1,66 @@
+p {
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.appWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 20px;
+
+    .appWrapperContent {
+        display: flex;
+        max-height: 100%;
+        flex-grow: 1;
+        background-color: var(--color-block);
+        //background-color: #dce2fc;
+        border-bottom: 2px white solid;
+        border-right: 2px white solid;
+        border-left: 2px white solid;
+
+        border-radius: 0 0 15px 15px;
+        overflow: hidden;
+        .appContent {
+            padding: 15px;
+            margin: 10px;
+            background-color: var(--color-custom);
+            border-radius: 15px;
+            width: 100%;
+            overflow: auto;
+            //padding-right: 5px;
+
+
+            &::-webkit-scrollbar {
+                width: 6px; // ширина плашки
+            }
+            &::-webkit-scrollbar-track {
+                opacity: 0.3;
+
+                background: none;        /* цвет дорожки */
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: var(--color-main);    /* цвет плашки */
+                //opacity: 0.9;
+                border-radius: 30px;
+                //border: 2px solid var(--color-custom);  /* padding вокруг плашки */
+            }
+        }
+    }
+
+}
+
+
+
+
+
+
+
