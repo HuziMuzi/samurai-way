@@ -12,9 +12,7 @@ import {
 import {compose} from "redux";
 
 
-type PathParamsType = {
-    userId: string
-}
+
 export type PropsType =  ownPropsType
 type ownPropsType = mapStateToProps & mapDispatchToProps
 export type mapStateToProps = {
@@ -48,9 +46,9 @@ class ProfileContainer extends React.Component<PropsType> {
         return (
             <>
                 <Profile
-                    profile={this.props.profile}
-                    status={this.props.status}
-                    updateStatus={this.props.updateUserStatusThunk}
+                    // profile={this.props.profile}
+                    // status={this.props.status}
+                    // updateStatus={this.props.updateUserStatusThunk}
                 />
             </>
         );

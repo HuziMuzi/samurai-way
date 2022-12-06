@@ -1,49 +1,40 @@
 import React from 'react';
 import s from './ProfileInfo.module.scss'
-import {Preloader} from "../../common/Preloader/Preloader";
 import {savePhotoThunk, userType} from "../../../Redux/profile-reducer";
 import ProfileStatus from "./ProfileStatus";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+import { useNavigate} from "react-router-dom";
+import {PATH} from "../../Pages/Pages";
+import {LoaderIcon} from "../../../assets/LoaderIcon/LoaderIcon";
 
 
 type profileInfoPropsType = {
     profile: userType | null
     status: string
-    updateStatus: (status: string) => any
 }
 export const ProfileInfo = (props: profileInfoPropsType) => {
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const isFetchingApp = useAppSelector(state => state.appReducer.isFetching)
     const userPhoto = useAppSelector(state => state.profileReducer.profile.photos?.large)
-
-
-    //сделать проверку и отображать кнопку добавления аватара
-    if (!props.profile) {
-        return <Preloader/>
-    }
+    console.log(props.profile)
 
     const addPhotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files && e.target.files[0]
         dispatch(savePhotoThunk(files))
     }
-    // const keysUserData : [keyof string] = Object.keys(userData.contacts) as keyof [keyof string]
-    // useEffect(() => {
-    //     ??
-    // })
-    // console.log(userData.contacts)
-    console.log(userPhoto)
     return (
         <div className={s.profileInfoBlock}>
-            {isFetchingApp && <Preloader/>}
+            {isFetchingApp  && <LoaderIcon positions={"positionAbsolute"}/>}
             <div className={s.profileBlockImg}>
                 <img width={'150px'}
                      src={userPhoto || 'https://i.imgur.com/lqN6w1t.png'}
                      alt="" className={s.profileImg}/>
-                <button>Редактировать профиль</button>
+                <button onClick={() =>  navigate(PATH.settings)}>Редактировать профиль</button>
             </div>
 
             <input type='file' onChange={addPhotoHandler}/>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileStatus status={props.status} />
             <ProfileData/>
         </div>
     );
@@ -57,9 +48,10 @@ export type TContacts = {
 
 }
 
+
+
 const ProfileData = () => {
     const userData = useAppSelector(state => state.profileReducer.profile)
-
 
     return (
         <div className={s.descriptionBlock}>
@@ -69,8 +61,11 @@ const ProfileData = () => {
             <p>About me</p>
             <p><b>Contact: </b></p>
             {Object.keys(userData.contacts).map((key: string) => {
-                return <Contact contactTitle={key}
-                                contactValue={userData.contacts[key as keyof typeof userData.contacts]}/>
+                if (userData.contacts[key as keyof typeof userData.contacts]) {
+                    return <Contact key={key} contactTitle={key}
+                                    contactValue={userData.contacts[key as keyof typeof userData.contacts]}/>
+                }
+
             })}
         </div>
     )

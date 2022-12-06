@@ -133,18 +133,30 @@ export const setPhotoSuccesses = (photos : {large: string, small : string}) => {
     } as const
 }
 
-export const getProfileThunk = (userId: string): AppThunkType => async (dispatch) => {
-    let response = await userAPI.getProfile(userId)
-    dispatch(setUserProfile(response))
+export const getProfileThunk : any = (userId: string): AppThunkType => async (dispatch) => {
+    dispatch(setIsFetchingApp(true))
+    try {
+        let response = await userAPI.getProfile(userId)
+        dispatch(setUserProfile(response))
+    }
+    catch (e) {
+        console.log(e)
+    }
+    finally {
+        dispatch(setIsFetchingApp(false))
+
+    }
+
+
 }
 
 
-export const getUserStatusThunk = (userId: string): AppThunkType => async (dispatch) => {
+export const getUserStatusThunk: any = (userId: string): AppThunkType => async (dispatch) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(setStatus(response.data))
 }
 
-export const updateUserStatusThunk = (status: string): AppThunkType => async (dispatch) => {
+export const updateUserStatusThunk : any = (status: string): AppThunkType => async (dispatch) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status))
