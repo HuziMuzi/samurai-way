@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import ProfileContainer from "../Profile/ProfileContainer";
 import Dialogs from "../Dialogs/DialogsContainer";
 import {Users} from "../Users/Users";
 import Music from "../Music/Music";
@@ -22,17 +21,6 @@ export const PATH = {
 
 const Pages = () => {
 
-
-    {/*<Route path={'/Profile/:userId?'} render={() => {*/
-    }
-    {/*    return <React.Suspense fallback={<div>Loading...</div>}>*/
-    }
-    {/*        <ProfileContainer/>*/
-    }
-    {/*    </React.Suspense>*/
-    }
-    {/*}}/>*/
-    }
 
     return (
         <div>
