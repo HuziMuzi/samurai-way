@@ -3,7 +3,7 @@ import style from './LoaderIcon.module.scss'
 
 
 export type TLoaderIcon = {
-    positions?: string
+    positions?: 'positionAbsolute'
 }
 
 export const LoaderIcon = ({positions ,...props} : TLoaderIcon) => {

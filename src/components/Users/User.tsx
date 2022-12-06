@@ -3,6 +3,7 @@ import userPhoto from "../../img/user-mule.png";
 import React from "react";
 import { usersType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import {PATH} from "../Pages/Pages";
 
 
 type usersPropsType = {
@@ -18,7 +19,7 @@ export const User = ({user,unfollow,follow, followingInProgress}: usersPropsType
             <div>
                 <span>
                     <div>
-                        <NavLink to={`/profile/${user.id}`}>
+                        <NavLink to={`${PATH.profile}${user.id}`}>
                         <img src={user.photos.small !== null
                             ? user.photos.small
                             : userPhoto}
@@ -28,7 +29,8 @@ export const User = ({user,unfollow,follow, followingInProgress}: usersPropsType
                     <div>
                         {
                         user.followed
-                            ? <button disabled={followingInProgress.some(id => id ===user.id)}  onClick={() => {unfollow(user.id)}}>unfollow me</button>
+                            ? <button disabled={followingInProgress.some(id => id ===user.id)}
+                                      onClick={() => {unfollow(user.id)}}>unfollow me</button>
                             : <button disabled={followingInProgress.some(id => id ===user.id)}
                                       onClick={() => {follow(user.id)}}>follow me</button>
                     }
