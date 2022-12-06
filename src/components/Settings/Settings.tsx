@@ -83,6 +83,11 @@ const Settings = () => {
         }
     }
 
+    const addPhotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files && e.target.files[0]
+        dispatch(savePhotoThunk(files))
+    }
+
     return (
         <form onSubmit={handleSubmit(onClickSubmit)}>
             <div>
@@ -92,7 +97,7 @@ const Settings = () => {
                         <img width={'150px'}
                              src={userData.photos?.large || 'https://i.imgur.com/lqN6w1t.png'}
                              alt=""/>
-                        <input type='file' {...register('photos')} />
+                        <input type='file' {...register('photos')}  onChange={addPhotoHandler}/>
                     </div>
 
                     <div >

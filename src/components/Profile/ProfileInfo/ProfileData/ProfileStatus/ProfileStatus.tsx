@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {useAppDispatch} from "../../../hooks/hooks";
-import {updateUserStatusThunk} from "../../../Redux/profile-reducer";
+import {useAppDispatch} from "../../../../../hooks/hooks";
+import {updateUserStatusThunk} from "../../../../../Redux/profile-reducer";
+import style  from './ProfileStatus.module.scss'
 
 type ProfileStatusType = {
     status: string
@@ -30,10 +31,10 @@ function ProfileStatus(props: ProfileStatusType) {
     }, [props.status])
 
     return (
-        <div>
+        <div className={style.statusBlock}>
             {!editMode &&
                 <div>
-                    <span onDoubleClick={activeEditMode}>Статус: {props.status || '--------'}</span>
+                    <span onDoubleClick={activeEditMode}>{props.status || '--------'}</span>
                 </div>
             }
             {editMode &&

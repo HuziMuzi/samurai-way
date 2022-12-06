@@ -1,0 +1,23 @@
+.statusBlock{
+  display: inline-block;
+  //padding: 5px 10px;
+  //margin-bottom: 5px;
+  padding: 5px 10px;
+
+  margin: 5px 0;
+  &:hover {
+    background-color: #dadaff;
+    border-radius: 15px ;
+
+  }
+
+
+  input {
+    all: unset;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    background-color: #dadaff;
+    border-radius: 15px ;
+  }
+}
