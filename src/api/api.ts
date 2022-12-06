@@ -21,16 +21,11 @@ export const userAPI = {
         return instance
             .post(`follow/${id}`,
                 {})
-            .then(response => {
-                console.log(response.data)
-                return response.data
-            })
+            .then(response => response.data)
     },
     deleteUnfollowUser(id: number) {
         return instance.delete(`follow/${id}`)
-            .then(response => {
-                return response.data
-            })
+            .then(response => response.data)
     },
     getProfile(userId: string) {
         console.warn('Obsolete method. Please profileAPI object')
@@ -82,7 +77,6 @@ export const authAPI = {
         return instance.delete(`auth/login`)
     },
 }
-
 
 
 export type followUnfollowResponseType = {
