@@ -14,7 +14,7 @@ export const InputChangeSocial = ({icon, register, name, ...props}: TPropsInputS
     return (
         <div>
                 {icon}
-                <input {...register(name)} value={props.value}/>
+                <input {...register(name)} defaultValue={props.value}/>
 
         </div>
     );

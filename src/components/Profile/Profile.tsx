@@ -4,16 +4,11 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostsContainer} from "./MyPost/MyPostsContainer";
 import {getProfileThunk, getUserStatusThunk} from "../../Redux/profile-reducer";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {useNavigate, useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import {PATH} from "../Pages/Pages";
 
-type ProfilePropsType = {
-    // profile: userType | null
-    // status: string
-    // updateStatus : (status: string) => any
-}
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = () => {
     const params = useParams()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
@@ -21,8 +16,6 @@ export const Profile = (props: ProfilePropsType) => {
     const ownId = useAppSelector(state => state.authReducer.id)
     let userId = params.id
 
-
-    console.log(profile)
 
     useEffect(() => {
         if (!userId) {
@@ -37,9 +30,7 @@ export const Profile = (props: ProfilePropsType) => {
     },[params])
 
     return <div className={s.content}>
-                <ProfileInfo
-                    profile={profile}
-                />
+                <ProfileInfo profile={profile}/>
                 <MyPostsContainer/>
             </div>
 }

@@ -1,8 +1,8 @@
 import {useAppSelector} from "../../../../hooks/hooks";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import React from "react";
-import {TContacts} from "../ProfileInfo";
-import  style from './ProfileData.module.scss'
+import style from './ProfileData.module.scss'
+import {iconsDictionary} from "../../../common/icons/iconsDictionary";
 
 export const ProfileData = () => {
     const userData = useAppSelector(state => state.profileReducer.profile)
@@ -11,23 +11,38 @@ export const ProfileData = () => {
     return (
         <div className={style.descriptionBlock}>
             <div className={style.name}> {userData.fullName}</div>
-            <ProfileStatus status={status} />
-
-            <p>Looking for a Job: {userData.lookingForAJob ? 'Yes' : 'No'}</p>
-            {userData.lookingForAJob && <p>My professionals skills: {userData.lookingForAJobDescription}</p>}
-            {Object.keys(userData.contacts).map((key: string) => {
-                if (userData.contacts[key as keyof typeof userData.contacts]) {
-                    return <Contact key={key} contactTitle={key}
-                                    contactValue={userData.contacts[key as keyof typeof userData.contacts]}/>
-                }
-
-            })}
+            <div className={style.statusBlock}>Status: <ProfileStatus status={status}/></div>
+            <div className={style.looking}>
+                <p className={style.lookingJob}>Looking for a Job: {userData.lookingForAJob ? 'Yes' : 'No'}</p>
+                {userData.lookingForAJobDescription &&
+                    <p>My professionals skills: {userData.lookingForAJobDescription}</p>}
+            </div>
+            <Contact/>
         </div>
     )
 }
 
 
+const Contact = () => {
 
-const Contact = (props: TContacts) => {
-    return (<div><b> {props.contactTitle} </b>{props.contactValue}</div>)
+    const userData = useAppSelector(state => state.profileReducer.profile.contacts)
+    const mappedContacts = Object.entries(userData).map(contact => {
+        if (contact[1]) return {
+            label: contact[0],
+            link: contact[1],
+            icon: contact[0]
+        }
+    }).filter(el => el)
+
+    return (<div className={style.contact}>
+        {mappedContacts.map((contact, index) =>
+                contact &&
+                <span className={style.iconContact} key={index}>
+            <a href={contact.link} target={'_blank'}> {iconsDictionary[contact.icon]} </a>
+            </span>
+        )}
+
+    </div>)
+
+
 }

@@ -42,17 +42,17 @@ let initialState = {
         {id: 2, message: "It's my first post", likesCount: 32},],
     profile:
         {
-        aboutMe: '',
-        contacts: {},
-        lookingForAJob: true,
-        lookingForAJobDescription: '',
-        fullName: '',
-        userId: 0,
-        photos: {
-            small: null,
-            large: null,
-        }
-    } as userType,
+            aboutMe: '',
+            contacts: {},
+            lookingForAJob: true,
+            lookingForAJobDescription: '',
+            fullName: '',
+            userId: 0,
+            photos: {
+                small: null,
+                large: null,
+            }
+        } as userType,
     status: ''
 }
 
@@ -87,7 +87,7 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
         case "PROF/SET-PHOTOS":
             console.log(action.photos)
             return {
-                ...state, profile : {...state.profile, photos : action.photos}
+                ...state, profile: {...state.profile, photos: action.photos}
             }
         default : {
             return state
@@ -127,22 +127,21 @@ export const setStatus = (status: string) => {
     } as const
 }
 
-export const setPhotoSuccesses = (photos : {large: string, small : string}) => {
+export const setPhotoSuccesses = (photos: { large: string, small: string }) => {
     return {
         type: "PROF/SET-PHOTOS", photos
     } as const
 }
 
-export const getProfileThunk : any = (userId: string): AppThunkType => async (dispatch) => {
+export const getProfileThunk: any = (userId: string): AppThunkType => async (dispatch) => {
     dispatch(setIsFetchingApp(true))
     try {
         let response = await userAPI.getProfile(userId)
         dispatch(setUserProfile(response))
-    }
-    catch (e) {
+        return response
+    } catch (e) {
         console.log(e)
-    }
-    finally {
+    } finally {
         dispatch(setIsFetchingApp(false))
 
     }
@@ -156,7 +155,7 @@ export const getUserStatusThunk: any = (userId: string): AppThunkType => async (
     dispatch(setStatus(response.data))
 }
 
-export const updateUserStatusThunk : any = (status: string): AppThunkType => async (dispatch) => {
+export const updateUserStatusThunk: any = (status: string): AppThunkType => async (dispatch) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status))
@@ -164,7 +163,7 @@ export const updateUserStatusThunk : any = (status: string): AppThunkType => asy
 }
 
 
-export const savePhotoThunk : any = (file: any): AppThunkType => async (dispatch) => {
+export const savePhotoThunk: any = (file: any): AppThunkType => async (dispatch) => {
     dispatch(setIsFetchingApp(true))
     let response = await profileAPI.savePhoto(file)
     if (response.data.resultCode === 0) {
@@ -174,12 +173,15 @@ export const savePhotoThunk : any = (file: any): AppThunkType => async (dispatch
     }
 }
 
-export const saveProfile : any = (values: TActiveProfile): AppThunkType => async (dispatch) => {
+export const saveProfile: any = (values: TActiveProfile): AppThunkType => async (dispatch) => {
     dispatch(setIsFetchingApp(true))
-    let response = await profileAPI.saveProfile(values)
-    if (response.data.resultCode === 0) {
-        console.log(response.data)
-        dispatch(setPhotoSuccesses(response.data.data.photos))
+    try {
+        await profileAPI.saveProfile(values)
+    } catch (e) {
+        console.log(e)
+    } finally {
         dispatch(setIsFetchingApp(false))
+
     }
+
 }
