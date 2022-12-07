@@ -5,7 +5,7 @@ const MusicIcon = () => {
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
              x="0px" y="0px"
              width='18px' height='18px'
-             viewBox="0 0 50 50" enable-background="new 0 0 50 50" >
+             viewBox="0 0 50 50" enableBackground="new 0 0 50 50" >
 
         <path d="M33.053,27.25c-2.557,0-4.636,2.103-4.636,4.688s2.079,4.688,4.636,4.688c2.244,0,4.118-1.621,4.543-3.766
     c0.057-0.126,0.092-0.263,0.092-0.41V10.625c0-0.302-0.137-0.588-0.371-0.777c-0.234-0.19-0.541-0.266-0.838-0.2l-18.729,4
