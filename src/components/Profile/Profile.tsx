@@ -12,7 +12,6 @@ export const Profile = () => {
     const params = useParams()
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
-    const profile = useAppSelector(state => state.profileReducer.profile)
     const ownId = useAppSelector(state => state.authReducer.id)
     let userId = params.id
 
@@ -30,7 +29,7 @@ export const Profile = () => {
     },[params])
 
     return <div className={s.content}>
-                <ProfileInfo profile={profile}/>
+                <ProfileInfo />
                 <MyPostsContainer/>
             </div>
 }
