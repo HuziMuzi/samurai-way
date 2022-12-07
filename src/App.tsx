@@ -12,12 +12,12 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 
 export const App = () => {
     const initialized = useAppSelector(state => state.appReducer.initialized)
-
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(initializeAppThunk())
     },[])
+
 
     return (
         <div className={style.appWrapper}>

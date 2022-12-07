@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Outlet, Route, Routes} from "react-router-dom";
 import Dialogs from "../Dialogs/DialogsContainer";
 import {Users} from "../Users/Users";
 import Music from "../Music/Music";
@@ -7,6 +7,7 @@ import News from "../News/News";
 import Settings from "../Settings/Settings";
 import Login from "../Login/Login";
 import {Profile} from "../Profile/Profile";
+import {useAppSelector} from "../../hooks/hooks";
 
 
 export const PATH = {
@@ -19,13 +20,27 @@ export const PATH = {
     login: "/login"
 };
 
+
+const RequireAuth = ({redirectPath = PATH.login}) => {
+    const isAuth = useAppSelector((state) => state.authReducer.isAuth);
+
+    if (!isAuth) return <Navigate to={redirectPath} replace/>;
+    return <Outlet/>;
+};
+
+const LoginRoute = ({redirectPath = PATH.profile}) => {
+    const isAuth = useAppSelector((state) => state.authReducer.isAuth);
+
+    if (isAuth) return <Navigate to={redirectPath} replace/>;
+    return <Outlet/>;
+};
+
+
 const Pages = () => {
-
-
     return (
-        <div>
-            <Routes>
-                <Route path={'/'} element={<Login/>}/>
+        <Routes>
+            <Route path={'/'} element={<Navigate to={`${PATH.profile}`}/>}/>
+            <Route element={<RequireAuth/>}>
                 <Route path={PATH.profile} element={<Profile/>}>
                     <Route path={':id'} element={<Profile/>}/>
                 </Route>
@@ -34,9 +49,11 @@ const Pages = () => {
                 <Route path={PATH.music} element={<Music/>}/>
                 <Route path={PATH.news} element={<News/>}/>
                 <Route path={PATH.settings} element={<Settings/>}/>
+            </Route>
+            <Route element={<LoginRoute/>}>
                 <Route path={PATH.login} element={<Login/>}/>
-            </Routes>
-        </div>
+            </Route>
+        </Routes>
     );
 };
 
