@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './Settings.module.css'
 import GitHub from "../common/icons/GitHub";
 import Facebook from "../common/icons/Facebook";
@@ -11,7 +11,8 @@ import Main from "../common/icons/Main";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {InputChangeSocial} from "./Input/InputChangeSocial";
 import {useForm} from "react-hook-form";
-import {savePhotoThunk, saveProfile} from "../../Redux/profile-reducer";
+import {getProfileThunk, savePhotoThunk, saveProfile} from "../../Redux/profile-reducer";
+import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
 
 
 export type TSettingData = {
@@ -31,10 +32,8 @@ export type TSettingData = {
 }
 
 export type TActiveProfile = {
-    AboutMe: string
     fullName: string
     lookingForAJob: boolean
-    lookingForAJobDescription: null | string
     contacts: {
         facebook: null | string
         github: null | string
@@ -50,10 +49,11 @@ export type TActiveProfile = {
 
 const Settings = () => {
     const dispatch = useAppDispatch()
-
-    const {register, handleSubmit} = useForm<TSettingData>()
+    const {register, handleSubmit, reset} = useForm<TSettingData>()
     const userData = useAppSelector(state => state.profileReducer.profile)
     const contacts = useAppSelector(state => state.profileReducer.profile.contacts)
+    const isFetchingApp = useAppSelector(state => state.appReducer.isFetching)
+    const myId = useAppSelector(state => state.authReducer.id)
 
     const onClickSubmit = (values: TSettingData) => {
         const saveSettingsProfile = {
@@ -72,13 +72,8 @@ const Settings = () => {
             lookingForAJobDescription: values.lookingForAJobDescription,
             fullName: values.fullName,
         }
-
         dispatch(saveProfile(saveSettingsProfile))
-        // console.log(values.photos)
-        console.log(values.photos)
-
-        if (values.photos.length) {
-            console.log(values.photos[0])
+        if (values.photos.large !== userData.photos?.large) {
             dispatch(savePhotoThunk(values.photos[0]))
         }
     }
@@ -88,27 +83,46 @@ const Settings = () => {
         dispatch(savePhotoThunk(files))
     }
 
+    useEffect(() => {
+        if(userData.fullName) return
+        dispatch(getProfileThunk(myId)).then((res: any) => {
+
+            reset({
+                fullName: res.fullName,
+                lookingForAJob: res.lookingForAJob,
+                lookingForAJobDescription: res.lookingForAJobDescription,
+                photos: res.photos
+            })
+        })
+
+
+
+    },[myId])
+
+    console.log(userData.lookingForAJobDescription)
+
     return (
         <form onSubmit={handleSubmit(onClickSubmit)}>
+            {isFetchingApp  && <LoaderIcon positions={"positionAbsolute"}/>}
             <div>
                 Settings
                 <div className='flex'>
                     <div className=''>
                         <img width={'150px'}
-                             src={userData.photos?.large || 'https://i.imgur.com/lqN6w1t.png'}
+                             src={userData.photos?.large ? userData.photos?.large : 'https://i.imgur.com/lqN6w1t.png'}
                              alt=""/>
-                        <input type='file' {...register('photos')}  onChange={addPhotoHandler}/>
+                        <input type='file' {...register('photos')}   onChange={addPhotoHandler}/>
                     </div>
 
                     <div >
                         <div>Full name:
-                            <input {...register('fullName')} value={userData.fullName}/>
+                            <input {...register('fullName')} defaultValue={userData.fullName}/>
                         </div>
                         <div>looking for a job: {userData.lookingForAJob}
-                            <input type={'checkbox'} {...register('lookingForAJob')}  checked={userData.lookingForAJob}/>
+                            <input type={'checkbox'} {...register('lookingForAJob')}  defaultChecked={userData.lookingForAJob}/>
                         </div>
                         <div>looking for a job:
-                            <input type={'text'} {...register('lookingForAJobDescription')} value={userData.lookingForAJobDescription}/>
+                            <input type={'text'} {...register('lookingForAJobDescription')} defaultValue={userData.lookingForAJobDescription}/>
                         </div>
                     </div>
                 </div>
@@ -118,7 +132,7 @@ const Settings = () => {
                 <div className={s.socialBlock}>
                     <div>
                         <div>
-                            <InputChangeSocial icon={<GitHub/>} register={register} name={'github'} value={contacts.github}/>
+                            <InputChangeSocial icon={<GitHub/>} register={register} name='github' value={contacts.github}/>
                         </div>
                         <div>
                             <InputChangeSocial icon={<Facebook/>} register={register} name='facebook' value={contacts.facebook}/>
@@ -127,12 +141,11 @@ const Settings = () => {
                             <InputChangeSocial icon={<Inst/>} register={register} name='instagram' value={contacts.instagram}/>
                         </div>
                         <div>
-                            <InputChangeSocial icon={<Twitter/>} register={register} name={'twitter'} value={contacts.twitter}/>
+                            <InputChangeSocial icon={<Twitter/>} register={register} name='twitter' value={contacts.twitter}/>
                         </div>
                     </div>
 
                     <div>
-
                         <div>
                             <InputChangeSocial icon={<Vk/>} register={register} name='vk' value={contacts.vk}/>
                         </div>
