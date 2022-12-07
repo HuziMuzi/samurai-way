@@ -16,8 +16,6 @@ export type MessageDataType = {
     text: string
 }
 
-export type DialogsPropsType = {
-}
 
 const Dialogs = () => {
 
