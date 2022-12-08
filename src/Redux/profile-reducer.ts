@@ -1,8 +1,9 @@
-import {PostDataType} from "../components/Profile/MyPost/MyPosts";
+import {PostDataType} from "../ui/pages/Profile/MyPost/MyPosts";
 import {profileAPI, userAPI} from "../api/api";
 import {AppThunkType} from "./redux-store";
 import {setIsFetchingApp} from "./app-reducer";
-import {TActiveProfile} from "../components/Settings/Settings";
+import {TActiveProfile} from "../ui/pages/Settings/Settings";
+import {v1} from "uuid";
 
 
 export const ADD_POST = 'ADD-POST'
@@ -38,8 +39,8 @@ export type initialStateTypeProfile = {
 
 let initialState = {
     posts: [
-        {id: 1, message: 'Hi,how are you?', likesCount: 5},
-        {id: 2, message: "It's my first post", likesCount: 32},],
+        {id: v1(), message: 'Hi,how are you?', likesCount: 5},
+        {id: v1(), message: "It's my first post", likesCount: 32},],
     profile:
         {
             aboutMe: '',
@@ -61,7 +62,7 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
     switch (action.type) {
         case ADD_POST : {
             const newPost: PostDataType = {
-                id: 5,
+                id: v1(),
                 message: action.value,
                 likesCount: 1
             }
@@ -82,7 +83,7 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
         case "PROF/DELETE-POST":
             return {
                 ...state,
-                posts: state.posts.filter(post => post.id !== action.id)
+                // posts: state.posts.filter(post => post.id !== action.id)
             }
         case "PROF/SET-PHOTOS":
             console.log(action.photos)

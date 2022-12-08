@@ -1,13 +1,13 @@
 import React from 'react';
 import {Navigate, Outlet, Route, Routes} from "react-router-dom";
-import {Users} from "../Users/Users";
-import Music from "../Music/Music";
-import News from "../News/News";
-import Settings from "../Settings/Settings";
-import Login from "../Login/Login";
-import {Profile} from "../Profile/Profile";
+import {Users} from "./Users/Users";
+import Music from "./Music/Music";
+import News from "./News/News";
+import Settings from "./Settings/Settings";
+import Login from "./Login/Login";
+import {Profile} from "./Profile/Profile";
 import {useAppSelector} from "../../hooks/hooks";
-import Dialogs from "../Dialogs/Dialogs";
+import Dialogs from "./Dialogs/Dialogs";
 
 
 export const PATH = {

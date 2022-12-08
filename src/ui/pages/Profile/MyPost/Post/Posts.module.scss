@@ -1,0 +1,66 @@
+
+.popup {
+  display: flex;
+  width: 500px;
+  padding: 10px;
+  align-items: end;
+  margin-bottom: 10px;
+  color: #a8c2b3;
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .corner {
+
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at 0 0, rgba(0, 0, 0, 0) 15px, #d7d6ef 0);
+  }
+
+  .info {
+    flex: 1 1;
+    background-color: #d7d6ef;
+    border-radius: 10px 10px 10px 0;
+    padding: 10px;
+
+    .name {
+      padding-bottom: 0;
+      color: black;
+    }
+
+    .message {
+      padding-bottom: 3px;
+      word-wrap: break-word;
+      color: #4339c4;
+    }
+  }
+
+  .likes {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+    cursor: pointer;
+    //background-color: #4339c4;
+  fill: #756fc4;
+    & svg {
+      color: #4339c4;
+    }
+
+    & span {
+      color: #4339c4;
+      margin: 5px 0 0 10px
+    }
+  }
+
+}
+
+
+
+
+
+
+

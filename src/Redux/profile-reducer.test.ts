@@ -5,8 +5,8 @@ test('new post sjould be added', () => {
     let action = AddPostAC('newText')
     let state = {
         posts: [
-            {id: 1, message: 'Hi,how are you?', likesCount: 5},
-            {id: 2, message: "It's my first post", likesCount: 32},
+            {id: '1', message: 'Hi,how are you?', likesCount: 5},
+            {id: '2', message: "It's my first post", likesCount: 32},
 
         ],
         profile: {} as userType,
@@ -26,8 +26,8 @@ test('aftel deleted length should be decrement ', () => {
     let action = deletePost(1)
     let state = {
         posts: [
-            {id: 1, message: 'Hi,how are you?', likesCount: 5},
-            {id: 2, message: "It's my first post", likesCount: 32},
+            {id: '1', message: 'Hi,how are you?', likesCount: 5},
+            {id: '2', message: "It's my first post", likesCount: 32},
 
         ],
         profile: {} as userType,
