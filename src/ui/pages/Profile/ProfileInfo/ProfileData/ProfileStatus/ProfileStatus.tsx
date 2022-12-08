@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {useAppDispatch} from "../../../../../hooks/hooks";
-import {updateUserStatusThunk} from "../../../../../Redux/profile-reducer";
+import {useAppDispatch} from "../../../../../../hooks/hooks";
+import {updateUserStatusThunk} from "../../../../../../Redux/profile-reducer";
 import style  from './ProfileStatus.module.scss'
 
 type ProfileStatusType = {

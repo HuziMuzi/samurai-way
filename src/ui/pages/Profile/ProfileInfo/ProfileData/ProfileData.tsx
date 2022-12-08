@@ -1,8 +1,8 @@
-import {useAppSelector} from "../../../../hooks/hooks";
+import {useAppSelector} from "../../../../../hooks/hooks";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import React from "react";
 import style from './ProfileData.module.scss'
-import {iconsDictionary} from "../../../common/icons/iconsDictionary";
+import {iconsDictionary} from "../../../../components/common/icons/iconsDictionary";
 
 export const ProfileData = () => {
     const userData = useAppSelector(state => state.profileReducer.profile)

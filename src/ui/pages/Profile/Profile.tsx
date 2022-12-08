@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import s from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPostsContainer} from "./MyPost/MyPostsContainer";
-import {getProfileThunk, getUserStatusThunk} from "../../Redux/profile-reducer";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import {getProfileThunk, getUserStatusThunk} from "../../../Redux/profile-reducer";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import { useNavigate, useParams} from "react-router-dom";
-import {PATH} from "../Pages/Pages";
+import {PATH} from "../Pages";
+import {MyPosts} from "./MyPost/MyPosts";
 
 
 export const Profile = () => {
@@ -30,7 +30,7 @@ export const Profile = () => {
 
     return <div className={s.content}>
                 <ProfileInfo />
-                <MyPostsContainer/>
+                <MyPosts/>
             </div>
 }
 
