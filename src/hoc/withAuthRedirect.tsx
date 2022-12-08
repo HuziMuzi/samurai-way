@@ -3,7 +3,7 @@ import React, {ComponentType} from 'react';
 import {AppRootState} from "../Redux/redux-store";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
-import {PATH} from "../components/Pages/Pages";
+import {PATH} from "../ui/pages/Pages";
 
 
 type mapStateToProps = {

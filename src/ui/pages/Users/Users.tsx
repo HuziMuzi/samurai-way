@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import {follow, requestUsers, setCurrentPage, unfollow} from "../../Redux/users-reducer";
+import {follow, requestUsers, setCurrentPage, unfollow} from "../../../Redux/users-reducer";
 import {User} from "./User";
-import Pagination from "../common/Paginator/Paginator";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import Pagination from "../../components/common/Paginator/Paginator";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
 
 

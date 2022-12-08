@@ -1,9 +1,9 @@
 import s from "./Users.module.css";
-import userPhoto from "../../img/user-mule.png";
+import userPhoto from "../../../img/user-mule.png";
 import React from "react";
-import { usersType} from "../../Redux/users-reducer";
+import { usersType} from "../../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {PATH} from "../Pages/Pages";
+import {PATH} from "../Pages";
 
 
 type usersPropsType = {
