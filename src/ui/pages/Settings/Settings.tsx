@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import s from './Settings.module.css'
-import GitHub from "../common/icons/GitHub";
-import Facebook from "../common/icons/Facebook";
-import Inst from "../common/icons/Inst";
-import Twitter from "../common/icons/Twitter";
-import Vk from "../common/icons/Vk";
-import WebSite from "../common/icons/WebSite";
-import Youtube from "../common/icons/Youtube";
-import Main from "../common/icons/Main";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
+import GitHub from "../../components/common/icons/GitHub";
+import Facebook from "../../components/common/icons/Facebook";
+import Inst from "../../components/common/icons/Inst";
+import Twitter from "../../components/common/icons/Twitter";
+import Vk from "../../components/common/icons/Vk";
+import WebSite from "../../components/common/icons/WebSite";
+import Youtube from "../../components/common/icons/Youtube";
+import Main from "../../components/common/icons/Main";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {InputChangeSocial} from "./Input/InputChangeSocial";
 import {useForm} from "react-hook-form";
-import {getProfileThunk, savePhotoThunk, saveProfile} from "../../Redux/profile-reducer";
+import {getProfileThunk, savePhotoThunk, saveProfile} from "../../../Redux/profile-reducer";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
 
 

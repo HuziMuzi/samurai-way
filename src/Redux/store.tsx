@@ -1,9 +1,6 @@
-import {PostDataType} from "../components/Profile/MyPost/MyPosts";
-import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
-import {sideUserType} from "../components/Sidebar/Sidebar";
-import {ProfileActionsTypes, profileReducer} from "./profile-reducer";
-import {DialogsActionsTypes, dialogsReducer} from "./dialogs-reducer";
-import {navbarReducer} from "./navbar-reducer";
+import {PostDataType} from "../ui/pages/Profile/MyPost/MyPosts";
+import {DialogsDataType, MessageDataType} from "../ui/pages/Dialogs/Dialogs";
+import {sideUserType} from "../ui/pages/Sidebar/Sidebar";
 
 // let rerenderEntireTree = (state: stateType) => {
 //     console.log('State is changed')
