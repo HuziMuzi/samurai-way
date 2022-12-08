@@ -1,0 +1,22 @@
+.btn{
+  padding: 10px 10px;
+  color: #4339c4;
+  font-family: VarelaRound;
+  font-weight: bold;
+  //font-size: 16px;
+  letter-spacing: 1.2px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #cdcaf5;
+  border: none;
+  transition: all 0.2s linear;
+  margin-bottom: 20px;
+  
+  &:hover {
+    background-color: #b5b1f6;
+  }
+  &:active {
+    background-color: #a7a3f3;
+
+  }
+}
