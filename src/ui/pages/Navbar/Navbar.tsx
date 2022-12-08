@@ -1,25 +1,26 @@
 import React from 'react';
 import s from './Navbar.module.scss'
 import {NavLink} from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
 
-import {AppRootState} from "../../Redux/redux-store";
-import {initialStateTypeNavBar} from "../../Redux/navbar-reducer";
-import {useSelector} from "react-redux";
-import MyProfileIcon from "../common/icons/iconsNavbar/MyProfileIcon";
-import UsersIcon from "../common/icons/iconsNavbar/UsersIcon";
-import DialogsIcon from "../common/icons/iconsNavbar/DialogsIcon";
-import NewsIcon from "../common/icons/iconsNavbar/NewsIcon";
-import MusicIcon from "../common/icons/iconsNavbar/MusicIcon";
-import SettingsIcon from "../common/icons/iconsNavbar/SettingsIcon";
-import {PATH} from "../Pages/Pages";
+import MyProfileIcon from "../../components/common/icons/iconsNavbar/MyProfileIcon";
+import UsersIcon from "../../components/common/icons/iconsNavbar/UsersIcon";
+import DialogsIcon from "../../components/common/icons/iconsNavbar/DialogsIcon";
+import NewsIcon from "../../components/common/icons/iconsNavbar/NewsIcon";
+import MusicIcon from "../../components/common/icons/iconsNavbar/MusicIcon";
+import SettingsIcon from "../../components/common/icons/iconsNavbar/SettingsIcon";
+import {PATH} from "../Pages";
 
 
 export const Navbar = () => {
-    const navBarPageState = useSelector<AppRootState, initialStateTypeNavBar>(state => state.navbarReducer)
+
+
     return (
         <>
             <nav className={s.nav}>
+                <div className={s.logoBlock}>
+                    <img width={'100px'} height={'70px'}
+                         src="https://i.pinimg.com/originals/0b/73/51/0b7351f7b132512ea28fae9d5fff1bde.png" alt="logo"/>
+                </div>
                 <div className={`${s.item} ${s.active}`}>
                     <NavLink to={PATH.profile} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <MyProfileIcon/>
@@ -44,9 +45,7 @@ export const Navbar = () => {
                     <NavLink to={PATH.settings} className={({isActive}) => isActive ? s.activeLink : ''}>
                         <SettingsIcon/>
                         <span>Settings </span></NavLink></div>
-                {/*<div className={`${s.item}`}>*/}
-                <Sidebar state={navBarPageState.sidebar}/>
-                {/*</div>*/}
+                {/*<Sidebar state={navBarPageState.sidebar}/>*/}
             </nav>
         </>
     );

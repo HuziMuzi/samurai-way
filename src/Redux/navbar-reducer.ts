@@ -1,5 +1,4 @@
-import React from "react";
-import {sideUserType} from "../components/Sidebar/Sidebar";
+import {sideUserType} from "../ui/pages/Sidebar/Sidebar";
 
 
 export type initialStateTypeNavBar = {
