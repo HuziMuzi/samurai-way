@@ -3,8 +3,8 @@ import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import DialogsForm, { TFormData} from "./DialogsForm";
-import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {SendMessageAC} from "../../Redux/dialogs-reducer";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+import {SendMessageAC} from "../../../Redux/dialogs-reducer";
 
 export type DialogsDataType = {
     id: string

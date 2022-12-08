@@ -1,5 +1,5 @@
 import axios from "axios";
-import {TActiveProfile} from "../components/Settings/Settings";
+import {TActiveProfile} from "../ui/pages/Settings/Settings";
 
 
 const instance = axios.create({

@@ -1,5 +1,5 @@
 
-import {DialogsDataType, MessageDataType} from "../components/Dialogs/Dialogs";
+import {DialogsDataType, MessageDataType} from "../ui/pages/Dialogs/Dialogs";
 import {v1} from "uuid";
 
 
