@@ -21,17 +21,19 @@ a {
         display: flex;
         max-height: 100%;
         flex-grow: 1;
-        background-color: #cbc9fa;
+        background-color: var(--color-custom);
         border: 2px white solid;
 
         border-radius: 15px;
         overflow: hidden;
         .appContent {
             padding: 30px; //margin: 10px;
-            background-color: var(--color-custom);
+            background-color: #edf0fd;
             border-radius: 15px 0 0  15px;
             width: 100%;
             overflow: auto;
+            box-shadow:  0 0 15px rgba(0, 0, 0, 0.2);
+
 
 
             &::-webkit-scrollbar {
@@ -43,7 +45,7 @@ a {
                 background: none;        /* цвет дорожки */
             }
             &::-webkit-scrollbar-thumb {
-                background-color: var(--color-main);    /* цвет плашки */
+                background-color: #e3e3e3;    /* цвет плашки */
                 border-radius: 30px;
                 //border: 2px solid var(--color-custom);  /* padding вокруг плашки */
             }
