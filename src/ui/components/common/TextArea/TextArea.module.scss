@@ -1,6 +1,6 @@
 .textArea{
   all: unset;
-  background-color: #d7d6ef;
+  background-color: #ffffff;
   width: 845px;
   height: 150px;
   border-radius: 15px;
@@ -8,6 +8,8 @@
   resize: none;
   padding: 15px;
   font-size: 16px;
+  margin-bottom: 10px;
+  box-shadow:  0 0 15px rgba(0, 0, 0, 0.2);
 }
 .error{
 

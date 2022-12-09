@@ -2,4 +2,4 @@
 ### Installation: 
 `yarn install`
 ### Start: 
-`yarn start` я тут что то сделал
+`yarn start`
