@@ -80,6 +80,8 @@ export const profileReducer = (state: initialStateTypeProfile = initialState, ac
                 status: action.status
             }
         }
+
+
         case "PROF/DELETE-POST":
             return {
                 ...state,

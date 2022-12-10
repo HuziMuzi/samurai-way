@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './Posts.module.scss'
 import {useAppSelector} from "../../../../../hooks/hooks";
 import Likes2 from "../../../../components/common/icons/Likes2";
 
 type PostsPropsMessage = {
+    id: string
     message: string
     likes: number
 }
@@ -12,9 +13,18 @@ export const Posts = (props: PostsPropsMessage) => {
     const photoUser = useAppSelector(state => state.profileReducer.profile.photos?.small)
     const name  = useAppSelector(state => state.profileReducer.profile.fullName)
 
+    const [like, setLike] = useState(props.likes)
+    const [isLike, setIsLike] = useState(false)
+
 
     const likeHandler = () => {
 
+        if (!isLike) {
+            setLike(like + 1)
+        } else {
+            setLike(like - 1)
+        }
+        setIsLike(!isLike)
     }
     return (
         <>
@@ -25,8 +35,8 @@ export const Posts = (props: PostsPropsMessage) => {
                     <div className={style.name}>{name}</div>
                     <div className={style.message}>{props.message}</div>
                 </div>
-                <div className={style.likes} onClick={likeHandler}><Likes2/> <span>{props.likes}</span></div>
-
+                <div className={style.likes} onClick={likeHandler}><Likes2 fill={
+                    isLike ? '#5679D2FF' : 'transparent'}/> <span>{like}</span></div>
             </div>
         </>
     )

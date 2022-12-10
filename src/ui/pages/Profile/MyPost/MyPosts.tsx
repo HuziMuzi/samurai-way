@@ -22,6 +22,7 @@ export const MyPosts = () => {
     let postsElement = posts.map((post, index) =>
         <Posts
             key={index}
+            id={post.id}
             message={post.message}
             likes={post.likesCount}
         />

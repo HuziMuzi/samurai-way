@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Navbar.module.scss'
 import {NavLink} from "react-router-dom";
-
 import MyProfileIcon from "../../components/common/icons/iconsNavbar/MyProfileIcon";
 import UsersIcon from "../../components/common/icons/iconsNavbar/UsersIcon";
 import DialogsIcon from "../../components/common/icons/iconsNavbar/DialogsIcon";
