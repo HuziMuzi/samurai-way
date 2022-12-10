@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
 import {AddPostAC} from "../../../../Redux/profile-reducer";
 import TextArea from "../../../components/common/TextArea/TextArea";
 import Button from "../../../components/common/Button/Button";
+import style from './MyPosts.module.css'
 
 
 export type PostDataType = {
@@ -34,7 +35,7 @@ export const MyPosts = () => {
 
     return (
         <>
-            <div>
+            <div className={style.newPost}>
                 <TextArea/>
                 <Button onClick={onSubmitPost}>Send</Button>
             </div>
