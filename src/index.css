@@ -25,10 +25,9 @@ body {
 
 
 :root {
-  /*--color-main: #756fc4;*/
   --color-main: #adaae3;
+  --color-text: #5679d2;
   --color-custom: #e4e8fc;
-  /*--color-block: #d6ddff;*/
   --color-block: rgba(214, 221, 255, 0.56);
 }
 
