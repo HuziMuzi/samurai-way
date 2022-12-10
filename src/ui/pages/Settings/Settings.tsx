@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import s from './Settings.module.css'
+import React, {useEffect, useRef} from 'react';
+import s from './Settings.module.scss'
 import GitHub from "../../components/common/icons/GitHub";
 import Facebook from "../../components/common/icons/Facebook";
 import Inst from "../../components/common/icons/Inst";
@@ -13,6 +13,9 @@ import {InputChangeSocial} from "./Input/InputChangeSocial";
 import {useForm} from "react-hook-form";
 import {getProfileThunk, savePhotoThunk, saveProfile} from "../../../Redux/profile-reducer";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
+import InpuTextForm from "../../components/common/InputText/InpuTextForm";
+import InputCheckboxForm from "../../components/common/InputCheckbox/InputCheckboxForm";
+import Button from "../../components/common/Button/Button";
 
 
 export type TSettingData = {
@@ -54,8 +57,10 @@ const Settings = () => {
     const contacts = useAppSelector(state => state.profileReducer.profile.contacts)
     const isFetchingApp = useAppSelector(state => state.appReducer.isFetching)
     const myId = useAppSelector(state => state.authReducer.id)
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const onClickSubmit = (values: TSettingData) => {
+        console.log(values.fullName)
         const saveSettingsProfile = {
             contacts: {
                 facebook: values.facebook,
@@ -83,6 +88,10 @@ const Settings = () => {
         dispatch(savePhotoThunk(files))
     }
 
+    const selectFileHandler = () => {
+        inputRef && inputRef.current?.click()
+    }
+
     useEffect(() => {
         if(userData.fullName) return
         dispatch(getProfileThunk(myId)).then((res: any) => {
@@ -94,12 +103,8 @@ const Settings = () => {
                 photos: res.photos
             })
         })
-
-
-
     },[myId])
 
-    console.log(userData.lookingForAJobDescription)
 
     return (
         <form onSubmit={handleSubmit(onClickSubmit)}>
@@ -107,22 +112,30 @@ const Settings = () => {
             <div>
                 Settings
                 <div className='flex'>
-                    <div className=''>
+                    <div className={s.imgBlock}>
                         <img width={'150px'}
                              src={userData.photos?.large ? userData.photos?.large : 'https://i.imgur.com/lqN6w1t.png'}
                              alt=""/>
-                        <input type='file' {...register('photos')}   onChange={addPhotoHandler}/>
+                        <div className={s.btnUploadPhoto}></div>
+                        <Button onClick={selectFileHandler}>Upload a photo</Button>
+                        <input type='file'
+                               {...register('photos')}
+                               accept='image/*'
+                               ref={inputRef}
+                               className={s.inputFile}
+                                 onChange={addPhotoHandler}/>
                     </div>
 
-                    <div >
+                    <div>
                         <div>Full name:
-                            <input {...register('fullName')} defaultValue={userData.fullName}/>
+
+                            <InpuTextForm register={register} name={'fullName'} defaultValue={userData.fullName}/>
                         </div>
                         <div>looking for a job: {userData.lookingForAJob}
-                            <input type={'checkbox'} {...register('lookingForAJob')}  defaultChecked={userData.lookingForAJob}/>
+                            <InputCheckboxForm type={'checkbox'} register={register} name='lookingForAJob' defaultChecked={userData.lookingForAJob}/>
                         </div>
                         <div>looking for a job:
-                            <input type={'text'} {...register('lookingForAJobDescription')} defaultValue={userData.lookingForAJobDescription}/>
+                            <InpuTextForm type={'text'} register={register} name='lookingForAJobDescription' defaultValue={userData.lookingForAJobDescription}/>
                         </div>
                     </div>
                 </div>
@@ -130,7 +143,7 @@ const Settings = () => {
 
                 <div>Change social media:</div>
                 <div className={s.socialBlock}>
-                    <div>
+                    <div style={{marginRight: '20px'}}>
                         <div>
                             <InputChangeSocial icon={<GitHub/>} register={register} name='github' value={contacts.github}/>
                         </div>
@@ -161,7 +174,7 @@ const Settings = () => {
                     </div>
                 </div>
 
-                <button >Save</button>
+                <Button>Save</Button>
             </div>
         </form>
     );

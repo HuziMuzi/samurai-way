@@ -1,0 +1,16 @@
+.superInput{
+  border: none;
+  outline: none;
+  font-size: 16px;
+  //color: var(--color-text);
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin: 10px;
+  background-color: #f8f8f8;
+  box-shadow:  0 0 5px rgba(0, 0, 0, 0.2);
+
+  &:focus {
+    box-shadow:  0 0 15px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+  }
+}
