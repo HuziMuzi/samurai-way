@@ -14,7 +14,6 @@ import {useForm} from "react-hook-form";
 import {getProfileThunk, savePhotoThunk, saveProfile} from "../../../Redux/profile-reducer";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
 import {InputText} from "../../components/common/InputText/InputText";
-import InputCheckboxForm from "../../components/common/InputCheckbox/InputCheckboxForm";
 import Button from "../../components/common/Button/Button";
 
 
@@ -130,9 +129,9 @@ const Settings = () => {
 
                             <InputText register={register} name={'fullName'} defaultValue={userData.fullName}/>
                         </div>
-                        <div>looking for a job: {userData.lookingForAJob}
-                            <InputCheckboxForm type={'checkbox'} register={register} name='lookingForAJob' defaultChecked={userData.lookingForAJob}/>
-                        </div>
+                        {/*<div>looking for a job: {userData.lookingForAJob}*/}
+                        {/*    <InputCheckboxForm type={'checkbox'} register={register} name='lookingForAJob' defaultChecked={userData.lookingForAJob}/>*/}
+                        {/*</div>*/}
                         <div>looking for a job:
                             <InputText type={'text'} register={register} name='lookingForAJobDescription' defaultValue={userData.lookingForAJobDescription}/>
                         </div>

@@ -41,6 +41,7 @@ export const InputText: React.FC<SuperInputTextPropsType> = (
     return (
         <InputWrapper>
             <CustomInput
+                type={type ? type : 'text'}
                 value={restProps.value || ''}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}

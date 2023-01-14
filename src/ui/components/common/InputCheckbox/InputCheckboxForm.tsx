@@ -1,7 +1,5 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
 import s from './InputCheckboxForm.module.scss'
-import {UseFormRegister} from "react-hook-form";
-import {TSettingData} from "../../../pages/Settings/Settings";
 import {CheckboxLabel} from "./styles";
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -10,7 +8,8 @@ type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 type SuperInputTextPropsType = DefaultInputPropsType & {
     onChangeText?: (value: string) => void
     spanClassName?: string
-    register?: UseFormRegister<TSettingData>
+    checked?: boolean
+    // register?: UseFormRegister<TSettingData>
     name?: string
 
 }
@@ -22,8 +21,9 @@ const InputCheckboxForm: React.FC<SuperInputTextPropsType> = (
         onKeyPress,
         className, spanClassName,
         name,
-        register,
+        // register,
         children,
+        checked,
         ...restProps
     }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +39,7 @@ const InputCheckboxForm: React.FC<SuperInputTextPropsType> = (
             <input
                 type={'checkbox'}
                 onChange={onChangeCallback}
+                checked={checked}
                 className={finalInputClassName}
                 defaultChecked={restProps.defaultChecked}
             />

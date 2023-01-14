@@ -66,7 +66,7 @@ export const authThunk = () => async (dispatch: Dispatch) => {
         }
 }
 
-export const LoginThunk = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
+export const LoginThunk: any = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
        let response = await authAPI.login(email, password, rememberMe)
             if (response.data.resultCode === 0) {
                 dispatch(authThunk())

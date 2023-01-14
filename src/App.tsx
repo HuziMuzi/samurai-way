@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
 import {Navbar} from "./ui/pages/Navbar/Navbar";
-
 import {initializeAppThunk} from "./Redux/app-reducer";
 import {Header} from "./ui/pages/Logout/Logout";
 import style from './App.module.scss'
-
-
 import Pages from "./ui/pages/Pages";
 import {useAppDispatch, useAppSelector} from "./hooks/hooks";
 import {Preloader} from "./ui/components/common/Preloader/Preloader";
@@ -19,7 +16,6 @@ export const App = () => {
     useEffect(() => {
         dispatch(initializeAppThunk())
     }, [])
-
 
     return <ThemeProvider theme={DefaultTheme}>
         <div className={style.appWrapper}>
