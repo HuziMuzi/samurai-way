@@ -1,7 +1,6 @@
 import React  from "react";
-import ReactPaginate from "react-paginate";
-
-import style from './Paginator.module.css'
+import {MyPaginate} from "./styled";
+import {SmallArrowIcon} from "../../../assets/icons/SmallArrowIcon";
 
 type TPaginationProps = {
     totalCount: number;
@@ -22,23 +21,23 @@ const Pagination: React.FC<TPaginationProps> = React.memo(({ totalCount, pageCou
     };
 
     return (
-        <ReactPaginate
+        <MyPaginate
             forcePage={currentPage > -1 ? currentPage - 1 : 0}
             pageCount={pageQuantity < 1 ? 1 : pageQuantity}
             pageRangeDisplayed={3}
             renderOnZeroPageCount={() => null}
             marginPagesDisplayed={1}
-            containerClassName={style.pagination}
             onPageChange={handlePageChange}
-            previousLabel={'prev'}
-            nextLabel={'next'}
-            pageLinkClassName={style.pageItem}
-            activeClassName={style.active}
-            previousLinkClassName={style.pageItem}
-            nextLinkClassName={style.pageItem}
+            previousLabel={<SmallArrowIcon rotate='90deg'/>}
+            nextLabel={<SmallArrowIcon rotate='270deg'/>}
+            pageLinkClassName="page-item"
+            activeClassName="active"
+            previousLinkClassName={"page-item arrow"}
+            nextLinkClassName="page-item arrow"
             breakLabel=". . ."
-            breakClassName={style.pageItem}
+            breakClassName="page-item"
             breakLinkClassName="page-link"
+
         />
     );
 });
