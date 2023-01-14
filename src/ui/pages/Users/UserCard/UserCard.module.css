@@ -1,27 +1,46 @@
-.container{
+.container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    overflow: hidden;
+    padding: 5px;
     border: 1px solid var(--color-main);
     border-radius: 15px;
     width: 150px;
     height: 200px;
-    margin: 10px 0;
+    margin: 10px 10px;
 }
-
 
 .userPhoto {
-    margin: 0 auto;
-    width: 70px;
+    width: 40px;
 }
 
-.description{
+.description {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
     font-size: 14px;
 }
 
-.btnFollow{
-    position: absolute;
-    bottom: -15px;
+.boxHeader {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    max-width: 100%;
+    gap: 15px;
+}
+
+.userName {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.boxContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: space-around;
 }

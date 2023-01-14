@@ -4,6 +4,7 @@ import {UserCard} from "./UserCard/UserCard";
 import Pagination from "../../components/common/Paginator/Paginator";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
+import {UsersBox} from "./styles";
 
 
 
@@ -36,11 +37,11 @@ export const Users = () => {
     }, [])
     return (
         <div>
+                <Pagination totalCount={totalUsersCount} pageCount={pageSize} onClick={onClickPage} currentPage={currentPage}/>
             {isFetching ? <LoaderIcon positions='positionAbsolute'/>
                 :
                 <div>
-                <Pagination totalCount={totalUsersCount} pageCount={pageSize} onClick={onClickPage} currentPage={currentPage}/>
-                    <div>
+                    <UsersBox>
                         {users.map(u => <UserCard
                             key={u.id}
                             user={u}
@@ -48,7 +49,7 @@ export const Users = () => {
                             follow={followHandler}
                             unfollow={unfollowHandler}/>
                         )}
-                    </div>
+                    </UsersBox>
                 </div>
             }
         </div>

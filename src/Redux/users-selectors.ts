@@ -1,11 +1,4 @@
-import React from 'react';
 import {AppRootState} from "./redux-store";
-import {createSelector} from "reselect";
-
-
-// export const getUsersSuper = createSelector(() => {
-//     state.usersP
-// })
 
 export const getUsers = (state: AppRootState) => {
     return state.usersReducer.users
@@ -30,10 +23,3 @@ export const getIsFetching = (state: AppRootState) => {
 export const getFollowingInProgress = (state: AppRootState) => {
     return state.usersReducer.followingInProgress};
 
-
-// users: state.usersReducer.users,
-//     pageSize: state.usersReducer.pageSize,
-//     totalUsersCount: state.usersReducer.totalUsersCount,
-//     currentPage: state.usersReducer.currentPage,
-//     isFetching: state.usersReducer.isFetching,
-//     followingInProgress: state.usersReducer.followingInProgress
