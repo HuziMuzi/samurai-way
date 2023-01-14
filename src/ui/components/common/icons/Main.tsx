@@ -2,8 +2,8 @@ import React from 'react';
 
 const Main = () => {
     return (
-        <svg data-name="Layer 2" id="Layer_2" viewBox="0 0 32 32" width='24px'
-             height='24px'
+        <svg data-name="Layer 2" id="Layer_2" viewBox="0 0 32 32"
+             width="30px" height="30px"
              xmlns="http://www.w3.org/2000/svg"><title/>
             <path className="cls-1"
                   d="M30,15a1,1,0,0,1-.58-.19L16,5.23,2.58,14.81a1,1,0,0,1-1.16-1.62l14-10a1,1,0,0,1,1.16,0l14,10A1,1,0,0,1,30,15Z"/>

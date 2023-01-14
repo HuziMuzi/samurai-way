@@ -13,7 +13,7 @@ import {InputChangeSocial} from "./Input/InputChangeSocial";
 import {useForm} from "react-hook-form";
 import {getProfileThunk, savePhotoThunk, saveProfile} from "../../../Redux/profile-reducer";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
-import InpuTextForm from "../../components/common/InputText/InpuTextForm";
+import {InputText} from "../../components/common/InputText/InputText";
 import InputCheckboxForm from "../../components/common/InputCheckbox/InputCheckboxForm";
 import Button from "../../components/common/Button/Button";
 
@@ -59,7 +59,7 @@ const Settings = () => {
     const myId = useAppSelector(state => state.authReducer.id)
     const inputRef = useRef<HTMLInputElement>(null)
 
-    const onClickSubmit = (values: TSettingData) => {
+        const onClickSubmit = (values: TSettingData) => {
         console.log(values.fullName)
         const saveSettingsProfile = {
             contacts: {
@@ -110,7 +110,6 @@ const Settings = () => {
         <form onSubmit={handleSubmit(onClickSubmit)}>
             {isFetchingApp  && <LoaderIcon positions={"positionAbsolute"}/>}
             <div>
-                Settings
                 <div className='flex'>
                     <div className={s.imgBlock}>
                         <img width={'150px'}
@@ -129,13 +128,13 @@ const Settings = () => {
                     <div>
                         <div>Full name:
 
-                            <InpuTextForm register={register} name={'fullName'} defaultValue={userData.fullName}/>
+                            <InputText register={register} name={'fullName'} defaultValue={userData.fullName}/>
                         </div>
                         <div>looking for a job: {userData.lookingForAJob}
                             <InputCheckboxForm type={'checkbox'} register={register} name='lookingForAJob' defaultChecked={userData.lookingForAJob}/>
                         </div>
                         <div>looking for a job:
-                            <InpuTextForm type={'text'} register={register} name='lookingForAJobDescription' defaultValue={userData.lookingForAJobDescription}/>
+                            <InputText type={'text'} register={register} name='lookingForAJobDescription' defaultValue={userData.lookingForAJobDescription}/>
                         </div>
                     </div>
                 </div>

@@ -9,6 +9,8 @@ import style from './App.module.scss'
 import Pages from "./ui/pages/Pages";
 import {useAppDispatch, useAppSelector} from "./hooks/hooks";
 import {Preloader} from "./ui/components/common/Preloader/Preloader";
+import {ThemeProvider} from "styled-components";
+import {DefaultTheme} from "./ui/styles/themes/defaultTheme";
 
 export const App = () => {
     const initialized = useAppSelector(state => state.appReducer.initialized)
@@ -19,7 +21,7 @@ export const App = () => {
     }, [])
 
 
-    return (
+    return <ThemeProvider theme={DefaultTheme}>
         <div className={style.appWrapper}>
             {/*<Logout/>*/}
             <div className={style.appWrapperContent}>
@@ -32,11 +34,9 @@ export const App = () => {
                         </div>
                     </>
                 }
-            <Header/>
+                <Header/>
             </div>
-
-
-
         </div>
-    );
+        )
+    </ThemeProvider>
 }

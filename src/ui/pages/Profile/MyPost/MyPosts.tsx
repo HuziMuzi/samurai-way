@@ -1,10 +1,11 @@
 import React from 'react';
 import {Posts} from "./Post/Posts";
 import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
-import {AddPostAC} from "../../../../Redux/profile-reducer";
 import TextArea from "../../../components/common/TextArea/TextArea";
 import Button from "../../../components/common/Button/Button";
 import style from './MyPosts.module.css'
+import {useForm} from "react-hook-form";
+import {AddPostAC} from "../../../../Redux/profile-reducer";
 
 
 export type PostDataType = {
@@ -13,12 +14,17 @@ export type PostDataType = {
     likesCount: number
 }
 
+export type PostFieldType = {
+    post: string
+}
+
 
 
 export const MyPosts = () => {
 
     const dispatch = useAppDispatch()
     const posts = useAppSelector(state => state.profileReducer.posts)
+    const {register, handleSubmit, reset} = useForm<PostFieldType>()
 
     let postsElement = posts.map((post, index) =>
         <Posts
@@ -29,20 +35,21 @@ export const MyPosts = () => {
         />
     )
 
-    const onSubmitPost = () => {
-        dispatch(AddPostAC('asdfasdf'))
+    const onSubmitPost = (value: PostFieldType) => {
+        dispatch(AddPostAC(value.post))
+        reset()
     }
 
     return (
-        <>
+        <form onSubmit={handleSubmit(onSubmitPost)}>
             <div className={style.newPost}>
-                <TextArea/>
-                <Button onClick={onSubmitPost}>Send</Button>
+                <TextArea register={register} name='post' />
+                <Button>Send</Button>
             </div>
             <div>New post:
                 {postsElement}
             </div>
-        </>
+        </form>
     )
 };
 //

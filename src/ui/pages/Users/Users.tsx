@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {follow, requestUsers, setCurrentPage, unfollow} from "../../../Redux/users-reducer";
-import {User} from "./User";
+import {UserCard} from "./UserCard/UserCard";
 import Pagination from "../../components/common/Paginator/Paginator";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
@@ -41,7 +41,7 @@ export const Users = () => {
                 <div>
                 <Pagination totalCount={totalUsersCount} pageCount={pageSize} onClick={onClickPage} currentPage={currentPage}/>
                     <div>
-                        {users.map(u => <User
+                        {users.map(u => <UserCard
                             key={u.id}
                             user={u}
                             followingInProgress={followingInProgress}
