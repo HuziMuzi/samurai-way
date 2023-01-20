@@ -34,7 +34,4 @@ export const CustomInput = styled.input<CustomInputPropsType>`
   }
 `
 
-export const TextError = styled.div`
-  color: ${props => props.theme.colors.severity.error};
-  transition: all 1s linear;;
-`
+

@@ -35,7 +35,6 @@ const LoginRoute = ({redirectPath = PATH.profile}) => {
     return <Outlet/>;
 };
 
-
 const Pages = () => {
     return (
         <Routes>
