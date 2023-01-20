@@ -2,7 +2,7 @@ import React from "react"
 import s from './Logout.module.scss'
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {LogoutThunk} from "../../../Redux/auth-reducer";
+import {LogoutThunk} from "../../../bll/auth-reducer";
 import LogOutIcon from "../../components/common/icons/LogOut";
 import Button from "../../components/common/Button/Button";
 import {PATH} from "../Pages";

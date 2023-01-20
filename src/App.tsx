@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {Navbar} from "./ui/pages/Navbar/Navbar";
-import {initializeAppThunk} from "./Redux/app-reducer";
+import {initializeAppThunk} from "./bll/app-reducer";
 import {Header} from "./ui/pages/Logout/Logout";
 import style from './App.module.scss'
 import Pages from "./ui/pages/Pages";

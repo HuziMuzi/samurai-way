@@ -5,7 +5,7 @@ import Button from "../../components/common/Button/Button";
 import InputCheckboxForm from "../../components/common/InputCheckbox/InputCheckboxForm";
 import {LoginWrapper, MarginBox, SpanText} from "./styles";
 import {useAppDispatch} from "../../../hooks/hooks";
-import {LoginThunk} from "../../../Redux/auth-reducer";
+import {LoginThunk} from "../../../bll/auth-reducer";
 
 
 export type FormSubmitType = {

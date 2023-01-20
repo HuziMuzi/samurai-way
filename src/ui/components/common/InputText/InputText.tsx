@@ -1,7 +1,8 @@
 import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
 import {FieldError, UseFormRegister} from "react-hook-form";
 import {TSettingData} from "../../../pages/Settings/Settings";
-import {CustomInput, InputWrapper, TextError} from "./styled";
+import {CustomInput, InputWrapper} from "./styled";
+import {TextError} from "../UiBox/styled";
 
 export type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
