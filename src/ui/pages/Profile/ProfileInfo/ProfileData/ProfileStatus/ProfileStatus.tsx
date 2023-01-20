@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import {useAppDispatch} from "../../../../../../hooks/hooks";
-import {updateUserStatusThunk} from "../../../../../../Redux/profile-reducer";
+import {updateUserStatusThunk} from "../../../../../../bll/profile-reducer";
 import style  from './ProfileStatus.module.scss'
 
 type ProfileStatusType = {
@@ -19,7 +19,6 @@ function ProfileStatus(props: ProfileStatusType) {
     const deactivateActiveEditMode = () => {
         setEditMod(false)
         dispatch(updateUserStatusThunk(status))
-
     }
 
     const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {

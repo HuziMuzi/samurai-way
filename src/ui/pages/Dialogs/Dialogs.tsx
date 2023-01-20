@@ -4,7 +4,8 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import DialogsForm, { TFormData} from "./DialogsForm";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {SendMessageAC} from "../../../Redux/dialogs-reducer";
+import {SendMessageAC} from "../../../bll/dialogs-reducer";
+import {usersDemo} from "../../../bll/demo/usersDemo";
 
 export type DialogsDataType = {
     id: string
@@ -22,15 +23,16 @@ const Dialogs = () => {
     const dialogs = useAppSelector(state => state.dialogsReducer.dialogs)
     const messages = useAppSelector(state => state.dialogsReducer.messages)
     const dispatch = useAppDispatch()
+    const users = usersDemo
 
-    const dialogsElements = dialogs.map(dialog => <DialogItem key={dialog.id} id={dialog.id} name={dialog.name}/>)
+    const dialogsElements = users.map(user => <DialogItem key={user.id} id={user.id} user={user}/>)
     const messagesElements = messages.map(mes => <Message key={mes.id} text={mes.text}/>)
 
     const addNewMessage = (values: TFormData) => {
         dispatch(SendMessageAC(values.message))
     }
     return (
-        
+
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
                 {dialogsElements}

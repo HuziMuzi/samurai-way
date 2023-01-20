@@ -11,7 +11,7 @@ import Main from "../../components/common/icons/Main";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {InputChangeSocial} from "./Input/InputChangeSocial";
 import {useForm} from "react-hook-form";
-import {getProfileThunk, savePhotoThunk, saveProfile} from "../../../Redux/profile-reducer";
+import {getProfileThunk, savePhotoThunk, saveProfile} from "../../../bll/profile-reducer";
 import {LoaderIcon} from "../../assets/LoaderIcon/LoaderIcon";
 import {InputText} from "../../components/common/InputText/InputText";
 import Button from "../../components/common/Button/Button";
@@ -59,7 +59,6 @@ const Settings = () => {
     const inputRef = useRef<HTMLInputElement>(null)
 
         const onClickSubmit = (values: TSettingData) => {
-        console.log(values.fullName)
         const saveSettingsProfile = {
             contacts: {
                 facebook: values.facebook,
@@ -94,7 +93,6 @@ const Settings = () => {
     useEffect(() => {
         if(userData.fullName) return
         dispatch(getProfileThunk(myId)).then((res: any) => {
-
             reset({
                 fullName: res.fullName,
                 lookingForAJob: res.lookingForAJob,

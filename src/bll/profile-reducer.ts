@@ -1,5 +1,5 @@
 import {PostDataType} from "../ui/pages/Profile/MyPost/MyPosts";
-import {profileAPI, userAPI} from "../api/api";
+import {profileAPI, userAPI} from "../dal/api";
 import {AppThunkType} from "./redux-store";
 import {setIsFetchingApp} from "./app-reducer";
 import {TActiveProfile} from "../ui/pages/Settings/Settings";

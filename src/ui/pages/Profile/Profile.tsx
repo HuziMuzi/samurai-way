@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import s from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {getProfileThunk, getUserStatusThunk} from "../../../Redux/profile-reducer";
+import {getProfileThunk, getUserStatusThunk} from "../../../bll/profile-reducer";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import { useNavigate, useParams} from "react-router-dom";
 import {PATH} from "../Pages";
@@ -14,7 +14,6 @@ export const Profile = () => {
     const dispatch = useAppDispatch()
     const ownId = useAppSelector(state => state.authReducer.id)
     let userId = params.id
-
 
     useEffect(() => {
         if (!userId) {
