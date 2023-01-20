@@ -55,7 +55,7 @@ export const setIsFetchingApp = (value: boolean) => {
 export const initializeAppThunk: any = () : AppThunkType =>  (dispatch) => {
 
    let a =  dispatch(authThunk())
-    a.then(res => {
+    a.then(() => {
         dispatch(initializedSuccess())
     })
 }

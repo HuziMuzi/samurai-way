@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {followUnfollowResponseType, userAPI} from "../api/api";
+import {followUnfollowResponseType, userAPI} from "../dal/api";
 import {AppThunkType} from "./redux-store";
 import {updateObjectInArray} from "../utils/object-helpers";
 

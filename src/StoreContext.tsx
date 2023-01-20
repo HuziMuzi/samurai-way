@@ -1,5 +1,5 @@
 import React from "react";
-import {AppRootState} from "./Redux/redux-store";
+import {AppRootState} from "./bll/redux-store";
 
 
 const StoreContext = React.createContext({} as AppRootState)

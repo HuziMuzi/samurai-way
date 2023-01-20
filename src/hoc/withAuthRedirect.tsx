@@ -1,6 +1,6 @@
 import React, {ComponentType} from 'react';
 // import {Redirect} from "react-router-dom";
-import {AppRootState} from "../Redux/redux-store";
+import {AppRootState} from "../bll/redux-store";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../ui/pages/Pages";

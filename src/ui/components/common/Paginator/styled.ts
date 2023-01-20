@@ -40,7 +40,7 @@ export const MyPaginate = styled(ReactPaginate)`
     }
 
     .active {
-        background-color: ${({ theme }) => theme.colors.paginationMain};
+        background-color: ${({ theme }) => theme.colors.white};
         pointer-events: none;
         border-radius: 50%;
         color: ${({ theme }) => theme.colors.textOnPrimary};
@@ -59,8 +59,5 @@ export const MyPaginate = styled(ReactPaginate)`
         &:hover {
             background-color: rgba(0, 0, 0, 0.05);
         }
-    }
-
-    .break {
     }
 `;

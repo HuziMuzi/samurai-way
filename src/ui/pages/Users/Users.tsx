@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {follow, requestUsers, setCurrentPage, unfollow} from "../../../Redux/users-reducer";
+import {follow, requestUsers, setCurrentPage, unfollow} from "../../../bll/users-reducer";
 import {UserCard} from "./UserCard/UserCard";
 import Pagination from "../../components/common/Paginator/Paginator";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";

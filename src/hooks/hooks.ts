@@ -1,5 +1,5 @@
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import {TAppDispatch, TRootState} from "../Redux/redux-store";
+import {TAppDispatch, TRootState} from "../bll/redux-store";
 
 // export const useAppDispatch: () => TAppDispatch = useDispatch;
 
